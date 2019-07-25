@@ -1,0 +1,16 @@
+.main{
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction: column;
+   .subject{
+       width:100%;
+       flex:1;
+   }
+   .footer{
+       width:100%;
+       height:.98rem;
+       line-height: .98rem;
+       font-size: .5rem;
+   }
+}

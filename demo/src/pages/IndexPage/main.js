@@ -5,23 +5,18 @@ import "./main.scss";
 export class Main extends Component {
     
     render() {
-
-        console.log(this.props);
+       // console.log(this.props);
         return (
             <div className="main">
 
                 <div className="mainBox">
                     <RouterView router={this.props.child}></RouterView>
-
                 </div>
 
                 <div className="footerBox">
-                <Footer></Footer>
+                    <Footer></Footer>
                 </div>
 
-               
-                
-                
             </div>
         )
     }

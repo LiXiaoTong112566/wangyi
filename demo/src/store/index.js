@@ -1,7 +1,7 @@
-import Home from "./modules/home";
+import IndexPageModule from "./module/home/IndexPageModule";
+//实例化模块
+const indexPageModule =new IndexPageModule;
 
-const home = new Home();
-
-export default{
-    home
+export default {
+    indexPageModule
 }

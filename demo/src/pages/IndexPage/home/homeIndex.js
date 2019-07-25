@@ -25,4 +25,4 @@ class homeIndex extends Component {
         )
     }
 }
-export default homeIndex
+export default homeIndex;

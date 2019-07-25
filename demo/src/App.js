@@ -1,17 +1,17 @@
-import React from 'react'
-import "./App.css"
+import "./App.css";
 
-import {BrowserRouter,Switch,Route,Redirect} from "react-router-dom"
-import Main from "./pages/main";
+import React, { Component } from "react";
 
-function App() {
+import routes from "./router/config";
+import Routers from "./router";
+
+export class App extends Component {
+  render() {
     return (
-      <BrowserRouter>
-         <Switch>
-          <Route path="/home" component={Main}></Route>
-          <Redirect to="/home"></Redirect>
-         </Switch>
-      </BrowserRouter>
+      <div className="allBox">
+        <Routers route={routes} />
+      </div>
     );
+  }
 }
 export default App

@@ -4,7 +4,7 @@ export class Login extends Component {
     render() {
         return (
             <div>
-                
+                登录的页面
             </div>
         )
     }

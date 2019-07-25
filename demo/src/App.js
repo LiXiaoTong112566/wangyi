@@ -1,7 +1,7 @@
 import "./App.css";
 
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+
 import routes from "./router/config";
 import Routers from "./router";
 
@@ -14,5 +14,4 @@ export class App extends Component {
     );
   }
 }
-
-export default App;
+export default App

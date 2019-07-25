@@ -1,7 +1,9 @@
-import IndexPageModule from "./module/home/IndexPageModule";
+import LoginModule from "./module/loginModule/login.js";
 //实例化模块
-const indexPageModule =new IndexPageModule;
+//登录的方法
+const login =new LoginModule;
 
 export default {
-    indexPageModule
+    login
+    
 }

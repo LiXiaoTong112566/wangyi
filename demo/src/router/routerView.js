@@ -14,7 +14,7 @@ function View(props){
                    if(item.children){
                        return <item.component  {...props} child={item.children}></item.component>
                    }
-                return <item.component></item.component>
+                return <item.component {...props}></item.component>
                }}></Route>
            }).concat(arr1)
        }              

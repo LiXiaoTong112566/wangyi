@@ -61,7 +61,7 @@ const LoginIndex=Loadable({
 let router=[
     {
         path:"/",
-        redirect:"main/homeIndex",
+         redirect:"/login",
 
     },
     {
@@ -90,7 +90,7 @@ let router=[
         
     },
     {
-        path:"/loginIndex",
+        path:"/login",
         component:LoginIndex
         
     }

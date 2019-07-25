@@ -1,11 +1,16 @@
 import {observable,action}  from "mobx";
+import {getHomeData} from "../../../servies"
 
 export default class IndexPageModule{
    
-    @observable count=1000;
+    @observable count={};
 
     //修饰方法
     @action changeCount(type){
-        type==='+'?this.count++:this.count--;
+         getHomeData().then(res=>{
+              console.log(res.data.data)
+            this.count= res.data.data
+          } 
+         )
     }
 }

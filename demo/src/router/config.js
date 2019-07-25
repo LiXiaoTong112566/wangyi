@@ -2,7 +2,7 @@ import React from "react";
 import Loadable from "react-loadable";//路由懒加载
 
 //定义一个函数
-function Load() {
+function Loading() {
     return <div>
         Loading...加载中...
     </div>
@@ -10,35 +10,49 @@ function Load() {
                                                                                                                 
 //一级路由
 const Main=Loadable({
-    loader:()=>import ("../pages/IndexPage/Main")
+    loader:()=>import ("../pages/IndexPage/main"),
+    loading:Loading
+
 })
 
 //登录
 const LoginIndex=Loadable({
-    loader:()=>import ("../pages/login/login")
+    loader:()=>import ("../pages/login/login"),
+    loading:Loading
+
 })
 
 //二级路由
 
 //首页
     const HomeIndex=Loadable({
-        loader:()=>import ("../pages/IndexPage/home/homeIndex")
+        loader:()=>import ("../pages/IndexPage/home/homeIndex"),
+        loading:Loading
+
     })
 //分类
     const ClassifyIndex=Loadable({
-        loader:()=>import ("../pages/IndexPage/classify/classifyIndex")
+        loader:()=>import ("../pages/IndexPage/classify/classifyIndex"),
+        loading:Loading
+
     })
 //主题
     const SpecialIndex=Loadable({
-        loader:()=>import ("../pages/IndexPage/special/specialIndex")
+        loader:()=>import ("../pages/IndexPage/special/specialIndex"),
+        loading:Loading
+
     })
 //购物车
     const ShoppingIndex=Loadable({
-        loader:()=>import ("../pages/IndexPage/shopping/shoppingIndex")
+        loader:()=>import ("../pages/IndexPage/shopping/shoppingIndex"),
+        loading:Loading
+
     })
 //我的
     const MyIndex=Loadable({
-        loader:()=>import ("../pages/IndexPage/my/myIndex")
+        loader:()=>import ("../pages/IndexPage/my/myIndex"),
+        loading:Loading
+
     })
 
 
@@ -47,12 +61,13 @@ const LoginIndex=Loadable({
 let router=[
     {
         path:"/",
-        redirect:"/homeIndex",
+        redirect:"main/homeIndex",
 
     },
     {
         path:"/main",
         component:Main,
+        
         children:[
             {
                 path:"/main/homeIndex",

@@ -9,12 +9,23 @@ function Load() {
 }
                                                                                                                 
 //一级路由
+const Main=Loadable({
+    loader:()=>import ("../pages/IndexPage/Main")
+})
+
+//登录
+const LoginIndex=Loadable({
+    loader:()=>import ("../pages/login/login")
+})
+
+//二级路由
+
 //首页
     const HomeIndex=Loadable({
         loader:()=>import ("../pages/IndexPage/home/homeIndex")
     })
 //分类
-    const classifyIndex=Loadable({
+    const ClassifyIndex=Loadable({
         loader:()=>import ("../pages/IndexPage/classify/classifyIndex")
     })
 //主题
@@ -30,10 +41,47 @@ function Load() {
         loader:()=>import ("../pages/IndexPage/my/myIndex")
     })
 
-//登录
-const LoginIndex=Loadable({
-    loader:()=>import ("../pages/login/login")
-})
+
+
+
+let router=[
+    {
+        path:"/",
+        redirect:"/homeIndex",
+
+    },
+    {
+        path:"/main",
+        component:Main,
+        children:[
+            {
+                path:"/main/homeIndex",
+                component:HomeIndex,
+
+            },{
+                path:"/main/classifyIndex",
+                component:ClassifyIndex
+            },{
+                path:"/main/specialIndex",
+                component:SpecialIndex
+            },{
+                path:"/main/ShoppingIndex",
+                component:ShoppingIndex
+            },{
+                path:"/main/MyIndex",
+                component:MyIndex
+            }
+        ]
+        
+    },
+    {
+        path:"/loginIndex",
+        component:LoginIndex
+        
+    }
+]
+
+export default router;
 
 
 

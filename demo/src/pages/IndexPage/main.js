@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 
-export class Login extends Component {
+export class Main extends Component {
     render() {
         return (
             <div>
-                登录的页面
+                主页面
+                
             </div>
         )
     }
 }
 
-export default Login
+export default Main

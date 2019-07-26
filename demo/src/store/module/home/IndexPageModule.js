@@ -11,20 +11,21 @@ export default class IndexPageModule{
     //修饰方法
     @action changeCount(type){
         getHomeData().then(res=>{
-          console.log(res)
-            this.count= res.data.data
+
+          console.log(res);
+            this.count= res.data
           } 
          )
     }
     @action brandDetail(type){
       getBrandDetail({id:type}).then(res=>{
-          this.count= res.data.data
+          this.count= res.data
        } 
       )
     }
     @action list(type){
       getGoodsData ({brandId:type}).then(res=>{
-          this.count = res.data.data
+          this.count = res.data;
        } 
       )
     }

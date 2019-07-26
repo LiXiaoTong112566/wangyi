@@ -22,6 +22,15 @@ const LoginIndex=Loadable({
 
 })
 
+//分类专题里面的奇趣分类页面
+const ClassifyDetail=Loadable({
+    loader:()=>import ("../pages/IndexPage/classify/classifyDetail/classifyDetail"),
+    loading:Loading
+
+})
+
+
+
 //二级路由
 
 //首页
@@ -65,7 +74,8 @@ const LoginIndex=Loadable({
 let router=[
     {
         path:"/",
-        redirect:"main/homeIndex",
+         redirect:"/login",
+
     },
     {
         path:"/main",
@@ -90,9 +100,17 @@ let router=[
         ]
     },
     {
-        path:"/loginIndex",
+        path:"/login",
         component:LoginIndex
+        
     },
+    {
+        path:"/classifyDetail/:id",
+        component:ClassifyDetail
+        
+    },
+    
+    
     {
         path:"/brandDetail/:id",
         component:BrandDetail

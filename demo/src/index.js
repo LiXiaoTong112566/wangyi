@@ -4,7 +4,6 @@ import App from './App';
 import "./index.css"
 //引入mobx
 
-
 import {Provider} from "mobx-react";
 import store from "./store";
 

@@ -9,7 +9,6 @@ export default class detailList{
     //修饰方法
     @action list(type){
       getGoodsData ({brandId:type}).then(res=>{
-          console.log(res.data.data)
           this.state = res.data.data
        } 
       )

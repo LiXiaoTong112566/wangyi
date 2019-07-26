@@ -12,7 +12,7 @@ import BScroll from "better-scroll";
     super();
     this.state={
       ind:0,
-      id:1005001,//左侧盒子的id
+      id:1005000,//左侧盒子的id
 
     }
 
@@ -79,7 +79,7 @@ import BScroll from "better-scroll";
             <div className="rightBox_main">
             {console.log(classifyRightBoxData.subCategoryList)}
               {classifyRightBoxData.subCategoryList&&classifyRightBoxData.subCategoryList.map((item,index)=>{
-                return (<dl key={item.id} onClick={()=>{this.props.history.push({pathname:`/classifyDetail/${this.state.id}`,params:{classifyId:item.id}})}}>
+                return (<dl key={item.id} onClick={()=>{this.props.history.push({pathname:`/classifyDetail/${this.state.id}`,params:{classifyId:item.id,index:index}})}}>
                   <dt> 
                    <img src={item.wap_banner_url} alt=""/>  
   

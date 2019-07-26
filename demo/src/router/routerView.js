@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route,Redirect,Switch} from "react-router-dom";
+import { Route,Redirect,Switch} from "react-router-dom";
 
 function View(props){
    let {router}=props;

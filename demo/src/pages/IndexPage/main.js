@@ -5,7 +5,7 @@ import "./main.scss";
 export class Main extends Component {
     
     render() {
-        console.log(this.props);
+       // console.log(this.props);
         return (
             <div className="main">
 
@@ -14,12 +14,9 @@ export class Main extends Component {
                 </div>
 
                 <div className="footerBox">
-                <Footer></Footer>
+                    <Footer></Footer>
                 </div>
 
-               
-                
-                
             </div>
         )
     }

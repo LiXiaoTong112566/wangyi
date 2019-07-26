@@ -63,7 +63,11 @@ const ClassifyDetail=Loadable({
         loading:Loading
 
     })
-
+//制造商详情
+    const BrandDetail=Loadable({
+        loader:()=>import ("../pages/IndexPage/home/child/brandDetail"),
+        loading:Loading
+    })
 
 
 
@@ -75,13 +79,11 @@ let router=[
     },
     {
         path:"/main",
-        component:Main,
-        
+        component:Main, 
         children:[
             {
                 path:"/main/homeIndex",
                 component:HomeIndex,
-
             },{
                 path:"/main/classifyIndex",
                 component:ClassifyIndex
@@ -96,7 +98,6 @@ let router=[
                 component:MyIndex
             }
         ]
-        
     },
     {
         path:"/login",
@@ -109,6 +110,11 @@ let router=[
         
     },
     
+    
+    {
+        path:"/brandDetail/:id",
+        component:BrandDetail
+    }
 ]
 
 export default router;

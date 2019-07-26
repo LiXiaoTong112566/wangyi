@@ -4,7 +4,6 @@ import ImgBlend from "./imgBlend"
 export default class shopList extends Component {
     render() {
         let {list,type}= this.props;
-        console.log(list)
         return (
             <div className="blend">
               {list&&list.map(file=>

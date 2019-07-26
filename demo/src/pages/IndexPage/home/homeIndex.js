@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import "./homeIndex.scss"
 
 import Swiper from "swiper";
-import "./swiper.css"
+import "../../../scss/swiper.css"
 import {inject, observer} from 'mobx-react';
 import ImgBlend from "../../../component/imgBlend"
 import ShopList from "../../../component/shopList"
@@ -22,6 +22,10 @@ class homeIndex extends Component {
         new Swiper(card,{
            loop:true
         })
+    }
+    brandDetail(ids){
+        let {history} =this.props;
+        history.push({pathname:`/brandDetail/${ids}`})
     }
     render() {
         let count =this.props.indexPageModule.count;
@@ -61,7 +65,7 @@ class homeIndex extends Component {
                     {channel&&channel.map(file=>
                        <dl key={file.id}>
                           <dt>
-                              <img src={file.icon_url}></img>
+                              <img src={file.icon_url} alt=""></img>
                           </dt>
                           <dd>{file.name}</dd>
                        </dl>
@@ -71,7 +75,12 @@ class homeIndex extends Component {
                     <p>品牌制造商直供</p>
                     <div className="dls">
                       {brandList&&brandList.map(file=>
-                         <div className="dlImg" key={file.id} style={{background:`url(${file.new_pic_url})`,backgroundSize:"100%"}}>
+                         <div 
+                           className="dlImg" 
+                           key={file.id} 
+                           style={{background:`url(${file.new_pic_url})`,backgroundSize:"100%"}}
+                           onClick={()=>this.brandDetail(file.id)}
+                         >
                              <div>
                                  <h5>{file.name}</h5>
                                  <span>{file.floor_price}元起</span>
@@ -93,7 +102,7 @@ class homeIndex extends Component {
                     <div className="blend hot_blend">
                       {hotGoodsList&&hotGoodsList.map(file=>
                           <dl key={file.id}>
-                              <dt><img src={file.list_pic_url}></img></dt>
+                              <dt><img src={file.list_pic_url} alt=""></img></dt>
                               <dd>
                                   <div>{file.name}</div>
                                   <div style={{color:"#ccc"}}>{file.goods_brief}</div>
@@ -126,8 +135,7 @@ class homeIndex extends Component {
                              <ShopList list={file.goodsList} type={file.name}></ShopList>
                          </div>
                         )}
-                </div>
-               
+                </div> 
             </>
         )
     }

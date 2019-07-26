@@ -43,8 +43,8 @@
        display:flex;
        flex-wrap: wrap;
        .dlImg{
+           display: inline-block;
            width: 50%;
-           display: inline;
            box-sizing: border-box;
            padding:.2rem;
            h5{ 

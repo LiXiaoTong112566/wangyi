@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import "./homeIndex.scss"
-//import ReactSwipe from "react-swipe"
+
 import Swiper from "swiper";
 import "./swiper.css"
 import {inject, observer} from 'mobx-react';
 import ImgBlend from "../../../component/imgBlend"
+import ShopList from "../../../component/shopList"
 
 @inject('indexPageModule')
 @observer
@@ -37,6 +38,8 @@ class homeIndex extends Component {
             var hotGoodsList = count.hotGoodsList;
             //专题精选
             var topicList = count.topicList;
+            // list
+            var categoryList = count.categoryList;
        }
        
         return (
@@ -116,6 +119,15 @@ class homeIndex extends Component {
                        </div>
                     </div>
                 </div>
+                <div className="shop_list dlslist">
+                     {categoryList&&categoryList.map(file=>
+                         <div key={file.id}>
+                            <p>{file.name}</p>
+                             <ShopList list={file.goodsList} type={file.name}></ShopList>
+                         </div>
+                        )}
+                </div>
+               
             </>
         )
     }

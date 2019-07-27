@@ -22,8 +22,8 @@ import BScroll from "better-scroll";
 
     componentDidMount(){
       this.props.classify.getCatalogInitModule();
-      console.log(this.leftScrollBox);
-      console.log(this.leftScrollBox);
+      // console.log(this.leftScrollBox);
+      // console.log(this.leftScrollBox);
       this.leftBscroll=new BScroll(this.leftScrollBox.current,{
         probeType:2,
         click:true
@@ -33,18 +33,15 @@ import BScroll from "better-scroll";
         probeType:2,
         click:true
       })
-      
     }
 
     //点击左侧切换右侧
-
     leftBoxChangeId(id,index){
       this.setState({
         ind:index,
         id:id,
 
       })
-
       this.props.classify.getCatalogMsgModule({id:id})
     }
 
@@ -59,6 +56,7 @@ import BScroll from "better-scroll";
       this.props.history.push({pathname:`/classifyDetail/${classifyId}`})
 
 
+    
     }
 
 
@@ -66,7 +64,6 @@ import BScroll from "better-scroll";
 
   render() {
     let {classifyLeftBoxData,classifyRightBoxData}=this.props.classify;
-    
 
     return (
       <div className="classify_box">
@@ -106,6 +103,7 @@ import BScroll from "better-scroll";
               })}
               
             </div>
+
 
 
 

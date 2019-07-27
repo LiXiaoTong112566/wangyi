@@ -30,9 +30,9 @@ class BrandDetail extends Component {
                         {store.simple_desc}
                     </div>
                     <div className="detail_shop">
-                        {list.length&&list.map(file=>
+                       {list.length>0?list.map(file=>
                             <ImgBlend key={file.id} list={file}></ImgBlend>
-                            )}
+                            ):""}
                     </div>
                 </div>
                 

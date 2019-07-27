@@ -18,7 +18,7 @@ class ClassifyDetail extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
+    // console.log(this.props);
     let id = this.props.match.params.id; //分类标题的id;
     console.log(id);
     let classifyId = localStorage.getItem("classifyId") //商品的id
@@ -83,8 +83,6 @@ class ClassifyDetail extends Component {
   render() {
     let { classifyRightBoxData } = this.props.classify;
 
-    console.log(this.props);
-   
     
     let titleData = this.props.classify.getCategoryNavData.currentCategory;
      let NavData = this.props.classify.getCategoryNavData.brotherCategory;
@@ -127,12 +125,10 @@ class ClassifyDetail extends Component {
           <div>
             <div className="title">
               <h3>{titleData && titleData.name}</h3>
-
               <div className="titleMain">
                 {titleData && titleData.front_name}
               </div>
             </div>
-
             <div className="classifyDetail_mainBox">
               {getGoodsData.data &&
                 getGoodsData.data.map((item, index) => {

@@ -26,7 +26,6 @@ export default class IndexPageModule {
   //根据分类ID获取当前分类信息和子分
   @action getCatalogMsgModule(data) {
     getCatalogMsgServer(data).then(res => {
-      console.log(res);
       this.classifyRightBoxData = res.data.currentCategory;
     });
   }
@@ -36,18 +35,13 @@ export default class IndexPageModule {
   @action getCategoryNavModule(data) {
     console.log(data);
     getCategoryNavServer(data).then(res => {
-      console.log(res);
       this.getCategoryNavData = res.data;
     });
   }
 
-  
-
   //根据分类Id或者制造商Id获取商品
   @action getGoodsModule(data) {
-    console.log(data);
     getGoodsServer(data).then(res => {
-      console.log(res);
       this.getGoodsData = res.data;
     });
   }
@@ -55,7 +49,7 @@ export default class IndexPageModule {
   //获取商品的详情
   @action getGoodsDetailModule(data) {
     getGoodsDetailServer(data).then(res => {
-      console.log(res);
+      console.log(res.data);
       this.getGoodsDetailData = res.data;
     });
   }

@@ -26,8 +26,6 @@ export  function getCategoryNavServer(params){
 }
 
 
-
-
 //根据分类Id或者制造商Id获取商品
 
 export  function getGoodsServer(params){

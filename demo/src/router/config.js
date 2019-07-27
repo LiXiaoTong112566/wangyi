@@ -29,6 +29,15 @@ const ClassifyDetail=Loadable({
 
 })
 
+//商品的详情页面
+
+
+const StoreDetail=Loadable({
+    loader:()=>import ("../pages/Detail/storeDetail"),
+    loading:Loading
+
+})
+
 
 
 //二级路由
@@ -114,6 +123,10 @@ let router=[
     {
         path:"/brandDetail/:id",
         component:BrandDetail
+    },
+    {
+        path:"/storeDetail/:id",
+        component:StoreDetail
     }
 ]
 

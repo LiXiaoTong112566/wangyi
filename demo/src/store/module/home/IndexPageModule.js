@@ -12,7 +12,6 @@ export default class IndexPageModule{
     //修饰方法
     @action changeCount(type){
         getHomeData().then(res=>{
-
           console.log(res);
             this.count= res.data
           } 

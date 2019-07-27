@@ -55,9 +55,7 @@ export default class IndexPageModule {
   }
 
   //获取商品的详情
-
   @action getGoodsDetailModule(data) {
-    console.log(data);
     getGoodsDetailServer(data).then(res => {
       console.log(res);
       this.getGoodsDetailData = res.data;

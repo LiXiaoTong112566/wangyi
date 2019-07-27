@@ -70,10 +70,13 @@ class ClassifyDetail extends Component {
       id: id
     });
   }
-  storeDetail(){
-      
-  }
 
+  //跳转到商品详情
+  jumpStoreDetail(id) {
+    this.props.history.push({
+      pathname: `/storeDetail/${id}`
+    });
+  }
 
   render() {
     let { classifyRightBoxData } = this.props.classify;
@@ -127,9 +130,13 @@ class ClassifyDetail extends Component {
             <div className="classifyDetail_mainBox">
               {getGoodsData.data &&
                 getGoodsData.data.map((item, index) => {
-                    {console.log(item)}
                   return (
-                    <dl key={item.id} onClick={()=>{this.storeDetail()}}>
+                    <dl
+                      key={item.id}
+                      onClick={() => {
+                        this.jumpStoreDetail(item.id);
+                      }}
+                    >
                       <dt>
                         <img src={item.list_pic_url} alt="" />
                       </dt>

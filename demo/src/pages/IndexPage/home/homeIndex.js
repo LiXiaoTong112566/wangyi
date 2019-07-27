@@ -13,13 +13,11 @@ class homeIndex extends Component {
     componentDidMount(){
         let {indexPageModule}=this.props;
         indexPageModule.changeCount()
-       
     }
 
     componentDidUpdate(){
         let {ban,pagination,card}= this.refs
         new Swiper(ban,{
-
             autoplay:true,
             loop:true,
             pagination: {
@@ -27,8 +25,7 @@ class homeIndex extends Component {
               }
         })
         new Swiper(card,{
-           loop:true,
-           autoplay:true,
+           loop:true
         })
 
     }

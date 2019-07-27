@@ -1,75 +1,142 @@
 .storeDetail_box{
     width: 100%;
     height: 100%;
-    
-
+    display:flex;
+    flex-direction: column;
+    background:#eee;
     .header{
-
         width: 100%;
-        height: .9rem;
-        line-height: .9rem;
+        height: 1rem;
+        line-height: 1rem;
         text-align: center;
         border-bottom:1px solid #ccc;
         span{
             position: absolute;
             left:0.1rem;
-            top:0;
-            font-size:0.3rem;
-          
+            top:-0.1rem;
+            font-size:0.5rem;  
         }
-
+        h3{
+            font-weight: bold;
+        }
     }
-
+    .article{
+        width:100%;
+        flex:1;
+        overflow: scroll;
+    }
     .swiperBox{
         width: 100%;
-        height: 4rem;
-    }
-    .swiper-container{
-        .swiper-wrapper{
-            width: 100%;
-        }
-        height: 4rem;
-       
+        height: 7rem;
         img{
-            width: 100%;
-            height: 4rem;
+            display:inline-block;
+            width:100%;
+            height: 7rem;
         }
-
     }
+   
 
     .service{
         width: 100%;
-        height: 0.5rem;
-        line-height: .5rem;
-        background: #ccc;
+        height: 0.8rem;
+        line-height: .8rem;
+        margin:0;
         display: flex;
         justify-content: space-around;
-        overflow: hidden;
-
         li{
-            flex:1;
             text-align: center;
-            b{
-                font-size: .2rem;
-            }
-        }
-       
-        span{
-            color:red;
-            
+            color:#666;
+            font-size: .2rem;
+            span{
+                margin:0 .08rem;
+                 color:red;
+           }
         }
     }
 
     .content{
         width: 100%;
+        height:2.8rem;
         text-align: center;
-
-        .price{
-            b{
-                color:red;
-            }
-           
+        background:#fff;
+        box-sizing: border-box;
+        padding:.4rem;
+        h3{
+            height:.6rem;
+            font-size: .4rem;
         }
+        .price{
+           color:red;
+           font-size: .4rem;
+           height:1rem;
+           line-height: 1rem;
+        } 
+    }
+    .norms{
+        width:100%;
+        height:1rem;
+        line-height: 1rem;
+        box-sizing: border-box;
+        padding:0 .5rem;
+        border-top:.01rem solid #eee;
+        text-align: right;
+        background:#fff;
+        .color_num{
+            color:red;
+            margin:0 .3rem;
+            font-weight: bold;
+        }
+    }
+    .detailBox{
+        width: 100%;
+        p{
+            margin:0;
+        }
+        img{
+            width: 100%;
+        }
+    }
+    .parameters{
+        width:100%;
+        background:#fff;
+        margin-top:.2rem;
+        box-sizing: border-box;
+        padding:0.1rem .4rem;
         
+        p{
+            color:skyblue;
+            height:.8rem;
+            line-height: .8rem;
+            text-align: center;
+            margin:0;
+        }
+        ul{
+            width:100%;
+            li{
+                width:100%;
+                line-height: .8rem;
+                background:#eee;
+                margin-top:.05rem;
+                display:flex;
+                span{
+                    display:inline-block;
+                }
+                .left_specs{
+                    width:2rem;
+                    text-align: center;
+                    color:#999;
+                }
+                .right_specs{
+                    flex:1;
+                    text-align: left;
+
+                }
+            }
+        }
+    }
+    .footer{
+        width:100%;
+        height:1rem;
+        background:#df55;
     }
 }

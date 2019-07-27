@@ -46,8 +46,23 @@ import BScroll from "better-scroll";
       })
 
       this.props.classify.getCatalogMsgModule({id:id})
+    }
+
+
+    //跳转到详情页
+
+    jumpClassifyDetail(classifyId,index){
+
+      localStorage.setItem("classifyId",classifyId);
+      localStorage.setItem("index",index);
+
+      this.props.history.push({pathname:`/classifyDetail/${classifyId}`})
+
 
     }
+
+
+
 
   render() {
     let {classifyLeftBoxData,classifyRightBoxData}=this.props.classify;
@@ -79,7 +94,7 @@ import BScroll from "better-scroll";
             <div className="rightBox_main">
             {console.log(classifyRightBoxData.subCategoryList)}
               {classifyRightBoxData.subCategoryList&&classifyRightBoxData.subCategoryList.map((item,index)=>{
-                return (<dl key={item.id} onClick={()=>{this.props.history.push({pathname:`/classifyDetail/${this.state.id}`,params:{classifyId:item.id,index:index}})}}>
+                return (<dl key={item.id} onClick={()=>{this.jumpClassifyDetail(item.id,index)}}>
                   <dt> 
                    <img src={item.wap_banner_url} alt=""/>  
   

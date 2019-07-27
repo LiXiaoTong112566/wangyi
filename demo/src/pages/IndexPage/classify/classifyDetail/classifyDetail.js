@@ -14,18 +14,23 @@ class ClassifyDetail extends Component {
       classifyIndex: -1,
       id: ""
     };
-
     this.classifyDetailScroll = React.createRef();
   }
 
   componentDidMount() {
     console.log(this.props);
     let id = this.props.match.params.id; //分类标题的id;
-    let classifyId = this.props.location.params.classifyId; //商品的id
-    let index = this.props.location.params.index; //点击的下标
+    console.log(id);
+    let classifyId = localStorage.getItem("classifyId") //商品的id
+    let index = localStorage.getItem("index"); //点击的下标
     console.log(classifyId, index);
 
     this.props.classify.getCatalogMsgModule({ id: id }); //获取导航的数据
+
+     //获取到导航数据对应的标题
+     this.props.classify.getCategoryNavModule({
+      id: id
+    });
 
     this.setState({
       classifyIndex: index,
@@ -39,10 +44,7 @@ class ClassifyDetail extends Component {
       page: 1,
       size: 100
     });
-    //获取到导航数据对应的标题
-    this.props.classify.getCategoryNavModule({
-      id: classifyId
-    });
+   
 
     this.classifyDetailScrollData = new BScroll(
       this.classifyDetailScroll.current,
@@ -82,10 +84,13 @@ class ClassifyDetail extends Component {
     let { classifyRightBoxData } = this.props.classify;
 
     console.log(this.props);
-    console.log(this.props.classify.getCategoryNavData);
+   
+    
     let titleData = this.props.classify.getCategoryNavData.currentCategory;
+     let NavData = this.props.classify.getCategoryNavData.brotherCategory;
 
     let { getGoodsData } = this.props.classify;
+    console.log(NavData);
 
     return (
       <div className="classifyDetail_box">
@@ -101,12 +106,13 @@ class ClassifyDetail extends Component {
         </div>
 
         <ul className="classifyDetail_nav">
-          {classifyRightBoxData.subCategoryList &&
-            classifyRightBoxData.subCategoryList.map((item, index) => {
+          {console.log(this.state.classifyIndex)}
+          {NavData&&
+            NavData.map((item, index) => {
               return (
                 <li
                   key={item.id}
-                  className={this.state.classifyIndex === index ? "active" : ""}
+                  className={this.state.classifyIndex == index ? "active" : ""}
                   onClick={() => {
                     this.changeInd(index, item.id);
                   }}

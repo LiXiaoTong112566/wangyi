@@ -60,7 +60,7 @@ class StoreDetail extends Component {
                   )
               })}
           </div>
-          <div className="swiper-pagination" />
+          <div className="swiper-pagination"/>
         </div>
         </div>
 
@@ -88,21 +88,13 @@ class StoreDetail extends Component {
 
         </div>
 
-        <div>
+        <div className="detailBox">
+         
+          <div  dangerouslySetInnerHTML={{__html:getGoodsDetailData.info&&getGoodsDetailData.info.goods_desc}}>
+          </div>
 
-    
-        {getGoodsDetailData.info&&getGoodsDetailData.info.goods_desc.split("").map((item,index)=>{
-            return item
-        })}
-    
-
-          
-            
         </div>
 
-
-
-       
       </div>
     );
   }

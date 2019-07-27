@@ -1,10 +1,22 @@
 import React, { Component } from 'react'
+import {withRouter} from "react-router-dom";
 
-export default class imgBlend extends Component {
+
+ class imgBlend extends Component {
+    jumpStoreDetail(id){
+        console.log(id);
+       
+        this.props.history.push({pathname: `/storeDetail/${id}`})
+
+    }
+
+
+
     render() {
        let {list}=this.props;
+       
         return (
-            <dl style={{marginBottom:0}}>
+            <dl style={{marginBottom:0}} onClick={()=>this.jumpStoreDetail(list.id)}>
                 <dt><img src={list.list_pic_url} alt=""></img></dt>
                 <dd>
                     <div>{list.name}</div>
@@ -14,3 +26,8 @@ export default class imgBlend extends Component {
         )
     }
 }
+
+export default withRouter(imgBlend)
+
+
+

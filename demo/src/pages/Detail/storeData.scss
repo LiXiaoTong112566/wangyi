@@ -96,20 +96,22 @@
             width: 100%;
         }
     }
-    .parameters{
+    // 公共的
+    .communal{
         width:100%;
         background:#fff;
         margin-top:.2rem;
         box-sizing: border-box;
         padding:0.1rem .4rem;
-        
-        p{
+         p{
             color:skyblue;
             height:.8rem;
             line-height: .8rem;
             text-align: center;
             margin:0;
         }
+    }
+    .parameters{
         ul{
             width:100%;
             li{
@@ -132,6 +134,12 @@
 
                 }
             }
+        }
+    }
+    .question{
+        span{
+            color:red;
+            margin:0 .25rem;
         }
     }
     .footer{

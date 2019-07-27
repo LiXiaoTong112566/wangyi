@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import BScroll from "better-scroll";
 import "./storeData.scss";
 import Swiper from "swiper";
 import "swiper/dist/css/swiper.min.css";
@@ -39,7 +38,8 @@ class StoreDetail extends Component {
     let { getGoodsDetailData } = this.props.classify;
     //商品规格
     let  specs = getGoodsDetailData.attribute;
-    console.log(specs)
+    //常见问题
+    let  issue = getGoodsDetailData.issue;
     return (
       <div className="storeDetail_box">
         <div className="header">
@@ -87,7 +87,7 @@ class StoreDetail extends Component {
                 <span>选择规格&nbsp;&gt;</span>
             </div>
             {/* 商品参数 */}
-            <div className="parameters">
+            <div className="communal parameters">
                 <p>商品参数</p>
                 <ul>
                   {specs&&specs.map((file,index)=><li key={"specs"+index}>
@@ -99,6 +99,15 @@ class StoreDetail extends Component {
             <div className="detailBox">
               <div dangerouslySetInnerHTML={{__html:getGoodsDetailData.info&&getGoodsDetailData.info.goods_desc}}>
               </div>
+            </div>
+            {/* 常见问题 */}
+            <div className="communal question">
+              <p>常见问题</p>
+              {issue&&issue.map(file=><div key={file.id} className="problemWrap">
+                    <div><span>√</span>{file.question}</div>
+                    <div style={{color:"#666"}}>{file.answer}</div>
+              </div>)}
+            
             </div>
         </div>
         <div className="footer">

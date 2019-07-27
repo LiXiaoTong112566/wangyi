@@ -38,7 +38,6 @@ class homeIndex extends Component {
     }
     render() {
         let count =this.props.indexPageModule.count;
-        console.log(count);
        if(Object.keys(count).length>0){
             //轮播图
             var banner = count.banner;

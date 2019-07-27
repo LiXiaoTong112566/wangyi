@@ -18,8 +18,7 @@ class BrandDetail extends Component {
     }
     render() {
       let store = this.props.indexPageModule.count.brand || [];
-      let list = this.props.detailList.state.goodsList || [];
-     
+      let list = this.props.detailList.state || [];
         return (
             <div className="brand_Detail">
                 <div className="detail_top"><span onClick={()=>this.goback()}>&lt;</span>{store.name}</div>
@@ -31,7 +30,7 @@ class BrandDetail extends Component {
                         {store.simple_desc}
                     </div>
                     <div className="detail_shop">
-                        {list&&list.map(file=>
+                        {list.length&&list.map(file=>
                             <ImgBlend key={file.id} list={file}></ImgBlend>
                             )}
                     </div>

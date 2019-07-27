@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 
 export default class imgBlend extends Component {
     render() {
-       let {list}=this.props
-      
+       let {list}=this.props;
         return (
-            <dl >
+            <dl style={{marginBottom:0}}>
                 <dt><img src={list.list_pic_url} alt=""></img></dt>
                 <dd>
                     <div>{list.name}</div>

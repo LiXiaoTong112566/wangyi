@@ -2,7 +2,6 @@ import {observable,action}  from "mobx";
 import {
   getHomeData,
   getBrandDetail,
-  getBrandGoods,
   getGoodsData 
 
 } from "../../../servies"

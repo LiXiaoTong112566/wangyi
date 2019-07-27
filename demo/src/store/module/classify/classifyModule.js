@@ -14,7 +14,6 @@ export default class IndexPageModule {
   @observable  getCategoryNavData=[];//获取分类ID分类Nav数据  
   @observable  getGoodsData=[];// 根据分类Id或者制造商Id获取商品
   @observable  getGoodsDetailData=[];//获取商品详情
-
   //修饰方法
   //获取分类页面的初始页面的数据
   @action getCatalogInitModule(data) {
@@ -23,9 +22,8 @@ export default class IndexPageModule {
       this.classifyRightBoxData = res.data.currentCategory; //右侧盒子的数据
     });
   }
-
  
-  //根据分类ID获取当前分类信息和子分类
+  //根据分类ID获取当前分类信息和子分
   @action getCatalogMsgModule(data) {
     getCatalogMsgServer(data).then(res => {
       this.classifyRightBoxData = res.data.currentCategory;
@@ -33,8 +31,9 @@ export default class IndexPageModule {
   }
 
   //获取分类ID分类Nav数据
-
+  
   @action getCategoryNavModule(data) {
+    console.log(data);
     getCategoryNavServer(data).then(res => {
       this.getCategoryNavData = res.data;
     });
@@ -54,10 +53,6 @@ export default class IndexPageModule {
       this.getGoodsDetailData = res.data;
     });
   }
-
-
-
-
 
   
 }

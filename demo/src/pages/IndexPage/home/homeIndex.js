@@ -12,7 +12,8 @@ import ShopList from "../../../component/shopList"
 class homeIndex extends Component {
     componentDidMount(){
         let {indexPageModule}=this.props;
-        indexPageModule.changeCount()
+        indexPageModule.changeCount();
+       
     }
 
     componentDidUpdate(){
@@ -32,6 +33,16 @@ class homeIndex extends Component {
     brandDetail(ids){
         let {history} =this.props;
         history.push({pathname:`/brandDetail/${ids}`})
+    }
+
+    jumpClassifyDetail(id,index){
+
+        console.log(id);
+       
+        localStorage.setItem("index",index);
+        this.props.history.push({pathname:`/classifyDetail/${id}`})
+
+
     }
     render() {
         let count =this.props.indexPageModule.count;
@@ -68,8 +79,9 @@ class homeIndex extends Component {
                     
                 </div>
                 <div className="easyList">
-                    {channel&&channel.map(file=>
-                       <dl key={file.id}>
+                    {channel&&channel.map((file,index)=>
+                   
+                       <dl key={file.id} onClick={()=>{this.jumpClassifyDetail(file.id,index)}}>
                           <dt>
                               <img src={file.icon_url} alt=""></img>
                           </dt>
@@ -99,7 +111,7 @@ class homeIndex extends Component {
                     <p>新品首发</p>
                     <div className="blend">
                        {newGoodsList&&newGoodsList.map(file=>
-                          <ImgBlend key={file.id}  list={file}></ImgBlend>
+                          <ImgBlend key={file.id}  list={file} {...this.props}></ImgBlend>
                         )}
                     </div>
                 </div>
@@ -107,7 +119,7 @@ class homeIndex extends Component {
                     <p>人气推荐</p>
                     <div className="blend hot_blend">
                       {hotGoodsList&&hotGoodsList.map(file=>
-                          <dl key={file.id}>
+                          <dl key={file.id} onClick={()=>{this.props.history.push({pathname: `/storeDetail/${file.id}`})}}>
                               <dt><img src={file.list_pic_url} alt=""></img></dt>
                               <dd>
                                   <div>{file.name}</div>
@@ -138,7 +150,7 @@ class homeIndex extends Component {
                      {categoryList&&categoryList.map(file=>
                          <div key={file.id}>
                             <p>{file.name}</p>
-                             <ShopList list={file.goodsList} type={file.name}></ShopList>
+                             <ShopList list={file.goodsList} type={file.name} {...this.props}></ShopList>
                          </div>
                         )}
                 </div> 

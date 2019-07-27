@@ -44,13 +44,23 @@ import BScroll from "better-scroll";
       })
       this.props.classify.getCatalogMsgModule({id:id})
     }
+
+
     //跳转到详情页
 
     jumpClassifyDetail(classifyId,index){
+
       localStorage.setItem("classifyId",classifyId);
       localStorage.setItem("index",index);
-      this.props.history.push({pathname:`/classifyDetail/${this.state.id}`})
+
+      this.props.history.push({pathname:`/classifyDetail/${classifyId}`})
+
+
+    
     }
+
+
+
 
   render() {
     let {classifyLeftBoxData,classifyRightBoxData}=this.props.classify;

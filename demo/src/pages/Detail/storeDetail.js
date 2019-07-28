@@ -3,16 +3,17 @@ import { inject, observer } from "mobx-react";
 import "./storeData.scss";
 import Swiper from "swiper";
 import "swiper/dist/css/swiper.min.css";
-
+import ImgBlend from "../../component/imgBlend"
+import {Icon,Drawer} from "antd"
 
 @inject("classify")
 @observer
 class StoreDetail extends Component {
   constructor() {
     super();
-
     this.state = {
-      storeData: []
+      storeData: [],
+      visible:false
     };
 
     this.swiperContainer=React.createRef();
@@ -21,6 +22,7 @@ class StoreDetail extends Component {
   componentDidMount() {
     let id = this.props.match.params.id;
     this.props.classify.getGoodsDetailModule({ id: id });
+    this.props.classify.GoodsCommodities({id:id})
   }
   componentDidUpdate(){
     let container=this.swiperContainer.current;
@@ -33,13 +35,26 @@ class StoreDetail extends Component {
     })
 
   }
-
+  goodsMask(){
+    this.setState({
+      visible: true,
+    });
+  }
+  onClose = () => {
+    this.setState({
+      visible: false,
+    });
+  };
   render() {
-    let { getGoodsDetailData } = this.props.classify;
+    let { getGoodsDetailData,goods } = this.props.classify;
+  
     //商品规格
     let  specs = getGoodsDetailData.attribute;
     //常见问题
     let  issue = getGoodsDetailData.issue;
+    //库存
+    let img =getGoodsDetailData.info&&getGoodsDetailData.info.primary_pic_url;
+    let num = getGoodsDetailData.productList;
     return (
       <div className="storeDetail_box">
         <div className="header">
@@ -82,7 +97,7 @@ class StoreDetail extends Component {
                    ￥{getGoodsDetailData.info&& getGoodsDetailData.info.retail_price}
                 </div>
             </div>
-            <div className="norms">
+            <div className="norms" onClick={()=>this.goodsMask()}>
                 <span className="color_num">x&nbsp;{0}</span>
                 <span>选择规格&nbsp;&gt;</span>
             </div>
@@ -107,12 +122,58 @@ class StoreDetail extends Component {
                     <div><span>√</span>{file.question}</div>
                     <div style={{color:"#666"}}>{file.answer}</div>
               </div>)}
-            
+            </div>
+            {/* 相关商品 */}
+            <div className="communal related">
+               <p>大家都在看</p>
+               <div className="blend">
+                  {goods&&goods.map(file=>
+                      <ImgBlend list={file} key={file.id}></ImgBlend>
+                    )}
+               </div>
+               
             </div>
         </div>
         <div className="footer">
-            购物车
+            <span><Icon type="star"/></span>
+            <span><Icon type="shopping-cart"/>0</span>
+            <div className="btn">
+               <button style={{background:"orangered"}}>加入购物车</button>
+               <button style={{background:"skyblue"}}>立即购买</button>
+            </div>
         </div>
+        <Drawer
+          placement="bottom"
+          closable={false}
+          onClose={this.onClose}
+          visible={this.state.visible}
+        >
+          <div className="goodscart_list">
+              <dl>
+                <dt>
+                  <img src={img} alt=""></img>
+                </dt>
+                <dd>
+                  <div>单价：<span>￥{num&&num[0].retail_price}</span></div>
+                  <div>库存：<span>￥{num&&num[0].goods_number}</span></div>
+                  <div>已选择：</div>
+                </dd>
+              </dl>
+              <div className="goods_money">
+                <span>数量</span>
+                <div>
+                    <span>-</span>
+                    <span>0</span>
+                    <span>+</span>
+                </div>
+              </div>
+              <div className="goodsBtn">
+               <button style={{background:"orangered"}}>加入购物车</button>
+               <button style={{background:"skyblue"}}>立即下单</button>
+             </div>
+          </div>
+          
+        </Drawer>
       </div>
     );
   }

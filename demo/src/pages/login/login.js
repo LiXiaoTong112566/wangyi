@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import { Form, Icon, Input, Button, Checkbox } from "antd";
+import { Form, Icon, Input, Button } from "antd";
 import "./login.scss";
 
 @inject("login")
@@ -10,8 +10,6 @@ class Login extends Component {
 
   //登录成功跳转到首页
   componentDidUpdate() {
-    console.log(this.props);
-    console.log(this.props.login.dataFlag);
     if (this.props.login.dataFlag === 0) {
       this.props.history.push("/main/homeIndex");
     }
@@ -23,7 +21,7 @@ class Login extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.props.login.getLogin(values);
-        console.log(this.props.login.dataFlag);
+        // console.log(this.props.login.dataFlag);
       }
     });
   };
@@ -31,7 +29,7 @@ class Login extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
 
-    console.log(this.props.login.dataFlag);
+    // console.log(this.props.login.dataFlag);
     return (
       <div className="loginBox">
         <div className="loginBox_logo">

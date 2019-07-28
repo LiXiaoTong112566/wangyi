@@ -12,26 +12,29 @@ export  function getCatalogInitServer (params){
 //根据分类ID获取当前分类信息和子分类
 
 export  function getCatalogMsgServer(params){
-    return request.get("/catalog/current",{params})
+    return request.get("/catalog/current", {params})
 }
 
 //获取分类ID分类Nav数据
 
 export  function getCategoryNavServer(params){
-    return request.get("/goods/category",{params})
+    return request.get("/goods/category", {params})
 }
 
 
 //根据分类Id或者制造商Id获取商品
 
 export  function getGoodsServer(params){
-    return request.get("/goods/list",{params})
+    return request.get("/goods/list", {params})
 }
 
 //获取商品详情
 
 export function getGoodsDetailServer(params){
-    return request.get("/goods/detail",{params})
+    return request.get("/goods/detail", {params})
 }
-
+//相关商品
+export function getGoodsRelated(params){
+    return request.get("/goods/related", {params})
+}
 

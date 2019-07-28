@@ -89,7 +89,7 @@ import BScroll from "better-scroll";
 
             <h3><b></b><span>{classifyLeftBoxData&&classifyRightBoxData.name}</span>分类<b></b></h3>
             <div className="rightBox_main">
-            {console.log(classifyRightBoxData.subCategoryList)}
+            {/* {console.log(classifyRightBoxData.subCategoryList)} */}
               {classifyRightBoxData.subCategoryList&&classifyRightBoxData.subCategoryList.map((item,index)=>{
                 return (<dl key={item.id} onClick={()=>{this.jumpClassifyDetail(item.id,index)}}>
                   <dt> 

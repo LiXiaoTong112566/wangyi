@@ -1,5 +1,5 @@
 import { postLogin } from "../../../servies/index";
-import { setCookie, getCookie } from "../../../utils/index";
+import { setCookie } from "../../../utils/index";
 import { observable, action } from "mobx";
 
 export default class IndexPageModule {

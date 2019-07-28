@@ -36,17 +36,11 @@ class homeIndex extends Component {
     }
 
     jumpClassifyDetail(id,index){
-
-        console.log(id);
-       
         localStorage.setItem("index",index);
         this.props.history.push({pathname:`/classifyDetail/${id}`})
-
-
     }
     render() {
         let count =this.props.indexPageModule.count;
-       if(Object.keys(count).length>0){
             //轮播图
             var banner = count.banner;
             //导航
@@ -61,7 +55,6 @@ class homeIndex extends Component {
             var topicList = count.topicList;
             // list
             var categoryList = count.categoryList;
-       }
        
         return (
             <>

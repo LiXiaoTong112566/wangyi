@@ -1,0 +1,54 @@
+.moreCommentBox{
+    width: 100%;
+    .moreCommentBox_header{
+        width: 100%;
+        height: 1rem;
+        line-height: 1rem;
+        display: flex;
+        text-align: center;
+        position: relative;
+        h3{
+            width: 100%;
+            text-align: center;
+
+        }
+
+        span{
+            position: absolute;
+            left:.1rem;
+            font-size:.5rem;
+        }
+    }
+
+    .moreCommentBox_main{
+
+        .comment_list{
+            width: 100%;
+            padding: 0 .1rem;
+            border-bottom:1px solid #ccc;
+            margin-bottom: 0;
+
+            dt{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                padding:.1rem 0;
+                .time{
+                    color:gray;
+                }
+
+            }
+
+            dd{
+                padding:.05rem 0;
+                font-size:.3rem;
+                color:gray;
+
+            }
+
+
+        }
+
+
+    }
+}

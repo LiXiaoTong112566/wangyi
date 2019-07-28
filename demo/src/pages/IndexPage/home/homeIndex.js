@@ -135,7 +135,7 @@ class homeIndex extends Component {
                     <div className="swiper-container card-slide" ref="card">
                        <div className="swiper-wrapper">
                          {topicList&&topicList.map(file=>
-                            <dl key={file.id} className="swiper-slide">
+                            <dl key={file.id} className="swiper-slide" onClick={()=>{this.props.history.push({pathname:`/topicDetail/${file.id}`})}}>
                                <dt><img src={file.scene_pic_url} alt=""/></dt> 
                                <dd>
                                    <div>{file.title}<span>￥{file.price_info}元起</span></div>
@@ -150,7 +150,7 @@ class homeIndex extends Component {
                      {categoryList&&categoryList.map(file=>
                          <div key={file.id}>
                             <p>{file.name}</p>
-                             <ShopList list={file.goodsList} type={file.name} {...this.props}></ShopList>
+                             <ShopList list={file.goodsList} type={file.name} id={file.id} {...this.props}></ShopList>
                          </div>
                         )}
                 </div> 

@@ -8,33 +8,31 @@ import BScroll from "better-scroll";
 
 //奇趣分类的页面
 class ClassifyDetail extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      classifyIndex: -1,
+      classId: -1,
       id: ""
     };
     this.classifyDetailScroll = React.createRef();
   }
 
   componentDidMount() {
-    // console.log(this.props);
     let id = this.props.match.params.id; //分类标题的id;
-    console.log(id);
-    let classifyId = localStorage.getItem("classifyId") //商品的id
+
+    let classifyId = localStorage.getItem("classifyId"); //商品的id
     let index = localStorage.getItem("index"); //点击的下标
-    console.log(classifyId, index);
+
+    this.setState({
+      classId: id,
+      id: classifyId
+    });
 
     this.props.classify.getCatalogMsgModule({ id: id }); //获取导航的数据
 
-     //获取到导航数据对应的标题
-     this.props.classify.getCategoryNavModule({
+    //获取到导航数据对应的标题
+    this.props.classify.getCategoryNavModule({
       id: id
-    });
-
-    this.setState({
-      classifyIndex: index,
-      id: classifyId
     });
 
     //根据导航分类获取对应的商品
@@ -44,7 +42,6 @@ class ClassifyDetail extends Component {
       page: 1,
       size: 100
     });
-   
 
     this.classifyDetailScrollData = new BScroll(
       this.classifyDetailScroll.current,
@@ -57,7 +54,7 @@ class ClassifyDetail extends Component {
 
   changeInd(index, id) {
     this.setState({
-      classifyIndex: index
+      classId: id
     });
     //根据导航分类获取对应的商品
     //根据分类Id或者制造商Id获取商品
@@ -81,21 +78,18 @@ class ClassifyDetail extends Component {
   }
 
   render() {
+    console.log(this.state.classId);
     let { classifyRightBoxData } = this.props.classify;
-
-    
     let titleData = this.props.classify.getCategoryNavData.currentCategory;
-     let NavData = this.props.classify.getCategoryNavData.brotherCategory;
-
+    let NavData = this.props.classify.getCategoryNavData.brotherCategory;
     let { getGoodsData } = this.props.classify;
-    console.log(NavData);
 
     return (
       <div className="classifyDetail_box">
         <div className="header">
           <span
             onClick={() => {
-              this.props.history.push(`/main/classifyIndex`);
+              this.props.history.goBack();
             }}
           >
             &lt;
@@ -104,13 +98,17 @@ class ClassifyDetail extends Component {
         </div>
 
         <ul className="classifyDetail_nav">
-          {console.log(this.state.classifyIndex)}
-          {NavData&&
+          {NavData &&
             NavData.map((item, index) => {
+             
               return (
                 <li
                   key={item.id}
-                  className={this.state.classifyIndex == index ? "active" : ""}
+                  className={
+                    Number(item.id) === Number(this.state.classId)
+                      ? "active"
+                      : ""
+                  }
                   onClick={() => {
                     this.changeInd(index, item.id);
                   }}

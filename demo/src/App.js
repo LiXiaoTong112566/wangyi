@@ -1,5 +1,6 @@
 import "./App.css";
 import 'antd/dist/antd.css';
+import 'antd-mobile/dist/antd-mobile.css';
 import React, { Component } from "react";
 
 import routes from "./router/config";

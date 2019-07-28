@@ -62,6 +62,12 @@ const AddComment=Loadable({
 
 })
 
+//搜索的页面
+const SearchDetail=Loadable({
+    loader:()=>import ("../pages/Detail/search/search"),
+    loading:Loading
+})
+
 
 //二级路由
 
@@ -162,6 +168,10 @@ let router=[
         path:"/addComment/:id",
         component:AddComment
         
+    },{
+        path:"/search",
+        component: SearchDetail
+       
     }
 ]
 

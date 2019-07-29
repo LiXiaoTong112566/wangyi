@@ -21,7 +21,6 @@ class Login extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.props.login.getLogin(values);
-        // console.log(this.props.login.dataFlag);
       }
     });
   };
@@ -29,7 +28,6 @@ class Login extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
 
-    // console.log(this.props.login.dataFlag);
     return (
       <div className="loginBox">
         <div className="loginBox_logo">

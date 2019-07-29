@@ -123,8 +123,8 @@ class StoreDetail extends Component {
                     <div style={{color:"#666"}}>{file.answer}</div>
               </div>)}
             </div>
-            {/* 相关商品 */}
-            <div className="communal related">
+               {/* 相关商品 */}
+               <div className="communal related">
                <p>大家都在看</p>
                <div className="blend">
                   {goods&&goods.map(file=>

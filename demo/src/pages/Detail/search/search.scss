@@ -1,0 +1,43 @@
+.searchBox {
+  width: 100%;
+  .header {
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    display: flex;
+    justify-content: space-between;
+    .back {
+      font-size: 0.5rem;
+    }
+
+    .am-search {
+      flex: 1;
+    }
+  }
+  .historyMain {
+    width: 100%;
+    .header {
+      width: 100%;
+      height: 0.5rem;
+      line-height: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 0.1rem;
+    }
+  }
+
+  .searchList {
+    ul {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      li {
+        flex-shrink: 0;
+        margin: 0.1rem;
+        text-align: center;
+        padding: 0.1rem;
+        border: 1px solid #ccc;
+      }
+    }
+  }
+}

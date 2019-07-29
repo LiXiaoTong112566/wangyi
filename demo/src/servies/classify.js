@@ -1,40 +1,37 @@
-/** 
+/**
  * 分类页面的数据
-*/
+ */
 
 //获取分类首页的数据
-import request from '../utils/request';
-export  function getCatalogInitServer (params){
-    return request.get("/catalog/index")
-
+import request from "../utils/request";
+export function getCatalogInitServer(params) {
+  return request.get("/catalog/index");
 }
 
 //根据分类ID获取当前分类信息和子分类
 
-export  function getCatalogMsgServer(params){
-    return request.get("/catalog/current", {params})
+export function getCatalogMsgServer(params) {
+  return request.get("/catalog/current", { params });
 }
 
 //获取分类ID分类Nav数据
 
-export  function getCategoryNavServer(params){
-    return request.get("/goods/category", {params})
+export function getCategoryNavServer(params) {
+  return request.get("/goods/category", { params });
 }
-
 
 //根据分类Id或者制造商Id获取商品
 
-export  function getGoodsServer(params){
-    return request.get("/goods/list", {params})
+export function getGoodsServer(params) {
+  return request.get("/goods/list", { params });
 }
 
 //获取商品详情
 
-export function getGoodsDetailServer(params){
-    return request.get("/goods/detail", {params})
+export function getGoodsDetailServer(params) {
+  return request.get("/goods/detail", { params });
 }
 //相关商品
-export function getGoodsRelated(params){
-    return request.get("/goods/related", {params})
+export function getGoodsRelated(params) {
+  return request.get("/goods/related", { params });
 }
-

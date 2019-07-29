@@ -37,7 +37,36 @@ const StoreDetail=Loadable({
     loading:Loading
 
 })
+//专题的详情页
 
+const TopicDetail=Loadable({
+    loader:()=>import ("../pages/Detail/topic/topicDetail"),
+    loading:Loading
+
+})
+
+//查看更多评论
+
+const MoreComment=Loadable({
+    loader:()=>import ("../pages/Detail/commentDetail/moreComment"),
+    loading:Loading
+
+})
+
+//添加评论
+
+const AddComment=Loadable({
+
+    loader:()=>import ("../pages/Detail/commentDetail/addComment"),
+    loading:Loading
+
+})
+
+//搜索的页面
+const SearchDetail=Loadable({
+    loader:()=>import ("../pages/Detail/search/search"),
+    loading:Loading
+})
 
 
 //二级路由
@@ -127,6 +156,22 @@ let router=[
     {
         path:"/storeDetail/:id",
         component:StoreDetail
+    },{
+        path:"/topicDetail/:id",
+        component:TopicDetail
+        
+    },{
+        path:"/moreComment/:id",
+        component:MoreComment
+        
+    },{
+        path:"/addComment/:id",
+        component:AddComment
+        
+    },{
+        path:"/search",
+        component: SearchDetail
+       
     }
 ]
 

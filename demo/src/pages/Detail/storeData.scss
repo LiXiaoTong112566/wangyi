@@ -160,7 +160,9 @@
       }
       .btn{
           flex:1;
+          height: 100%;
           button{
+            height: 100%;
               width:50%;
               outline: none;
               color:#fff;
@@ -240,9 +242,11 @@
   }
   .goodsBtn{
       width:100%;
+     
       button{
           width:50%;
           outline: none;
+         
           border:0;
           height:.8rem;
           line-height: .8rem;

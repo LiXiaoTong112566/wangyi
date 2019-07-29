@@ -3,7 +3,8 @@ import {
   getCatalogMsgServer,
   getCategoryNavServer,
   getGoodsServer,
-  getGoodsDetailServer
+  getGoodsDetailServer,
+  getGoodsRelated
 } from "../../../servies/index";
 
 import { observable, action } from "mobx";
@@ -14,6 +15,7 @@ export default class IndexPageModule {
   @observable getCategoryNavData = []; //获取分类ID分类Nav数据
   @observable getGoodsData = []; // 根据分类Id或者制造商Id获取商品
   @observable getGoodsDetailData = []; //获取商品详情
+  @observable goods = []; //相关商品
   //修饰方法
   //获取分类页面的初始页面的数据
   @action getCatalogInitModule(data) {
@@ -49,6 +51,12 @@ export default class IndexPageModule {
   @action getGoodsDetailModule(data) {
     getGoodsDetailServer(data).then(res => {
       this.getGoodsDetailData = res.data;
+    });
+  }
+  //相关商品
+  @action GoodsCommodities(data) {
+    getGoodsRelated(data).then(res => {
+      this.goods = res.data.goodsList;
     });
   }
 }

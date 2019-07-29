@@ -82,7 +82,6 @@ class ClassifyDetail extends Component {
     let titleData = this.props.classify.getCategoryNavData.currentCategory;
     let NavData = this.props.classify.getCategoryNavData.brotherCategory;
     let { getGoodsData } = this.props.classify;
-
     return (
       <div className="classifyDetail_box">
         <div className="header">

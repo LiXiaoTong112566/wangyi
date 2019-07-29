@@ -31,3 +31,7 @@ export function getGoodsServer(params) {
 export function getGoodsDetailServer(params) {
   return request.get("/goods/detail", { params });
 }
+//相关商品
+export function getGoodsRelated(params) {
+  return request.get("/goods/related", { params });
+}

@@ -48,6 +48,7 @@ class TopicDetail extends Component {
           </span>
           <h3>{getTopicDetailData && getTopicDetailData.title}</h3>
         </div>
+        <div className="subject">
         {/* 主题 */}
         <div className="main">
           <div
@@ -114,6 +115,7 @@ class TopicDetail extends Component {
                 );
               })}
           </div>
+        </div>
         </div>
       </div>
     );

@@ -7,17 +7,21 @@
     width: 100%;
     flex: 1;
     overflow: scroll;
-    background: #eee;
+    background: #fff;
     margin: 0;
   }
 
   .footerBox {
     width: 100%;
-    height: 0.98rem;
-    line-height: 0.98rem;
-    background: #ccc;
+    height: 1rem;
+    border-top:.02rem solid #eee;
+    line-height: 1rem;
+    background: #fff;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-around; 
+    a{
+      color:#000;
+    }
     .active {
       color: red;
     }

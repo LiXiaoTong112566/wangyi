@@ -7,7 +7,8 @@ import ImgBlend from "../../component/imgBlend"
 import {Drawer} from "antd"
 import "../../scss/fonts/iconfont.css"
 
-@inject("classify","card")
+
+@inject("classify","card","special")
 @observer
 class StoreDetail extends Component {
   constructor() {
@@ -23,6 +24,7 @@ class StoreDetail extends Component {
     let id = this.props.match.params.id;
     this.props.classify.getGoodsDetailModule({ id: id });
     this.props.classify.GoodsCommodities({id:id})
+    this.props.special.getCommentListModule({valueId:id,typeId:0})
   }
   componentDidUpdate(){
     let container=this.swiperContainer.current;
@@ -54,6 +56,9 @@ class StoreDetail extends Component {
     //库存
     let img =getGoodsDetailData.info&&getGoodsDetailData.info.primary_pic_url;
     let num = getGoodsDetailData.productList;
+    //评论
+    let discuss = this.props.special.getCommentListData.data;
+    console.log(discuss)
     return (
       <div className="storeDetail_box">
         <div className="header">
@@ -100,6 +105,25 @@ class StoreDetail extends Component {
             <div className="norms" onClick={()=>this.goodsMask()}>
                 <span className="color_num">x&nbsp;{this.props.card.cardNum}</span>
                 <span>选择规格&nbsp;&gt;</span>
+            </div>
+            {/* 评论 */}
+            <div className="commentGoods">
+                 <div className="commentTop">
+                    <span>评论 ({discuss&&discuss.length})</span>
+                    {discuss&&discuss[0]?
+                       <span onClick={()=>this.props.history.push(`/comment/${this.props.match.params.id}`)}>查看全部&gt;</span>
+                       :""}
+                 </div>
+                 {discuss&&discuss[0]
+                  ?<div className="commentCont">
+                   <p><span>匿名用户</span><span>{discuss&&discuss[0].add_time}</span></p>
+                   <div>{discuss&&discuss[0].content}</div>
+                   <div>
+                     <img src={discuss&&discuss[0].pic_list[0].pic_url} alt=""></img>
+                   </div>     
+                 </div>
+                 :""}
+                 
             </div>
             {/* 商品参数 */}
             <div className="communal parameters">

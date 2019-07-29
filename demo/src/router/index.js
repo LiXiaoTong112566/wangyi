@@ -7,7 +7,7 @@ import router from "./config";
 function Routers(){
    return <Router>
            <RouterView router={router}/>
-   </Router>
+        </Router>
 }
 
 

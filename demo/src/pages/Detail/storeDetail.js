@@ -160,7 +160,7 @@ class StoreDetail extends Component {
                 </dd>
               </dl>
               <div className="goods_money">
-                <span>数量</span>
+                <div>数量:</div>
                 <div>
                     <span>-</span>
                     <span>0</span>

@@ -61,5 +61,6 @@ export default class IndexPageModule {
       this.goods = res.data.goodsList;
     })
   }
+ 
   
 }

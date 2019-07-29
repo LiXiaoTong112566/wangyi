@@ -1,28 +1,27 @@
 import axios from "axios";
-import {getCookie} from "./index.js"
+import { getCookie } from "./index.js";
 
-const service=axios.create({
-  baseURL: 'http://127.0.0.1:8888/',
-
-})
+const service = axios.create({
+  baseURL: "http://127.0.0.1:8888/"
+});
 
 service.interceptors.request.use(
-  config=>{
-    if(getCookie()){
-      config.headers['x-nideshop-token']=getCookie() 
+  config => {
+    if (getCookie()) {
+      config.headers["x-nideshop-token"] = getCookie();
     }
-    return config
+    return config;
   },
-  error=>{
-    return Promise.reject(error)
+  error => {
+    return Promise.reject(error);
   }
-)
+);
 
 service.interceptors.response.use(
-  response=>response.data,
-  error=>{
-    return Promise.reject(error)
+  response => response.data,
+  error => {
+    return Promise.reject(error);
   }
-)
+);
 
-export default service
+export default service;

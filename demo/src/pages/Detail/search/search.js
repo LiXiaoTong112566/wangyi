@@ -20,19 +20,15 @@ class Search extends Component {
     });
   };
 
-  componentDidMount(){
-      console.log(123);
+  componentDidMount() {
+    console.log(123);
 
-      this.props.search.getGoodsSearchMsg();
-
-
-
+    this.props.search.getGoodsSearchMsg();
   }
   render() {
     console.log(this.props.search.getGoodsSearchData);
-      //const {historyKeywordList,hotKeywordList}=this.props.search.getGoodsSearchData.historyKeywordList.length&&this.props.search.getGoodsSearchData;
+    //const {historyKeywordList,hotKeywordList}=this.props.search.getGoodsSearchData.historyKeywordList.length&&this.props.search.getGoodsSearchData;
 
-    
     return (
       <div className="searchBox">
         <div className="header">
@@ -46,7 +42,10 @@ class Search extends Component {
           </span>
           <SearchBar
             value={this.state.value}
-            placeholder={this.props.search.getGoodsSearchData&&this.props.search.getGoodsSearchData.defaultKeyword.keyword}
+            placeholder={
+              this.props.search.getGoodsSearchData &&
+              this.props.search.getGoodsSearchData.defaultKeyword.keyword
+            }
             onChange={this.onChange}
             showCancelButton="true"
           />
@@ -60,23 +59,26 @@ class Search extends Component {
                 <span>删除</span>
               </div>
               <ul className="historyMain_content">
-               {this.props.search.getGoodsSearchData&&this.props.search.getGoodsSearchData.historyKeywordList.map((item,index)=>{
-                   return <li key={index}>{item}</li>
-               })}
+                {this.props.search.getGoodsSearchData &&
+                  this.props.search.getGoodsSearchData.historyKeywordList.map(
+                    (item, index) => {
+                      return <li key={index}>{item}</li>;
+                    }
+                  )}
               </ul>
             </div>
 
             <div className="hotSearch">
-                <div className="hotSearch_header">
-                    热门搜索
-                </div>
+              <div className="hotSearch_header">热门搜索</div>
 
-                <ul className="hotSearch_list">
-                {this.props.search.getGoodsSearchData&&this.props.search.getGoodsSearchData.hotKeywordList.map((item,index)=>{
-                   return <li key={"hot"+index}>{item.keyword}</li>
-               })}
-
-                </ul>
+              <ul className="hotSearch_list">
+                {this.props.search.getGoodsSearchData &&
+                  this.props.search.getGoodsSearchData.hotKeywordList.map(
+                    (item, index) => {
+                      return <li key={"hot" + index}>{item.keyword}</li>;
+                    }
+                  )}
+              </ul>
             </div>
           </div>
         </div>

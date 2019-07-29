@@ -55,7 +55,12 @@ class ClassifyIndex extends Component {
 
     return (
       <div className="classify_box">
-        <div className="classify_header" onClick={()=>this.props.history.push({pathname:"/search"})}>搜索商品共239款好物</div>
+        <div
+          className="classify_header"
+          onClick={() => this.props.history.push({ pathname: "/search" })}
+        >
+          搜索商品共239款好物
+        </div>
         <div className="classify_main">
           <ul className="classifyLeftBox" ref={this.leftScrollBox}>
             <div className="leftBoxScroll">
@@ -92,10 +97,10 @@ class ClassifyIndex extends Component {
               <h3>
                 <b />
                 <span>{classifyLeftBoxData && classifyRightBoxData.name}</span>
-                分类<b />
+                分类
+                <b />
               </h3>
               <div className="rightBox_main">
-                {console.log(classifyRightBoxData.subCategoryList)}
                 {classifyRightBoxData.subCategoryList &&
                   classifyRightBoxData.subCategoryList.map((item, index) => {
                     return (

@@ -13,16 +13,27 @@ class MoreComment extends Component {
   componentDidMount() {
     let id = this.props.match.params.id;
     //获取评论区的数据
-    this.props.special.getCommentListModule({ valueId: id, typeId: 1,page:1,size:100 });
+    this.props.special.getCommentListModule({
+      valueId: id,
+      typeId: 1,
+      page: 1,
+      size: 100
+    });
   }
 
   render() {
-    let {getCommentListData } = this.props.special;
-    console.log(getCommentListData);
+    let { getCommentListData } = this.props.special;
+
     return (
       <div className="moreCommentBox">
         <div className="moreCommentBox_header">
-          <span onClick={()=>{this.props.history.goBack()}}>&lt;</span>
+          <span
+            onClick={() => {
+              this.props.history.goBack();
+            }}
+          >
+            &lt;
+          </span>
           <h3>查看更多评论</h3>
         </div>
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { List, TextareaItem,Button } from "antd-mobile";
+import { List, TextareaItem, Button } from "antd-mobile";
 import { createForm } from "rc-form";
 import { inject, observer } from "mobx-react";
 import "./addComment.scss";
@@ -8,47 +8,40 @@ import "./addComment.scss";
 class AddComment extends Component {
   constructor() {
     super();
-    this.state={
-        id:"",
-        value:""
-    }
+    this.state = {
+      id: "",
+      value: ""
+    };
   }
 
   componentDidMount() {
     let id = this.props.match.params.id;
     this.setState({
-        id:id,
-       
-    })
-
-
-   
-    
+      id: id
+    });
   }
 
-  addCom(){
-     
-      this.props.form.validateFields((err, values) => {
-        if (!err) {
-          console.log(values.content);
-
-          if(values.content){
-            this.props.special.postSetCommentModule({content:values.content,typeId:1,valueId:this.state.id});
-            this.props.history.goBack();
-           
-          }else{
-              alert("内容不能为空");
-          }
-        
+  addCom() {
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        if (values.content) {
+          this.props.special.postSetCommentModule({
+            content: values.content,
+            typeId: 1,
+            valueId: this.state.id
+          });
+          this.props.history.goBack();
+        } else {
+          alert("内容不能为空");
         }
-      });
+      }
+    });
   }
 
   render() {
     const { getFieldProps } = this.props.form;
     let id = this.props.match.params.id;
-    console.log(this.props.special.addCommentrErrno);
-   
+
     return (
       <div className="addCommentBox">
         <div className="header">
@@ -66,23 +59,23 @@ class AddComment extends Component {
           <List>
             <TextareaItem
               {...getFieldProps("content", {
-                initialValue: '',
-               
+                initialValue: ""
               })}
               rows={5}
               count={100}
-             
             />
           </List>
         </div>
-              <div className="button">
-              <Button type="primary" onClick={()=>{this.addCom()}}>留言</Button>
-              
-
-              </div>
-        
-
-       
+        <div className="button">
+          <Button
+            type="primary"
+            onClick={() => {
+              this.addCom();
+            }}
+          >
+            留言
+          </Button>
+        </div>
       </div>
     );
   }

@@ -11,9 +11,9 @@ export default class IndexPageModule {
   @observable getCatalogInitData = []; //登录返回来的数据
   @observable classifyLeftBoxData = []; //左侧的盒子
   @observable classifyRightBoxData = []; //右侧的盒子
-  @observable  getCategoryNavData=[];//获取分类ID分类Nav数据  
-  @observable  getGoodsData=[];// 根据分类Id或者制造商Id获取商品
-  @observable  getGoodsDetailData=[];//获取商品详情
+  @observable getCategoryNavData = []; //获取分类ID分类Nav数据
+  @observable getGoodsData = []; // 根据分类Id或者制造商Id获取商品
+  @observable getGoodsDetailData = []; //获取商品详情
   //修饰方法
   //获取分类页面的初始页面的数据
   @action getCatalogInitModule(data) {
@@ -22,7 +22,7 @@ export default class IndexPageModule {
       this.classifyRightBoxData = res.data.currentCategory; //右侧盒子的数据
     });
   }
- 
+
   //根据分类ID获取当前分类信息和子分
   @action getCatalogMsgModule(data) {
     getCatalogMsgServer(data).then(res => {
@@ -31,9 +31,8 @@ export default class IndexPageModule {
   }
 
   //获取分类ID分类Nav数据
-  
+
   @action getCategoryNavModule(data) {
-    console.log(data);
     getCategoryNavServer(data).then(res => {
       this.getCategoryNavData = res.data;
     });
@@ -49,10 +48,7 @@ export default class IndexPageModule {
   //获取商品的详情
   @action getGoodsDetailModule(data) {
     getGoodsDetailServer(data).then(res => {
-      console.log(res.data);
       this.getGoodsDetailData = res.data;
     });
   }
-
-  
 }

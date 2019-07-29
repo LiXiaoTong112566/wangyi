@@ -78,7 +78,6 @@ class ClassifyDetail extends Component {
   }
 
   render() {
-    console.log(this.state.classId);
     let { classifyRightBoxData } = this.props.classify;
     let titleData = this.props.classify.getCategoryNavData.currentCategory;
     let NavData = this.props.classify.getCategoryNavData.brotherCategory;
@@ -100,7 +99,6 @@ class ClassifyDetail extends Component {
         <ul className="classifyDetail_nav">
           {NavData &&
             NavData.map((item, index) => {
-             
               return (
                 <li
                   key={item.id}

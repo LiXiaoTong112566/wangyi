@@ -12,3 +12,8 @@ export function getDeleteGoodsSearchHistoryServer(params = {}) {
 export function getGoodsSearchKeyServer(params) {
   return request.get("/search/helper", { params });
 }
+
+//根据内容查询
+export function getGoodsListServer(params) {
+  return request.get("/api/goods/list", { params });
+}

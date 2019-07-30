@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import "./address.scss"
+import { inject, observer } from "mobx-react";
 
-export class address extends Component {
+@inject("address")
+@observer
+ class address extends Component {
+    componentDidMount(){
+        this.props.address.findAddress()
+    }
     render() {
         return (
             <>

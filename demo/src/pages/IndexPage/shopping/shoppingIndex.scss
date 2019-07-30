@@ -1,6 +1,11 @@
 .shopBox {
   width: 100%;
+  height: 100%;
   overflow: hidden;
+  display: flex;
+ flex-direction: column;
+
+ 
   .service {
     width: 100%;
     height: 0.8rem;
@@ -11,7 +16,7 @@
     li {
       text-align: center;
       color: #666;
-      font-size: 0.2rem;
+      font-size: 0.3rem;
       span {
         margin: 0 0.08rem;
         color: red;
@@ -34,8 +39,9 @@
               width: 100%;
               display: flex;
               .check{
-                width: 10%;
+                width: 15%;
                 line-height: 1rem;
+                font-size:.5rem;
                 img {
                   width: 80%;
                 }
@@ -67,7 +73,15 @@
 
   .main {
     width: 100%;
-    overflow: hidden;
+    flex:1;
+    overflow: scroll;
+    margin-bottom:1rem;
+    .shopBox{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
 
     h3 {
       padding: 0.3rem 0rem;
@@ -75,7 +89,6 @@
 
     .item {
       width: 100%;
-      height: 2.5rem;
       display: flex;
       padding: 0 0.1rem;
       border-bottom: 1px solid #ccc;
@@ -96,8 +109,11 @@
         }
       }
 
-      .main {
+      .itemBox_main {
         flex: 1;
+        width: 100%;
+       
+        margin-bottom:1rem;
         .numPrice {
           width: 100%;
           height: 0.6rem;
@@ -169,6 +185,7 @@
            
               display: flex;
               justify-content: space-between;
+             
               h3{
                   height: 1rem;
 
@@ -179,10 +196,15 @@
               .num{
 
                 height: 1rem;
-
-               padding:.1rem 0;
-                  font-size:.3.5rem;
+               
+                 padding:.6rem 0;
+                
                   margin-bottom:0;
+                  span{
+                    padding:0 .1rem;
+                    color:red;
+                    font-size:.3rem;
+                  }
 
               }
           }

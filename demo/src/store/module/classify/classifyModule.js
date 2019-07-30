@@ -51,6 +51,7 @@ export default class IndexPageModule {
   @action getGoodsDetailModule(data) {
     getGoodsDetailServer(data).then(res => {
       this.getGoodsDetailData = res.data;
+      console.log(res);
     });
   }
   //相关商品

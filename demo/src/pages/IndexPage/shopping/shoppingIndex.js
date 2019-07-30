@@ -1,24 +1,76 @@
 import React, { Component } from "react";
 import "./shoppingIndex.scss";
+import { inject, observer } from "mobx-react";
 import ShopEdit from "../../../component/shopEdit"; //编辑
 import ShopFinish from "../../../component/shopFinish"; //编辑
-export class ShoppingIndex extends Component {
+
+@inject("card")
+@observer
+class ShoppingIndex extends Component {
   constructor() {
     super();
-
     this.state = {
       isEdit: true, //默认的是完成页面
-      isChecked: false //判断有没有选中
+      isChecked:true //判断有没有选中
     };
   }
 
+  componentDidMount() {
+    this.props.card.getCartDataModule();
+
+  }
+
+  //切换页面
   changeEdit = e => {
     this.setState({
       isEdit: !this.state.isEdit
     });
-   
   };
+
+  //切换全选和反选
+  changeChecked=()=>{
+    console.log(123);
+    this.setState({
+      isChecked:!this.state.isChecked
+    },()=>{
+      let data=this.props.card.getCartData;
+      console.log(data)
+      console.log(data.cartList);
+      let arr=data.cartList.map((item,index)=>{
+        return item.product_id
+      })
+      console.log(arr);
+      let productIdsData= arr.join();
+      console.log(productIdsData);
+
+
+      if(this.state.isChecked){
+        this.props.card.postCartCheckModule({
+          isChecked:1,
+           productIds:productIdsData,
+
+        })
+
+      }else{
+        this.props.card.postCartCheckModule({
+          isChecked:0,
+           productIds:productIdsData,
+
+        })
+      }
+
+
+    })
+
+    
+  }
+
   render() {
+    let data=this.props.card.getCartData;
+    console.log(data);
+    
+    
+    let {isEdit}=this.state;
     return (
       <div className="shopBox">
         {/* 头部 */}
@@ -38,13 +90,20 @@ export class ShoppingIndex extends Component {
         </ul>
         {/* 内容 */}
         <div className="main">
-          {this.state.isEdit ? <ShopFinish /> : <ShopEdit />}
+
+          {data.cartList&&data.cartList.map((item,index)=>{
+            return (
+              isEdit?<ShopFinish key={"finsh"+index} data={item} {...this.props}/> : <ShopEdit key={"edit"+index} data={item} {...this.props}/>
+
+            )
+          })}
+        
         </div>
         {/* 选项 */}
         <div className="shop">
           <div className="checkedBox">
             <div className="choice">
-              <div className="check">
+              <div className="check" onClick={()=>this.changeChecked()}>
                 <img
                   src={
                     this.state.isChecked

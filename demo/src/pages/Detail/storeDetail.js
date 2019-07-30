@@ -14,7 +14,8 @@ class StoreDetail extends Component {
   constructor() {
     super();
     this.state = {
-      visible:false
+      visible:false,
+      count:0,
     };
 
     this.swiperContainer=React.createRef();
@@ -25,6 +26,7 @@ class StoreDetail extends Component {
     this.props.classify.getGoodsDetailModule({ id: id });
     this.props.classify.GoodsCommodities({id:id})
     this.props.special.getCommentListModule({valueId:id,typeId:0})
+    this.props.card.getCartNumModule();//获取用户商品的数量
   }
   componentDidUpdate(){
     let container=this.swiperContainer.current;
@@ -47,8 +49,47 @@ class StoreDetail extends Component {
       visible: false,
     });
   };
+
+  //数量的加减
+  changeCount(type){
+    console.log(type)
+    if(type==="+"){
+      this.setState({
+        count:this.state.count+1,
+      })
+    }else{
+      if(this.state.count===0){
+        this.setState({
+          count:0,
+        })
+      }else{
+        this.setState({
+          count:this.state.count-1,
+        })
+      }
+    }
+
+  }
+
+
+  //添加到购物车
+  //postAddCartModule
+
+  joinCart=()=>{
+    let { getGoodsDetailData } = this.props.classify;
+    let data=getGoodsDetailData.productList;
+
+    console.log(data);
+    console.log(this.props.card.cardNum);
+    this.props.card.postAddCartModule({goodsId:data[0].goods_id,productId:data[0].id,number:this.state.count});
+    // this.props.card.getCartNumModule();//获取用户商品的数量
+  }
+
   render() {
     let { getGoodsDetailData,goods } = this.props.classify;
+    console.log(getGoodsDetailData);
+    let {getCartNumData}=this.props.card;
+    console.log(getCartNumData);
     //商品规格
     let  specs = getGoodsDetailData.attribute;
     //常见问题
@@ -103,7 +144,7 @@ class StoreDetail extends Component {
                 </div>
             </div>
             <div className="norms" onClick={()=>this.goodsMask()}>
-                <span className="color_num">x&nbsp;{this.props.card.cardNum}</span>
+                <span className="color_num">x&nbsp;{this.state.count}</span>
                 <span>选择规格&nbsp;&gt;</span>
             </div>
             {/* 评论 */}
@@ -160,7 +201,7 @@ class StoreDetail extends Component {
         </div>
         <div className="footer">
             <span><i className="iconfont icon-shoucang2"></i></span>
-            <span><i className="iconfont icon-gouwuche-xuanzhong"></i>{this.props.card.cardNum}</span>
+            <span onClick={()=>this.props.history.push({pathname:"/main/ShoppingIndex"})}><i className="iconfont icon-gouwuche-xuanzhong"></i>{getCartNumData&&getCartNumData.goodsCount}</span>
             <div className="btn">
                <button className="add_cardbtn" onClick={()=>this.goodsMask()}>加入购物车</button>
                <button className="add_shopbtn">立即购买</button>
@@ -186,14 +227,17 @@ class StoreDetail extends Component {
               <div className="goods_money">
                 <div>数量:</div>
                 <div>
-                    <span onClick={()=>this.props.card.countShop("-")}>-</span>
-                    <span>{this.props.card.cardNum}</span>
-                    <span onClick={()=>this.props.card.countShop("+")}>+</span>
+                    <span onClick={()=>this.changeCount("-")}>-</span>
+                    <span>{this.state.count}</span>
+                    <span onClick={()=>this.changeCount("+")}>+</span>
                 </div>
               </div>
               <div className="goodsBtn">
-               <button className="add_cardbtn">加入购物车</button>
+               <button className="add_cardbtn" onClick={()=>this.joinCart()}>加入购物车</button>
                <button className="add_shopbtn">立即下单</button>
+              </div>
+              <div className="close" onClick={()=>{this.onClose()}}>
+                X
               </div>
           </div>
           

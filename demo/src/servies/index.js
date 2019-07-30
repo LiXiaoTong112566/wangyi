@@ -5,3 +5,4 @@ export * from "./home/homeDetail"
 export * from "./shopCard"
 export * from "./special";
 export * from "./searchServer";
+export * from "./Collection";

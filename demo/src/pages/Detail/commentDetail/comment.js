@@ -12,7 +12,7 @@ import "./commit.scss"
     }
     render() {
         let discuss = this.props.special.getCommentListData.data;
-        console.log(discuss)
+       // console.log(discuss)
         return (
             <div className="discuss">
                <div className="header">

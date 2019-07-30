@@ -15,13 +15,17 @@
     width: 100%;
     height: 1rem;
     border-top:.02rem solid #eee;
-    line-height: 1rem;
     background: #fff;
     display: flex;
     justify-content: space-around; 
-    a{
-      color:#000;
-    }
+   
+    dl{
+      height:1rem;
+      text-align: center;
+        a{
+          color:#000;
+        }
+      }
     .active {
       color: red;
     }

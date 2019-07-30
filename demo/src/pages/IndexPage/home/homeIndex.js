@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./homeIndex.scss";
 
 import Swiper from "swiper";
-import "../../../scss/swiper.css";
+import "swiper/dist/css/swiper.min.css";
 import { inject, observer } from "mobx-react";
 import ImgBlend from "../../../component/imgBlend";
 import ShopList from "../../../component/shopList";

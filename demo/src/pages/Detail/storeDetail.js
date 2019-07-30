@@ -58,7 +58,7 @@ class StoreDetail extends Component {
     let num = getGoodsDetailData.productList;
     //评论
     let discuss = this.props.special.getCommentListData.data;
-    console.log(discuss)
+  
     return (
       <div className="storeDetail_box">
         <div className="header">

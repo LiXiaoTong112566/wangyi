@@ -18,7 +18,6 @@ import {
       //查询收藏栏商品
       @action async findList(params) {
         let list = await getLikes(params);
-        console.log(list)
         this.addCollection = list.data;
      }
   }

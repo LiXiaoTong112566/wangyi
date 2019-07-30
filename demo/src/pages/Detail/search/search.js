@@ -146,6 +146,11 @@ class Search extends Component {
       classifyInd: ind
     });
 
+    if (this.allClassify.current.className.indexOf("show") > -1) {
+      this.allClassify.current.classList.remove("show");
+    }
+
+
     this.refs.all.innerHTML = name + "分类";
 
     this.props.search.getGoodsListModule({

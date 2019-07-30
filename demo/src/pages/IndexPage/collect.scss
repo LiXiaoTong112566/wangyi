@@ -1,0 +1,50 @@
+.collect{
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+}
+.header{
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    text-align: center;
+    border-bottom:1px solid #ccc;
+    background:#fff;
+    span{
+        position: absolute;
+        left:0.1rem;
+        top:-0.1rem;
+        font-size:0.5rem;  
+    }
+    h3{
+        font-weight: bold;
+    }
+}
+.subject{
+    width:100%;
+    flex:1;
+    overflow: scroll;
+    dl>a{
+        display:inline-block;
+        width:100%;
+        height:2.5rem;
+        background:#fff;
+        display:flex;
+        dt>img{
+            width:2.1rem;
+            height:2.1rem;
+            margin:.1rem;
+        }
+        dd{
+            flex:1;
+            box-sizing: border-box;
+            padding: 0.3rem 0;
+            line-height: 0.6rem;
+            span {
+                font-size: .32rem;
+                color: #8b0000;
+              }
+        }
+    }
+}

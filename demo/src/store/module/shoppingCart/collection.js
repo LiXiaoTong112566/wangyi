@@ -3,7 +3,8 @@
  */
 import {observable,action}  from "mobx";
 import {
-    postDoLikes
+    postDoLikes,
+    getLikes
   } from "../../../servies";
 
   export default class Collection {
@@ -14,4 +15,10 @@ import {
           let list = await postDoLikes(params);
           this.addCollection = list.data;
       }
+      //查询收藏栏商品
+      @action async findList(params) {
+        let list = await getLikes(params);
+        console.log(list)
+        this.addCollection = list.data;
+     }
   }

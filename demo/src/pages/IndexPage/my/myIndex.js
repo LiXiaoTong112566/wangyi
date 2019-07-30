@@ -7,8 +7,8 @@ export class myIndex extends Component {
     super()
     this.state={
        list:[
-           {"icon":"iconfont icon-gongzuojilu","title":"我的收藏","type":"/collect"},
-           {"icon":"iconfont icon-dizhi-01","title":"地址管理"},
+           {"icon":"iconfont icon-gongzuojilu","title":"我的收藏","type":"collect"},
+           {"icon":"iconfont icon-dizhi-01","title":"地址管理","type":"address"},
            {"icon":"iconfont icon-wodedingdan","title":"我的订单"},
            {"icon":"iconfont icon-riqixuanze","title":"周末拼单"},
            {"icon":"iconfont icon-youhuiquan-01","title":"优惠券"},

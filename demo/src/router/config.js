@@ -106,7 +106,11 @@ const SearchDetail=Loadable({
         loader:()=>import ("../pages/IndexPage/home/child/brandDetail"),
         loading:Loading
     })
-
+//更多评论详情中
+    const Comments = Loadable({
+        loader:()=>import ("../pages/Detail/commentDetail/comment"),
+        loading:Loading
+    })
 
 
 let router=[
@@ -171,7 +175,9 @@ let router=[
     },{
         path:"/search",
         component: SearchDetail
-       
+    },{
+        path:"/comment/:id",
+        component:Comments
     }
 ]
 

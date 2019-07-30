@@ -25,7 +25,6 @@ export default class SpecialModule {
   //根据专题Id获取专题详情
   @action async getTopicDetailModule(params) {
     let data = await getTopicDetailServer(params);
-
     this.getTopicDetailData = data.data; //获取到专题详情
   }
 
@@ -38,10 +37,8 @@ export default class SpecialModule {
   }
 
   //根据专题获取相关评论
-
   @action async getCommentListModule(params) {
     let data = await getCommentListServer(params);
-
     this.getCommentListData = data.data; //获取到相关专题
   }
 

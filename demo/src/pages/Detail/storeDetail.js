@@ -4,15 +4,16 @@ import "./storeData.scss";
 import Swiper from "swiper";
 import "swiper/dist/css/swiper.min.css";
 import ImgBlend from "../../component/imgBlend"
-import {Icon,Drawer} from "antd"
+import {Drawer} from "antd"
+import "../../scss/fonts/iconfont.css"
 
-@inject("classify")
+
+@inject("classify","card","special")
 @observer
 class StoreDetail extends Component {
   constructor() {
     super();
     this.state = {
-      storeData: [],
       visible:false
     };
 
@@ -23,6 +24,7 @@ class StoreDetail extends Component {
     let id = this.props.match.params.id;
     this.props.classify.getGoodsDetailModule({ id: id });
     this.props.classify.GoodsCommodities({id:id})
+    this.props.special.getCommentListModule({valueId:id,typeId:0})
   }
   componentDidUpdate(){
     let container=this.swiperContainer.current;
@@ -47,7 +49,6 @@ class StoreDetail extends Component {
   };
   render() {
     let { getGoodsDetailData,goods } = this.props.classify;
-  
     //商品规格
     let  specs = getGoodsDetailData.attribute;
     //常见问题
@@ -55,6 +56,9 @@ class StoreDetail extends Component {
     //库存
     let img =getGoodsDetailData.info&&getGoodsDetailData.info.primary_pic_url;
     let num = getGoodsDetailData.productList;
+    //评论
+    let discuss = this.props.special.getCommentListData.data;
+  
     return (
       <div className="storeDetail_box">
         <div className="header">
@@ -66,11 +70,12 @@ class StoreDetail extends Component {
             <div className="swiperBox">
               <div className="swiper-container" ref={this.swiperContainer}>
                 <div className="swiper-wrapper">
-                    {getGoodsDetailData.gallery&&getGoodsDetailData.gallery.map((item,index)=>{
+                 {getGoodsDetailData.gallery&&getGoodsDetailData.gallery.map(item=>{
                         return (
                           <div className="swiper-slide" key={item.id}><img src={item.img_url} alt=""/></div>
                         )
-                    })}
+                    })
+                   }
                 </div>
                 <div className="swiper-pagination" />
               </div>
@@ -98,8 +103,27 @@ class StoreDetail extends Component {
                 </div>
             </div>
             <div className="norms" onClick={()=>this.goodsMask()}>
-                <span className="color_num">x&nbsp;{0}</span>
+                <span className="color_num">x&nbsp;{this.props.card.cardNum}</span>
                 <span>选择规格&nbsp;&gt;</span>
+            </div>
+            {/* 评论 */}
+            <div className="commentGoods">
+                 <div className="commentTop">
+                    <span>评论 ({discuss&&discuss.length})</span>
+                    {discuss&&discuss[0]?
+                       <span onClick={()=>this.props.history.push(`/comment/${this.props.match.params.id}`)}>查看全部&gt;</span>
+                       :""}
+                 </div>
+                 {discuss&&discuss[0]
+                  ?<div className="commentCont">
+                   <p><span>匿名用户</span><span>{discuss&&discuss[0].add_time}</span></p>
+                   <div>{discuss&&discuss[0].content}</div>
+                   <div>
+                     <img src={discuss&&discuss[0].pic_list[0].pic_url} alt=""></img>
+                   </div>     
+                 </div>
+                 :""}
+                 
             </div>
             {/* 商品参数 */}
             <div className="communal parameters">
@@ -124,7 +148,7 @@ class StoreDetail extends Component {
               </div>)}
             </div>
                {/* 相关商品 */}
-               <div className="communal related">
+           <div className="communal related">
                <p>大家都在看</p>
                <div className="blend">
                   {goods&&goods.map(file=>
@@ -135,11 +159,11 @@ class StoreDetail extends Component {
             </div>
         </div>
         <div className="footer">
-            <span><Icon type="star"/></span>
-            <span><Icon type="shopping-cart"/>0</span>
+            <span><i className="iconfont icon-shoucang2"></i></span>
+            <span><i className="iconfont icon-gouwuche-xuanzhong"></i>{this.props.card.cardNum}</span>
             <div className="btn">
-               <button style={{background:"orangered"}}>加入购物车</button>
-               <button style={{background:"skyblue"}}>立即购买</button>
+               <button className="add_cardbtn" onClick={()=>this.goodsMask()}>加入购物车</button>
+               <button className="add_shopbtn">立即购买</button>
             </div>
         </div>
         <Drawer
@@ -162,15 +186,15 @@ class StoreDetail extends Component {
               <div className="goods_money">
                 <div>数量:</div>
                 <div>
-                    <span>-</span>
-                    <span>0</span>
-                    <span>+</span>
+                    <span onClick={()=>this.props.card.countShop("-")}>-</span>
+                    <span>{this.props.card.cardNum}</span>
+                    <span onClick={()=>this.props.card.countShop("+")}>+</span>
                 </div>
               </div>
               <div className="goodsBtn">
-               <button style={{background:"orangered"}}>加入购物车</button>
-               <button style={{background:"skyblue"}}>立即下单</button>
-             </div>
+               <button className="add_cardbtn">加入购物车</button>
+               <button className="add_shopbtn">立即下单</button>
+              </div>
           </div>
           
         </Drawer>

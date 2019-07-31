@@ -77,6 +77,7 @@
         height: 1rem;
         background: #fff;
         z-index: 100;
+        position: absolute;
 
         .searchListMainHeader_filter {
           width: 100%;
@@ -89,9 +90,16 @@
           li {
             flex: 1;
             text-align: center;
-            .active {
-              color: red;
+            span {
+              .actives{
+             background: lightcoral;
+             border-radius: 50%;  
+             text-align: center;
+
+               
+              }
             }
+            
           }
 
           .price {
@@ -138,6 +146,7 @@
           margin-bottom: 0;
           position: absolute;
           left: 0;
+          top:1rem;
 
           border-bottom: 1px solid #ccc;
           background: #fff;
@@ -188,3 +197,5 @@
     }
   }
 }
+
+

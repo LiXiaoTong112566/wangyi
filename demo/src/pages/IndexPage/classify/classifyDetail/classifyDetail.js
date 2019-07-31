@@ -19,9 +19,10 @@ class ClassifyDetail extends Component {
 
   componentDidMount() {
     let id = this.props.match.params.id; //分类标题的id;
+    console.log(id);
 
     let classifyId = localStorage.getItem("classifyId"); //商品的id
-   // let index = localStorage.getItem("index"); //点击的下标
+  
 
     this.setState({
       classId: id,
@@ -38,7 +39,7 @@ class ClassifyDetail extends Component {
     //根据导航分类获取对应的商品
     //根据分类Id或者制造商Id获取商品
     this.props.classify.getGoodsModule({
-      categoryId: classifyId,
+      categoryId: id,
       page: 1,
       size: 100
     });

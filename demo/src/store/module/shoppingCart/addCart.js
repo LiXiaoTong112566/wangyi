@@ -47,7 +47,6 @@ export default class cardShop {
   //添加到购物;
   @action postAddCartModule(data) {
     postAddCartServer(data).then(res => {
-      console.log(res);
       this.state = res.data.data;
       this.getCartNumModule();
     });
@@ -57,12 +56,12 @@ export default class cardShop {
 
   @action async getCartDataModule() {
     let data = await getCartDataServer();
-    console.log(data);
+
     let newData = data.data.cartList.map((item, index) => {
       item.flag = false;
       return item;
     });
-    console.log(newData);
+
     let obj = { cartList: newData, cartTotal: data.data.cartTotal };
 
     this.getCartData = obj;
@@ -70,17 +69,15 @@ export default class cardShop {
 
   //获取到购物车商品数量
   @action async getCartNumModule() {
-    console.log(123);
     let data = await getCartNumServer();
-    console.log(data);
+
     this.getCartNumData = data.data.cartTotal;
   }
 
   //数据的全选和反选
   @action async postCartCheckModule(params) {
-    console.log(params);
     let data = await postCartCheckServer(params);
-    console.log(data);
+
     this.postCartCheckData = data.data;
     this.getCartDataModule(); //重新获取的数购物车的数据
     this.changeInitFinishCheckedFn(); //给页面全选的按钮赋值
@@ -88,14 +85,12 @@ export default class cardShop {
 
   //切换完成页面的全选和反选
   @action changeChecked() {
-    console.log(123);
     this.FinishIsChecked = !this.FinishIsChecked;
     let arr = this.getCartData.cartList.map((item, index) => {
       return item.product_id;
     });
-    console.log(arr);
+
     let productIdsData = arr.join();
-    console.log(productIdsData);
 
     if (this.FinishIsChecked) {
       this.postCartCheckModule({
@@ -112,7 +107,6 @@ export default class cardShop {
 
   //切换编辑页面的全选和反选
   @action changeEditChecked() {
-    console.log(123);
     this.EditIsChecked = !this.EditIsChecked;
     let data = this.getCartData.cartList.map((item, index) => {
       item.flag = this.EditIsChecked;
@@ -129,8 +123,6 @@ export default class cardShop {
 
   //切换编辑页面每一项的全选和反选功能
   @action changeEditItemChecked(data) {
-    console.log(data);
-
     let newData = this.getCartData.cartList.map((item, index) => {
       if (item.product_id === data.product_id) {
         item.flag = !item.flag;
@@ -155,7 +147,7 @@ export default class cardShop {
   //修改编辑页面的加减数量
   @action async postCartUpdateModule(data) {
     let getData = await postCartUpdateServer(data);
-    console.log(getData);
+
     this.postCartUpdateData = getData;
     this.getCartDataModule(); //重新获取的数购物车的数据
   }
@@ -168,19 +160,15 @@ export default class cardShop {
       return item.flag;
     });
 
-    console.log(newData);
-
     let allProductIds = newData.map((item, index) => {
       return item.product_id;
     });
 
-    console.log(allProductIds);
-
     let getData = await postCartDeleteServer({
       productIds: allProductIds.join()
     });
-    console.log(getData);
 
+    this.EditCheckedCount = 0;
     this.getCartDataModule();
   }
 }

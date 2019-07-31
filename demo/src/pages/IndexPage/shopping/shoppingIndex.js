@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./shoppingIndex.scss";
 import { inject, observer } from "mobx-react";
-
+import { Toast } from "antd-mobile";
 @inject("card")
 @observer
 class ShoppingIndex extends Component {
@@ -29,9 +29,6 @@ class ShoppingIndex extends Component {
 
   //切换完成页面的选中的按钮
   changeChecked(data) {
-    // isChecked: 1,
-    // productIds: productIdsData
-    console.log(data);
     let checked = data.checked === 0 ? 1 : 0;
     this.props.card.postCartCheckModule({
       isChecked: checked,
@@ -42,8 +39,6 @@ class ShoppingIndex extends Component {
   //编辑页面的加减功能
 
   changeEditStoreCount(data, type) {
-    console.log(data);
-    console.log(type);
     if (type === "+") {
       this.props.card.postCartUpdateModule({
         goodsId: data.goods_id,
@@ -62,23 +57,20 @@ class ShoppingIndex extends Component {
   }
 
   //删除所选的
-  delChecked(e){
-    console.log(e);
-    console.log(e.nativeEvent.target.innerHTML);
-    if(e.nativeEvent.target.innerHTML==="删除所选"){
-      console.log(123);
+  delChecked(e) {
+    if (e.nativeEvent.target.innerHTML === "删除所选") {
       this.props.card.postCartDeleteModule();
-
+    } else if (e.nativeEvent.target.innerHTML === "下单") {
+      Toast.loading("下单功能还没有开启，请耐心等待", 1, () => {
+        console.log("Load complete !!!");
+      });
     }
-    
   }
 
   render() {
     let data = this.props.card.getCartData;
-    console.log(data);
-    //postCartCheckData
+
     let { postCartCheckData } = this.props.card;
-    console.log(postCartCheckData);
 
     let { isFinish } = this.state;
     return (
@@ -158,7 +150,6 @@ class ShoppingIndex extends Component {
                         <div className="price">￥{item.market_price}</div>
 
                         <div className="numBox">
-                          {console.log(item)}
                           <span
                             onClick={() => this.changeEditStoreCount(item, "-")}
                           >
@@ -214,7 +205,7 @@ class ShoppingIndex extends Component {
 
               {this.state.isFinish ? (
                 <div>
-                  已选{data.cartTotal && data.cartTotal.checkedGoodsCount}商品
+                  已选{data.cartTotal && data.cartTotal.checkedGoodsCount}个
                 </div>
               ) : (
                 <div>已选择{this.props.card.EditCheckedCount}</div>
@@ -231,10 +222,17 @@ class ShoppingIndex extends Component {
             {this.state.isFinish ? "编辑" : "完成"}
           </div>
 
-          <div className="option" onClick={(e)=>{this.delChecked(e)}}>
+          <div
+            className="option"
+            onClick={e => {
+              this.delChecked(e);
+            }}
+          >
             {this.state.isFinish ? "下单" : "删除所选"}
           </div>
         </div>
+
+        <div className="mask" />
       </div>
     );
   }

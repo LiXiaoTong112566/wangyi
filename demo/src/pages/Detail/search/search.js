@@ -3,8 +3,10 @@ import { inject, observer } from "mobx-react";
 import "./search.scss";
 import {
   SearchBar,
-  Icon,
+ Icon
 } from "antd-mobile";
+
+
 import ImgBlend from "../../../component/imgBlend";
 @inject("search")
 @observer
@@ -54,12 +56,17 @@ class Search extends Component {
 
   //点击列表搜素内容
   searchData = e => {
-    let data = e.nativeEvent.target.innerHTML;
-
+    if(e.nativeEvent.target.tagName==="LI"){
+      let data = e.nativeEvent.target.innerHTML;
+    console.log(data);
     this.setState({
       show: false
     });
     this.props.search.getGoodsListModule({ keyword: data });
+
+    }
+  
+    
   };
 
   //全部分类内容的显示和隐藏
@@ -72,18 +79,23 @@ class Search extends Component {
 
   //点击内容搜索
   getSearchTargetData = e => {
-    this.setState(
-      {
-        value: e.nativeEvent.target.innerHTML
-      },
-      () => {
-        this.props.search.getGoodsListModule({ keyword: this.state.value });
-        this.setState({
-          flag: 1,
-          show: false
-        });
-      }
-    );
+   
+    if(e.nativeEvent.target.tagName==="LI"){
+      this.setState(
+        {
+          value: e.nativeEvent.target.innerHTML
+        },
+        () => {
+          this.props.search.getGoodsListModule({ keyword: this.state.value });
+          this.setState({
+            flag: 1,
+            show: false
+          });
+        }
+      );
+
+    }
+   
   };
   //删除记录
   delData = () => {
@@ -270,7 +282,7 @@ class Search extends Component {
                       <li
                         className={
                           this.state.classNameFlag === 2
-                            ? " price active"
+                            ? "price active"
                             : "price"
                         }
                         onClick={e => {
@@ -281,16 +293,16 @@ class Search extends Component {
                         <span>
                           <Icon
                             type="up"
-                            className={
-                              this.state.iconFlag === 1 ? "active" : ""
-                            }
+                           
+                            className={ this.state.iconFlag===1?"actives":""}
+
                             onClick={() => this.getNewData("up")}
                           />
+                        
                           <Icon
                             type="down"
-                            color="red"
                             className={
-                              this.state.iconFlag === 2 ? "active" : ""
+                              this.state.iconFlag===2?"actives":""
                             }
                             onClick={() => this.getNewData("down")}
                           />

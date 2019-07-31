@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import "./address.scss"
 import { inject, observer } from "mobx-react";
 
+import { Picker, List } from 'antd-mobile';
+
+import arrayTreeFilter from 'array-tree-filter';
+
+import { district } from 'antd-mobile-demo-data';
+
 @inject("address")
 @observer
  class address extends Component {
@@ -32,6 +38,15 @@ import { inject, observer } from "mobx-react";
         let defaultAddress= !this.state.defaultAddress;
         this.setState({defaultAddress})
     }
+    getSel() {
+        const value = this.state.pickerValue;
+        if (!value) {
+          return '';
+        }
+        const treeChildren = arrayTreeFilter(district, (c, level) => c.value === value[level]);
+        console.log( treeChildren)
+        return treeChildren.map(v => v.label).join(',');
+      }
     render() {
         let site = this.props.address;
         let {flag,name,tel,address,defaultAddress} = this.state;
@@ -56,7 +71,22 @@ import { inject, observer } from "mobx-react";
                     <div className="subject">
                        <p><input type="text" value={name} onChange={(e)=>this.setState({name:e.target.value})}></input></p>
                        <p><input type="text" value={tel} onChange={(e)=>this.setState({tel:e.target.value})}></input></p>
-                       <p>地址：</p>
+                       {/* 地址弹框 */}
+                        <List>
+                        <Picker
+                            visible={this.state.visible}
+                            data={district}
+                            value={this.state.pickerValue}
+                            onChange={v => this.setState({ pickerValue: v })}
+                            onOk={() => this.setState({ visible: false })}
+                            onDismiss={() => this.setState({ visible: false })}
+                        >
+                            <List.Item extra={this.getSel()} onClick={() => this.setState({ visible: true })}>
+                                选择地址
+                            </List.Item>
+                        </Picker>
+                        </List>
+                     
                        <p><input type="text" value={address} onChange={(e)=>this.setState({address:e.target.value})}></input></p>
                        <div>设置默认地址
                            <span 

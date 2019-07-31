@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
  import "./address.scss"
+ import "../../scss/fonts/iconfont.css"
 import { inject, observer } from "mobx-react";
 
 import { Picker, List } from 'antd-mobile';
@@ -74,7 +75,15 @@ import { district } from 'antd-mobile-demo-data';
                     <span onClick={()=>this.props.history.goBack()}>&lt;</span>
                 </div>
                 <div className="subject">
-                
+                  {/* 模拟数据 */}
+                  <dl>
+                      <dt>姓名</dt>
+                      <dd className="message">
+                          <p>手机号</p>
+                          <p>地址</p>
+                      </dd>
+                      <dd className="removeAdd"><i className="iconfont icon-lajitong"></i></dd>
+                  </dl>
                 </div>
                 <div className="footer" onClick={()=>this.changeAddress()}>
                     新建地址

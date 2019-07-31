@@ -26,8 +26,6 @@ class StoreDetail extends Component {
     this.props.classify.GoodsCommodities({ id: id });
     this.props.special.getCommentListModule({ valueId: id, typeId: 0 });
     this.props.card.getCartNumModule(); //获取用户商品的数量
-  }
-  componentDidUpdate() {
     let container = this.swiperContainer.current;
     new Swiper(container, {
       autoplay: true,
@@ -36,6 +34,16 @@ class StoreDetail extends Component {
         el: ".swiper-pagination"
       }
     });
+  }
+  componentDidUpdate() {
+    // let container = this.swiperContainer.current;
+    // new Swiper(container, {
+    //   autoplay: true,
+    //   loop: true,
+    //   pagination: {
+    //     el: ".swiper-pagination"
+    //   }
+    // });
   }
   goodsMask() {
     this.setState({
@@ -111,7 +119,8 @@ class StoreDetail extends Component {
       getGoodsDetailData.info && getGoodsDetailData.info.primary_pic_url;
     let num = getGoodsDetailData.productList;
     //评论
-    let discuss = this.props.special.getCommentListData.data;
+    
+    let discuss = this.props.special.getCommentListData;
 
     return (
       <div className="storeDetail_box">
@@ -167,9 +176,11 @@ class StoreDetail extends Component {
           </div>
           {/* 评论 */}
           <div className="commentGoods">
+         
             <div className="commentTop">
-              <span>评论 ({discuss && discuss.length})</span>
-              {discuss && discuss[0] ? (
+              
+              <span>评论 ({discuss[0] && discuss.length})</span>
+              {discuss[0] && discuss[0] ? (
                 <span
                   onClick={() =>
                     this.props.history.push(
@@ -183,7 +194,8 @@ class StoreDetail extends Component {
                 ""
               )}
             </div>
-            {discuss && discuss[0] ? (
+           
+            {discuss[0] && discuss[0] ? (
               <div className="commentCont">
                 <p>
                   <span>匿名用户</span>
@@ -191,7 +203,7 @@ class StoreDetail extends Component {
                 </p>
                 <div>{discuss && discuss[0].content}</div>
                 <div>
-                  <img src={discuss && discuss[0].pic_list[0].pic_url} alt="" />
+                  <img src={discuss[0] && discuss[0].pic_list[0].pic_url} alt="" />
                 </div>
               </div>
             ) : (

@@ -72,7 +72,7 @@ class ShoppingIndex extends Component {
 
     let { postCartCheckData } = this.props.card;
 
-    let { isFinish } = this.state;
+   // let { isFinish } = this.state;
     return (
       <div className="shopBox">
         {/* 头部 */}
@@ -93,7 +93,7 @@ class ShoppingIndex extends Component {
         {/* 内容 */}
         <div className="main1">
           {data.cartList &&
-            data.cartList.map((item, index) => {
+            data.cartList.map((item) => {
               return (
                 <div className="shopFinshBox" key={item.goods_name}>
                   {this.state.isFinish ? (

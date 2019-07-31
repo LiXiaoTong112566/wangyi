@@ -38,6 +38,30 @@
           color:#999;
       }
   }
+
+  dl:nth-child(1){
+      dt{
+          i{
+              color:rgb(33, 150, 243);
+          }
+      }
+      dd{
+          color:rgb(33, 150, 243);
+      }
+  }
+
+  dl:nth-child(2){
+    dt{
+        i{
+            color:rgb(33, 150, 243);
+        }
+    }
+    dd{
+        color:rgb(33, 150, 243);
+    }
+}
+
+  
 }
 .loginOut{
     width:100%;
@@ -47,4 +71,10 @@
     background:rgba(243, 245, 135,.3);
     margin:.1rem 0;
     border-top:.01rem solid #eee;
+}
+
+
+
+.am-toast-text-info{
+    color:#fff;
 }

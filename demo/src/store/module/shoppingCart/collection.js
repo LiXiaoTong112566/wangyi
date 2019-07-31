@@ -9,11 +9,12 @@ import {
 
   export default class Collection {
       @observable addCollection="";
-
+      @observable isCollection="";
       //是否添加到收藏栏
       @action async addEnshrine(params) {
           let list = await postDoLikes(params);
-          this.addCollection = list.data;
+          this.isCollection = list.data;
+          this.findList({typeId:0})
       }
       //查询收藏栏商品
       @action async findList(params) {

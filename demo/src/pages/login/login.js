@@ -21,6 +21,8 @@ class Login extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.props.login.getLogin(values);
+
+        localStorage.setItem("mobile", values.mobile);
       }
     });
   };

@@ -40,5 +40,6 @@ export default class SearchModule {
     let data = await getGoodsListServer(params);
     console.log(data);
     this.getGoodsListData = data.data; //获取到专题数据
+    this.getGoodsSearchMsg();
   }
 }

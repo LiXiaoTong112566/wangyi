@@ -1,10 +1,12 @@
 import React from "react";
 import Loadable from "react-loadable";//路由懒加载
-
+import { Toast } from 'antd-mobile';
 //定义一个函数
 function Loading() {
     return <div>
-        Loading...加载中...
+       {
+           Toast.loading('Loading...', 1) 
+  }
     </div>
 }
                                                                                                                 
@@ -131,6 +133,7 @@ let router=[
     {
         path:"/main",
         component:Main, 
+       
         children:[
             {
                 path:"/main/homeIndex",

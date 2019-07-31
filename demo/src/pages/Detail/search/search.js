@@ -93,7 +93,6 @@ class Search extends Component {
           });
         }
       );
-
     }
    
   };
@@ -203,7 +202,7 @@ class Search extends Component {
           {this.state.flag === -1 ? (
             <div className="searchList">
               <div className="historyMain">
-                <div className="header">
+                <div className="headerRecord">
                   <span>历史记录</span>
                   <span
                     onClick={() => {

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
+import { Toast} from 'antd-mobile';
 import "./storeData.scss";
 import Swiper from "swiper";
 import "swiper/dist/css/swiper.min.css";
@@ -66,22 +67,18 @@ class StoreDetail extends Component {
       }
     }
   }
-//添加到收藏
-  addStore=(e)=>{
-    let start = !this.state.storeUp;
+  //添加到收藏
+  addStore = e => {
     let id = this.props.match.params.id;
-    this.setState({
-      storeUp:start
-    })
-    if(start){
-      e.target.classList.add("start")
-      this.props.collect.addEnshrine({typeId:0,valueId:id})
-    }else{
-      e.target.classList.remove("start")
-      this.props.collect.addEnshrine({typeId:1,valueId:id})
-    }
-  }
+    console.log(id);
 
+    let { getGoodsDetailData } = this.props.classify;
+    console.log(getGoodsDetailData);
+
+    //获取到商品的收藏的状态
+    console.log(getGoodsDetailData.userHasCollect);
+    this.props.classify.addEnshrine({ typeId: 0, valueId: id });
+  };
 
   //添加到购物车
   //postAddCartModule
@@ -97,14 +94,20 @@ class StoreDetail extends Component {
       productId: data[0].id,
       number: this.state.count
     });
-    // this.props.card.getCartNumModule();//获取用户商品的数量
+
+    Toast.success("添加成功", 1);
   };
+
+  storeShop(){
+    Toast.offline('下单功能还未开启，请观察版本更新', 1);
+
+  }
 
   render() {
     let { getGoodsDetailData, goods } = this.props.classify;
     console.log(getGoodsDetailData);
     let { getCartNumData } = this.props.card;
-    console.log(getCartNumData);
+
     //商品规格
     let specs = getGoodsDetailData.attribute;
     //常见问题
@@ -142,8 +145,7 @@ class StoreDetail extends Component {
           {/* 星星 */}
           <ul className="service">
             <li>
-              <span>★</span>     
-
+              <span>★</span>
               30天无忧退货
             </li>
             <li>
@@ -172,8 +174,8 @@ class StoreDetail extends Component {
           {/* 评论 */}
           <div className="commentGoods">
             <div className="commentTop">
-            <span>评论 ({discuss && discuss.length})</span>
-                   {discuss && discuss[0] ? (
+              <span>评论 ({discuss && discuss.length})</span>
+              {discuss && discuss[0] ? (
                 <span
                   onClick={() =>
                     this.props.history.push(
@@ -249,7 +251,11 @@ class StoreDetail extends Component {
         <div className="footer">
           <span>
             <i
-              className="iconfont icon-shoucang2 "
+              className={
+                getGoodsDetailData.userHasCollect === 0
+                  ? "iconfont icon-shoucang2"
+                  : "iconfont icon-shoucang2 start"
+              }
               onClick={e => this.addStore(e)}
             />
           </span>
@@ -265,7 +271,7 @@ class StoreDetail extends Component {
             <button className="add_cardbtn" onClick={() => this.goodsMask()}>
               加入购物车
             </button>
-            <button className="add_shopbtn">立即购买</button>
+            <button className="add_shopbtn" onClick={()=>{this.storeShop()}}>立即购买</button>
           </div>
         </div>
         <Drawer
@@ -301,7 +307,7 @@ class StoreDetail extends Component {
               <button className="add_cardbtn" onClick={() => this.joinCart()}>
                 加入购物车
               </button>
-              <button className="add_shopbtn">立即下单</button>
+              <button className="add_shopbtn" onClick={()=>{this.storeShop()}}>立即下单</button>
             </div>
             <div
               className="close"

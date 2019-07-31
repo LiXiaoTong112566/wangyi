@@ -21,7 +21,7 @@ export default class cardShop {
   //给页面全选的按钮赋值
 
   @action async changeInitFinishCheckedFn() {
-    ///let data = await this.getCartDataModule();
+    let data = await this.getCartDataModule();
     //获取到完成页面的全选的状态
     let Finishflag =
       this.getCartData &&

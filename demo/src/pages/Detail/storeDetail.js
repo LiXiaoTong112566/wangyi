@@ -8,18 +8,19 @@ import {Drawer} from "antd"
 import "../../scss/fonts/iconfont.css"
 
 
-@inject("classify","card","special")
+@inject("classify","card","special","collect")
 @observer
 class StoreDetail extends Component {
   constructor() {
     super();
     this.state = {
-      visible:false
+      visible:false,
+      storeUp:false,
     };
-
     this.swiperContainer=React.createRef();
+    
   }
-
+ 
   componentDidMount() {
     let id = this.props.match.params.id;
     this.props.classify.getGoodsDetailModule({ id: id });
@@ -35,7 +36,6 @@ class StoreDetail extends Component {
             el: '.swiper-pagination',
           }
     })
-
   }
   goodsMask(){
     this.setState({
@@ -47,6 +47,20 @@ class StoreDetail extends Component {
       visible: false,
     });
   };
+  addStore=(e)=>{
+    let start = !this.state.storeUp;
+    let id = this.props.match.params.id;
+    this.setState({
+      storeUp:start
+    })
+    if(start){
+      e.target.classList.add("start")
+      this.props.collect.addEnshrine({typeId:0,valueId:id})
+    }else{
+      e.target.classList.remove("start")
+      this.props.collect.addEnshrine({typeId:1,valueId:id})
+    }
+  }
   render() {
     let { getGoodsDetailData,goods } = this.props.classify;
     //商品规格
@@ -58,6 +72,7 @@ class StoreDetail extends Component {
     let num = getGoodsDetailData.productList;
     //评论
     let discuss = this.props.special.getCommentListData.data;
+   
   
     return (
       <div className="storeDetail_box">
@@ -159,7 +174,12 @@ class StoreDetail extends Component {
             </div>
         </div>
         <div className="footer">
-            <span><i className="iconfont icon-shoucang2"></i></span>
+            <span>
+              <i 
+               className="iconfont icon-shoucang2 " 
+               onClick={(e)=>this.addStore(e)}
+              ></i>
+            </span>
             <span><i className="iconfont icon-gouwuche-xuanzhong"></i>{this.props.card.cardNum}</span>
             <div className="btn">
                <button className="add_cardbtn" onClick={()=>this.goodsMask()}>加入购物车</button>

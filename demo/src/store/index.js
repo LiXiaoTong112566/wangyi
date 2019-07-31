@@ -4,7 +4,9 @@ import IndexPageModule from "./module/home/IndexPageModule";
 import DetailList from "./module/home/detailList";
 import SpecialModule from "./module/special/specialModule";
 import SearchModule from "./module/searchModule";
-import AddCard from "./module/shoppingCart/addCart"
+import AddCard from "./module/shoppingCart/addCart";
+import Collect from "./module/shoppingCart/collection"
+import Address from "./module/address/address"
 //实例化模块
 //登录的方法
 const login = new LoginModule();
@@ -13,9 +15,13 @@ const indexPageModule = new IndexPageModule();
 const detailList = new DetailList();
 const special = new SpecialModule();
 const search = new SearchModule();
+//收藏
+const collect = new Collect();
 
 //购物车
 const card = new AddCard();
+//地址
+const address = new Address();
 
 export default {
   login,
@@ -24,5 +30,7 @@ export default {
   detailList,
   special,
   search,
-  card
+  card,
+  collect,
+  address
 };

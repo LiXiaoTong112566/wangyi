@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./classifyIndex.scss";
-import { NavLink } from "react-router-dom";
+//import { NavLink } from "react-router-dom";
 import { inject, observer } from "mobx-react";
 import BScroll from "better-scroll";
 

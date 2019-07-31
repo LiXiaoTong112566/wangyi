@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import BScroll from "better-scroll";
+//import BScroll from "better-scroll";
 import "./specialIndex.scss";
 
 @inject("special")

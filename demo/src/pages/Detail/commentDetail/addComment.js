@@ -40,7 +40,7 @@ class AddComment extends Component {
 
   render() {
     const { getFieldProps } = this.props.form;
-    let id = this.props.match.params.id;
+    //let id = this.props.match.params.id;
 
     return (
       <div className="addCommentBox">

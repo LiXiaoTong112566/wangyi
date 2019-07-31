@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import "./address.scss"
+ import "./address.scss"
 import { inject, observer } from "mobx-react";
 
 import { Picker, List } from 'antd-mobile';

@@ -1,0 +1,215 @@
+.shopBox {
+  width: 100%;
+  height: 100%;
+   overflow: hidden;
+  display: flex;
+ flex-direction: column;
+
+ 
+  .service {
+    width: 100%;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    li {
+      text-align: center;
+      color: #666;
+      font-size: 0.3rem;
+      span {
+        margin: 0 0.08rem;
+        color: red;
+      }
+    }
+  }
+
+  .shop{
+      width: 100%;
+      height: 1rem;
+      line-height: 1rem;
+      display: flex;
+      position: absolute;
+      bottom:1rem;
+
+      .checkedBox{
+          flex:1;
+          
+          .choice{
+              width: 100%;
+              display: flex;
+              .check{
+                width: 15%;
+                line-height: 1rem;
+                font-size:.5rem;
+                img {
+                  width: 80%;
+                }
+
+              }
+              div{
+                  margin:0 .1rem;
+                  font-size:.3rem;
+              }
+              
+
+          }
+
+      }
+      .edit{
+          width: 1rem;
+          text-align: center;
+          font-size:.3rem;
+          margin:0 .1rem;
+      }
+      .option{
+          width: 2rem;
+          font-size:.3rem;
+          text-align: center;
+          background:lightcoral;
+
+      }
+  }
+
+  .main1{
+    width: 100%;
+    flex:1;
+    overflow: scroll;
+    margin-bottom:1rem;
+    .shopBox{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h3 {
+      padding: 0.3rem 0rem;
+    }
+
+      .numBox {
+        width: 2.4rem;
+
+        line-height: 0.6rem;
+        border-top: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+        display: flex;
+
+        span {
+          width: 25%;
+          border-right: 1px solid #ccc;
+          border-bottom: 1px solid #ccc;
+          text-align: center;
+        }
+        .num {
+          flex: 1;
+        }
+      }
+    
+
+    .shopFinshBox {
+      width: 100%;
+      display: flex;  
+      background: #fff;
+      border-bottom:1px solid #ccc;
+      padding:.3rem 0.1rem;
+      .check{
+          width: 10%;
+          height: 2.3rem;
+          line-height: 2.3rem;
+          img{
+            width: 80%;
+           
+          }
+      }
+      .img{
+          width: 30%;
+          height: 2.5rem;
+          background: #ccc;
+          img{
+              display:inline-block;
+              width: 100%;
+              height: 100%;    
+          }
+
+      }
+
+      .itemBox_main {
+        flex:1;  
+        h3{
+          height: .6rem;
+          line-height: .6rem;
+          padding-top:0;
+          margin-bottom:0; 
+        }
+        .title{
+          height: 1rem;
+          padding:.3rem 0;
+          padding-left:.1rem;
+        }
+      
+        .numPrice {
+          width: 100%;
+          height: .7rem;
+          display: flex;
+          justify-content: space-between;
+          margin-top:.1rem;
+        
+          .price {
+            width: 20%;
+            color: red;
+            font-size: 0.3rem;
+          }
+        }
+      }
+
+     
+
+
+
+      .shopFinshBox_main{
+          flex:1;
+          margin: 0.1rem;
+          .shopFinshMain_top{
+              width: 100%;
+              height: 1rem;
+           
+              display: flex;
+              justify-content: space-between;
+             
+              h3{
+                  height: 1rem;
+
+               padding:.1rem 0;
+                  font-size:.3.5rem;
+                  margin-bottom:0;
+              }
+              .num{
+
+                height: 1rem;
+               
+                 padding:.6rem 0;
+                
+                  margin-bottom:0;
+                  span{
+                    padding:0 .1rem;
+                    color:red;
+                    font-size:.3rem;
+                  }
+
+              }
+          }
+
+          .price{
+              height: 1rem;
+              padding:.1rem 0;
+              color:red;
+              font-size:.3rem;
+          }
+
+      }
+
+
+    }
+  }
+}

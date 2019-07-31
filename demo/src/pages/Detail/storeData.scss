@@ -222,6 +222,8 @@
   }
 }
 .goodscart_list{
+    width: 100%;
+    position: relative;
   dl{
       display:flex;
       justify-content: space-between;
@@ -236,6 +238,16 @@
               color:red;
           }
       }
+  }
+  .close{
+      width: 0.5rem;
+      height: 0.5rem;
+      border:1px solid red;
+      color:red;
+      position: absolute;
+      top:.1rem;
+      right:.1rem;
+      text-align: center;
   }
   .goods_money{
       width:100%;

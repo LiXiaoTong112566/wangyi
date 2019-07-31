@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { inject, observer } from "mobx-react";
-import "./collect.scss"
+ import "./collect.scss"
 import { SwipeAction, List } from 'antd-mobile';
 
 @inject("collect")
@@ -11,6 +11,7 @@ import { SwipeAction, List } from 'antd-mobile';
     }
     render() {
         let list =this.props.collect.addCollection;
+        console.log(list);
         return (
             <div className="collect">
                 <div className="header">
@@ -18,6 +19,7 @@ import { SwipeAction, List } from 'antd-mobile';
                     <span onClick={()=>this.props.history.goBack()}>&lt;</span>
                 </div>
                 <div className="subject">
+
                    {list&&list.map(file=>
                      <List key={file.id}>
                          <SwipeAction 

@@ -4,24 +4,34 @@
 import { observable, action } from "mobx";
 import { 
     getAddressList,
-    postAddAddress 
+    postAddAddress ,
+    delAddress
 } from "../../../servies/index";
 
  class Address {
-  @observable state = {};
-  @observable addstate = {};
+  @observable state = [];
   //获取用户地址数据
   @action async findAddress(params) {
-    let listAdd = await getAddressList(params);
-    console.log(listAdd.data)
-    this.state = listAdd.data
+    let data = await getAddressList(params);
+    this.state = data.data
   }
   //新增地址
   @action async addAddress(params) {
     console.log(params)
-    let list = await postAddAddress(params);
-    console.log(list)
-    this.addstate = list.data
+    let data = await postAddAddress(params);
+    console.log(data)
+    if(data.errno ===0){
+      let data = await getAddressList(params);
+      this.state = data.data
+    }
+  }
+  //删除地址
+  @action async del_Address(params){
+    let data = await delAddress(params)
+    if(data.errno ===0){
+      let data = await getAddressList(params);
+      this.state = data.data
+    }
   }
 }
 export default Address

@@ -15,15 +15,20 @@ import { district } from 'antd-mobile-demo-data';
      constructor(){
          super()
          this.state={
+             site:"",
              flag:true,
              name:"",
              tel:"",
              address:"",
              defaultAddress:false,
+             value:[],
+             isShow:false,
+             num:null,
          }
      }
     componentDidMount(){
          this.props.address.findAddress()
+         this.setState({site:this.state.pickerValue})
     }
     //新建地址
     changeAddress=()=>{
@@ -32,16 +37,21 @@ import { district } from 'antd-mobile-demo-data';
     //保存
     preserve=()=>{
         //新增地址
-        let {name,tel,address,defaultAddress,pickerValue} = this.state;
+        // let adds=this.treeChildren.map(v => v.label).join(',');
+        
+        let {name,tel,address,defaultAddress,pickerValue,value} = this.state;
+        console.log(name,tel,address,defaultAddress,pickerValue)
         this.props.address.addAddress({
-            address,
-            name,
-            mobile:tel,
-            is_default:defaultAddress,
-            province_id:pickerValue[0],
-            city_id:pickerValue[1],
-            district_id:pickerValue[2],
+            address: address,
+            city_id: value[1],
+            district_id: value[2],
+            is_default: defaultAddress,
+            mobile: tel,
+            name: name,
+            province_id: value[0]
         })  
+        this.setState({flag:true})
+        
     }
     //取消
     cancel=()=>{
@@ -52,23 +62,11 @@ import { district } from 'antd-mobile-demo-data';
         let defaultAddress= !this.state.defaultAddress;
         this.setState({defaultAddress})
     }
-    //地址弹框
-    getSel=()=> {
-        const value = this.state.pickerValue;
-        if (!value) {
-          return '';
-        }
-        // console.log(value)
-        this.treeChildren = arrayTreeFilter(district, (c, level) => c.value === value[level]);  
-        return this.treeChildren.map(v => v.label).join(',');
-      }
+  
     render() {
         let site = this.props.address.state;
-        console.log(site)
-        //let arr = [site[0].province_id,site[0].city_id,site[0].district_id]
-        //console.log(arr)
-        //console.log(arrayTreeFilter(district, (c, level) => c.value === [level]))
-        let {flag,name,tel,address,defaultAddress} = this.state;
+        
+        let {flag,name,tel,address,defaultAddress,isShow,num} = this.state;
         return (
             <div className="address">
              {flag
@@ -78,19 +76,18 @@ import { district } from 'antd-mobile-demo-data';
                 </div>
                 <div className="subject">
                   {/* 地址 */}
-                 
-                  {site.length&&site.map(file=>
-                    <dl key={file.id}>
+                  {site&&site.map(file=>
+                    <dl key={file.id} className={file.is_default?"action":""}>
                       <dt>{file.name}</dt>
                       <dd className="message">
                           <p>{file.mobile}</p>
-
+                          <p>{file.full_region}</p>
                           <p>{file.address}</p>
                       </dd>
-                      <dd className="removeAdd"><i className="iconfont icon-lajitong"></i></dd>
+                      <dd className="removeAdd" onClick={this.delAddress.bind(this,file.id)}><i className="iconfont icon-lajitong"></i></dd>
                   </dl>
                     )}
-                  
+                   
                 </div>
                 <div className="footer" onClick={()=>this.changeAddress()}>
                     新建地址
@@ -104,18 +101,14 @@ import { district } from 'antd-mobile-demo-data';
                        <p><input type="text" placeholder="电话号码" value={tel} onChange={(e)=>this.setState({tel:e.target.value})}></input></p>
                        {/* 地址弹框 */}
                         <List>
-                        <Picker
-                            visible={this.state.visible}
-                            data={district}
-                            value={this.state.pickerValue}
-                            onChange={v => this.setState({ pickerValue: v })}
-                            onOk={() => this.setState({ visible: false })}
-                            onDismiss={() => this.setState({ visible: false })}
-                        >
-                            <List.Item extra={this.getSel()} onClick={() => this.setState({ visible: true })}>
-                                选择地址
-                            </List.Item>
-                        </Picker>
+                            <Picker extra="请选择(可选)"
+                                data={district}
+                                title="Areas"
+                                
+                                onOk={e => console.log('ok', e)}
+                                >
+                                <List.Item></List.Item>
+                            </Picker>
                         </List>
                      
                        <p><input type="text" placeholder="详细地址" value={address} onChange={(e)=>this.setState({address:e.target.value})}></input></p>
@@ -131,26 +124,42 @@ import { district } from 'antd-mobile-demo-data';
                         <span style={{background:"#108EE9",color:"#fff"}} onClick={()=>this.preserve()}>保存</span>
                     </div>
                 </div>}
-                
+                {
+                    isShow ? <div className='wrapper'>
+                        <div className='am-modal-mask'></div>
+                        <div className='am-modal-wrap'>
+                    <div className='am-modal am-modal-transparent'>
+                        <div className='am-modal-content'>
+                            <div className='am-modal-header'>
+                                <div className='am-modal-title'>删除</div>
+                            </div>
+                            <div className='am-modal-body'>
+                                <div className='am-modal-alert-content'>您确定删除该地址吗????</div>
+                            </div>
+                            <div className='am-modal-footer'>
+                                <div className='am-modal-button-group-h am-modal-button-group-normal'>
+                                    <button className='am-modal-button aa' onClick={()=>this.setState({isShow:false})}>否</button>
+                                    <button className='am-modal-button' onClick={this.remove.bind(this,num)}>是</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    </div> : null
+                }
                 
             </div>
         )
     }
+    delAddress(id){
+    
+        this.setState({isShow:true,num:id})
+    }
+    remove(id){
+        console.log(id)
+        this.setState({isShow:false})
+        this.props.address.del_Address({id:id})
+    }
 }
 
 export default address
-// address: "222222"
-// city_id: 37
-// district_id: 403
-// id: 78
-// is_default: false
-// mobile: "18810447474"
-// name: "长得丑"
-// province_id: 2
-// address,
-// name,
-// mobile:tel,
-// is_default:defaultAddress,
-// province_id:pickerValue[0],
-// city_id:pickerValue[1],
-// district_id:pickerValue[2]

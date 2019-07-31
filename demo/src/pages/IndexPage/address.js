@@ -63,7 +63,7 @@ import { district } from 'antd-mobile-demo-data';
       }
     render() {
         let site = this.props.address.state;
-     console.log(site)
+       // console.log(site)
         let {flag,name,tel,address,defaultAddress} = this.state;
       
         return (

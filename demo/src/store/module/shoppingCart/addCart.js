@@ -21,7 +21,7 @@ export default class cardShop {
   //给页面全选的按钮赋值
 
   @action async changeInitFinishCheckedFn() {
-    let data = await this.getCartDataModule();
+    ///let data = await this.getCartDataModule();
     //获取到完成页面的全选的状态
     let Finishflag =
       this.getCartData &&
@@ -42,7 +42,7 @@ export default class cardShop {
   //添加到购物;
   @action postAddCartModule(data) {
     postAddCartServer(data).then(res => {
-      console.log(res);
+      // console.log(res);
       this.state = res.data.data;
       this.getCartNumModule();
     });
@@ -52,12 +52,12 @@ export default class cardShop {
 
   @action async getCartDataModule() {
     let data = await getCartDataServer();
-    console.log(data);
+    // console.log(data);
     let newData=data.data.cartList.map((item,index)=>{
       item.flag=false;
       return item;
     })
-    console.log(newData);
+    // console.log(newData);
     let obj={cartList:newData,cartTotal:data.data.cartTotal}
 
     this.getCartData =obj;
@@ -65,17 +65,17 @@ export default class cardShop {
 
   //获取到购物车商品数量
   @action async getCartNumModule() {
-    console.log(123);
+    // console.log(123);
     let data = await getCartNumServer();
-    console.log(data);
+    // console.log(data);
     this.getCartNumData = data.data.cartTotal;
   }
 
   //数据的全选和反选
   @action async postCartCheckModule(params) {
-    console.log(params);
+    // console.log(params);
     let data = await postCartCheckServer(params);
-    console.log(data);
+    // console.log(data);
     this.postCartCheckData = data.data;
     this.getCartDataModule(); //重新获取的数购物车的数据
     this.changeInitFinishCheckedFn();
@@ -83,14 +83,14 @@ export default class cardShop {
 
   //切换完成页面的全选和反选
   @action changeChecked() {
-    console.log(123);
+    // console.log(123);
     this.FinishIsChecked = !this.FinishIsChecked;
     let arr = this.getCartData.cartList.map((item, index) => {
       return item.product_id;
     });
-    console.log(arr);
+    // console.log(arr);
     let productIdsData = arr.join();
-    console.log(productIdsData);
+    // console.log(productIdsData);
 
     if (this.FinishIsChecked) {
       this.postCartCheckModule({

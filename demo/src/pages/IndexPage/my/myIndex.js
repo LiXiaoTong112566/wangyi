@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import "../../../scss/fonts/iconfont.css"
 import "./myIndex.scss"
-
-export class myIndex extends Component {
+import {removeCookie} from '../../../utils/index'
+import { inject, observer } from "mobx-react";
+@inject("login")
+@observer
+ class myIndex extends Component {
   constructor(){
     super()
     this.state={
@@ -27,12 +30,13 @@ export class myIndex extends Component {
   }
   render() {
     let list = this.state.list;
+  
     return (
       <>
       <dl className="user">
         <dt></dt>
         <dd>
-          <p>1516</p>
+          <p>{this.props.login.userName&&15323807318}</p>
           <p>普通用户</p>
         </dd>
       </dl>
@@ -44,9 +48,13 @@ export class myIndex extends Component {
           </dl>
           )}
       </div>
-      <div className="loginOut">退出登录</div>
+      <div className="loginOut" onClick={this.click.bind(this)}>退出登录</div>
       </>
     )
+  }
+  click(){
+    removeCookie()
+    this.props.history.push('/login')
   }
 }
 

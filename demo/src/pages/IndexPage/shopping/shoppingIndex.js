@@ -32,7 +32,7 @@ class ShoppingIndex extends Component {
   changeChecked(data){
     // isChecked: 1,
     // productIds: productIdsData
-    console.log(data);
+    // console.log(data);
     let checked=data.checked===0?1:0;
     this.props.card.postCartCheckModule({
          isChecked: checked,
@@ -45,12 +45,12 @@ class ShoppingIndex extends Component {
 
   render() {
     let data = this.props.card.getCartData;
-    console.log(data);
+    // console.log(data);
     //postCartCheckData
-    let {postCartCheckData}=this.props.card;
-    console.log(postCartCheckData);
+   // let {postCartCheckData}=this.props.card;
+    //console.log(postCartCheckData);
 
-    let { isFinish } = this.state;
+   // let { isFinish } = this.state;
     return (
       <div className="shopBox">
         {/* 头部 */}
@@ -71,7 +71,7 @@ class ShoppingIndex extends Component {
         {/* 内容 */}
         <div className="main1">
           {data.cartList &&
-            data.cartList.map((item, index) => {
+            data.cartList.map((item) => {
               return (
               
                   <div className="shopFinshBox" key={item.goods_name}>

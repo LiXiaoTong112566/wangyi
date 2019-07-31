@@ -13,7 +13,7 @@ import {
   //获取用户地址数据
   @action async findAddress(params) {
     let listAdd = await getAddressList(params);
-    console.log(listAdd)
+    console.log(listAdd.data)
     this.state = listAdd.data
   }
   //新增地址

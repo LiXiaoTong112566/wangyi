@@ -44,6 +44,9 @@
         }
         .message{
             flex:1;
+            p{
+                margin-bottom: 0;
+            }
         }
         .removeAdd{
             width:.5rem;

@@ -40,7 +40,7 @@ import { district } from 'antd-mobile-demo-data';
             is_default:defaultAddress,
             province_id:pickerValue[0],
             city_id:pickerValue[1],
-            district_id:pickerValue[2]
+            district_id:pickerValue[2],
         })  
     }
     //取消
@@ -64,9 +64,11 @@ import { district } from 'antd-mobile-demo-data';
       }
     render() {
         let site = this.props.address.state;
-       // console.log(site)
+        console.log(site)
+        //let arr = [site[0].province_id,site[0].city_id,site[0].district_id]
+        //console.log(arr)
+        //console.log(arrayTreeFilter(district, (c, level) => c.value === [level]))
         let {flag,name,tel,address,defaultAddress} = this.state;
-      
         return (
             <div className="address">
              {flag
@@ -75,15 +77,20 @@ import { district } from 'antd-mobile-demo-data';
                     <span onClick={()=>this.props.history.goBack()}>&lt;</span>
                 </div>
                 <div className="subject">
-                  {/* 模拟数据 */}
-                  <dl>
-                      <dt>姓名</dt>
+                  {/* 地址 */}
+                 
+                  {site.length&&site.map(file=>
+                    <dl key={file.id}>
+                      <dt>{file.name}</dt>
                       <dd className="message">
-                          <p>手机号</p>
-                          <p>地址</p>
+                          <p>{file.mobile}</p>
+
+                          <p>{file.address}</p>
                       </dd>
                       <dd className="removeAdd"><i className="iconfont icon-lajitong"></i></dd>
                   </dl>
+                    )}
+                  
                 </div>
                 <div className="footer" onClick={()=>this.changeAddress()}>
                     新建地址
@@ -132,3 +139,18 @@ import { district } from 'antd-mobile-demo-data';
 }
 
 export default address
+// address: "222222"
+// city_id: 37
+// district_id: 403
+// id: 78
+// is_default: false
+// mobile: "18810447474"
+// name: "长得丑"
+// province_id: 2
+// address,
+// name,
+// mobile:tel,
+// is_default:defaultAddress,
+// province_id:pickerValue[0],
+// city_id:pickerValue[1],
+// district_id:pickerValue[2]

@@ -10,5 +10,5 @@ export function getAddressList() {
 //新增地址
 export function postAddAddress (params) {
   console.log(params)
-  return request.post("/address/save", {params})
+  return request.post("/address/save",params)
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./shoppingIndex.scss";
+ import "./shoppingIndex.scss";
 import { inject, observer } from "mobx-react";
 
 
@@ -41,38 +41,7 @@ class ShoppingIndex extends Component {
     
   }
 
-  // //切换全选和反选
-  // changeChecked = () => {
-  //   console.log(123);
-  //   this.setState(
-  //     {
-  //       isChecked: !this.state.isChecked
-  //     },
-  //     () => {
-  //       let data = this.props.card.getCartData;
-  //       console.log(data);
-  //       console.log(data.cartList);
-  //       let arr = data.cartList.map((item, index) => {
-  //         return item.product_id;
-  //       });
-  //       console.log(arr);
-  //       let productIdsData = arr.join();
-  //       console.log(productIdsData);
-
-  //       if (this.state.isChecked) {
-  //         this.props.card.postCartCheckModule({
-  //           isChecked: 1,
-  //           productIds: productIdsData
-  //         });
-  //       } else {
-  //         this.props.card.postCartCheckModule({
-  //           isChecked: 0,
-  //           productIds: productIdsData
-  //         });
-  //       }
-  //     }
-  //   );
-  // };
+  
 
   render() {
     let data = this.props.card.getCartData;
@@ -100,7 +69,7 @@ class ShoppingIndex extends Component {
           </li>
         </ul>
         {/* 内容 */}
-        <div className="main">
+        <div className="main1">
           {data.cartList &&
             data.cartList.map((item, index) => {
               return (
@@ -116,7 +85,7 @@ class ShoppingIndex extends Component {
                        }
                        alt=""
                      />
-                   </div>:<div className="check" onClick={()=>{this.props.changeEditItemChecked(item)}}>
+                   </div>:<div className="check" onClick={()=>{this.props.card.changeEditItemChecked(item)}}>
                      <img
                        src={
                          item.flag

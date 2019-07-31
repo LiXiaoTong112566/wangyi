@@ -111,7 +111,16 @@ const SearchDetail=Loadable({
         loader:()=>import ("../pages/Detail/commentDetail/comment"),
         loading:Loading
     })
-
+//收藏
+    const CollectionPage = Loadable({
+        loader:()=>import ("../pages/IndexPage/collect"),
+        loading:Loading
+    })
+//地址管理
+    const Address = Loadable({
+        loader:()=>import ("../pages/IndexPage/address"),
+        loading:Loading
+    })
 
 let router=[
     {
@@ -178,6 +187,13 @@ let router=[
     },{
         path:"/comment/:id",
         component:Comments
+    },{
+        path:"/collect",
+        component:CollectionPage
+    },
+    {
+        path:"/address",
+        component:Address
     }
 ]
 

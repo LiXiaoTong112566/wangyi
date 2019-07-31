@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./topicDetail.scss";
+ import "./topicDetail.scss";
 import { inject, observer } from "mobx-react";
 @inject("special")
 @observer

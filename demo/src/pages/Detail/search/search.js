@@ -3,11 +3,7 @@ import { inject, observer } from "mobx-react";
 import "./search.scss";
 import {
   SearchBar,
-  Button,
-  WhiteSpace,
-  WingBlank,
   Icon,
-  Grid
 } from "antd-mobile";
 import ImgBlend from "../../../component/imgBlend";
 @inject("search")

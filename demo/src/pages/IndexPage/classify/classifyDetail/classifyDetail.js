@@ -21,7 +21,7 @@ class ClassifyDetail extends Component {
     let id = this.props.match.params.id; //分类标题的id;
 
     let classifyId = localStorage.getItem("classifyId"); //商品的id
-    let index = localStorage.getItem("index"); //点击的下标
+   // let index = localStorage.getItem("index"); //点击的下标
 
     this.setState({
       classId: id,
@@ -78,7 +78,7 @@ class ClassifyDetail extends Component {
   }
 
   render() {
-    let { classifyRightBoxData } = this.props.classify;
+    //let { classifyRightBoxData } = this.props.classify;
     let titleData = this.props.classify.getCategoryNavData.currentCategory;
     let NavData = this.props.classify.getCategoryNavData.brotherCategory;
     let { getGoodsData } = this.props.classify;

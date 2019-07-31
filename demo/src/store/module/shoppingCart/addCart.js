@@ -147,9 +147,6 @@ export default class cardShop {
      })
 
      this.EditCheckedCount=newDataCount.length;
-
-
-
   }
   
 }

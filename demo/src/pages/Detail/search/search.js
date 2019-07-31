@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import "./search.scss";
-import {
-  SearchBar,
- Icon
-} from "antd-mobile";
-
+import { SearchBar, Icon } from "antd-mobile";
 
 import ImgBlend from "../../../component/imgBlend";
 @inject("search")
@@ -56,17 +52,14 @@ class Search extends Component {
 
   //点击列表搜素内容
   searchData = e => {
-    if(e.nativeEvent.target.tagName==="LI"){
+    if (e.nativeEvent.target.tagName === "LI") {
       let data = e.nativeEvent.target.innerHTML;
-    console.log(data);
-    this.setState({
-      show: false
-    });
-    this.props.search.getGoodsListModule({ keyword: data });
 
+      this.setState({
+        show: false
+      });
+      this.props.search.getGoodsListModule({ keyword: data });
     }
-  
-    
   };
 
   //全部分类内容的显示和隐藏
@@ -79,8 +72,7 @@ class Search extends Component {
 
   //点击内容搜索
   getSearchTargetData = e => {
-   
-    if(e.nativeEvent.target.tagName==="LI"){
+    if (e.nativeEvent.target.tagName === "LI") {
       this.setState(
         {
           value: e.nativeEvent.target.innerHTML
@@ -94,7 +86,6 @@ class Search extends Component {
         }
       );
     }
-   
   };
   //删除记录
   delData = () => {
@@ -156,7 +147,6 @@ class Search extends Component {
     if (this.allClassify.current.className.indexOf("show") > -1) {
       this.allClassify.current.classList.remove("show");
     }
-
 
     this.refs.all.innerHTML = name + "分类";
 
@@ -292,16 +282,16 @@ class Search extends Component {
                         <span>
                           <Icon
                             type="up"
-                           
-                            className={ this.state.iconFlag===1?"actives":""}
-
+                            className={
+                              this.state.iconFlag === 1 ? "actives" : ""
+                            }
                             onClick={() => this.getNewData("up")}
                           />
-                        
+
                           <Icon
                             type="down"
                             className={
-                              this.state.iconFlag===2?"actives":""
+                              this.state.iconFlag === 2 ? "actives" : ""
                             }
                             onClick={() => this.getNewData("down")}
                           />

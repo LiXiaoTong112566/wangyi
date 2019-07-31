@@ -11,12 +11,11 @@ class collect extends Component {
   }
 
   delData(data) {
-    console.log(data.value_id);
     this.props.collect.addEnshrine({ typeId: 0, valueId: data.value_id });
   }
   render() {
     let list = this.props.collect.addCollection;
-    console.log(list);
+
     return (
       <div className="collect">
         <div className="header">

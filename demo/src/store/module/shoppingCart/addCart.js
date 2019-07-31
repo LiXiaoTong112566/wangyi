@@ -48,6 +48,7 @@ export default class cardShop {
   @action postAddCartModule(data) {
     postAddCartServer(data).then(res => {
       this.state = res.data.data;
+      console.log(res);
       this.getCartNumModule();
     });
   }

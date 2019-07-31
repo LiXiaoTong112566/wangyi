@@ -19,10 +19,8 @@ class ClassifyDetail extends Component {
 
   componentDidMount() {
     let id = this.props.match.params.id; //分类标题的id;
-    console.log(id);
 
     let classifyId = localStorage.getItem("classifyId"); //商品的id
-  
 
     this.setState({
       classId: id,

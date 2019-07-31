@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import { Toast} from 'antd-mobile';
+import { Toast } from "antd-mobile";
 import "./storeData.scss";
 import Swiper from "swiper";
 import "swiper/dist/css/swiper.min.css";
@@ -50,7 +50,6 @@ class StoreDetail extends Component {
 
   //数量的加减
   changeCount(type) {
-    console.log(type);
     if (type === "+") {
       this.setState({
         count: this.state.count + 1
@@ -70,13 +69,11 @@ class StoreDetail extends Component {
   //添加到收藏
   addStore = e => {
     let id = this.props.match.params.id;
-    console.log(id);
 
     let { getGoodsDetailData } = this.props.classify;
-    console.log(getGoodsDetailData);
 
     //获取到商品的收藏的状态
-    console.log(getGoodsDetailData.userHasCollect);
+
     this.props.classify.addEnshrine({ typeId: 0, valueId: id });
   };
 
@@ -87,8 +84,6 @@ class StoreDetail extends Component {
     let { getGoodsDetailData } = this.props.classify;
     let data = getGoodsDetailData.productList;
 
-    console.log(data);
-    console.log(this.props.card.cardNum);
     this.props.card.postAddCartModule({
       goodsId: data[0].goods_id,
       productId: data[0].id,
@@ -98,14 +93,13 @@ class StoreDetail extends Component {
     Toast.success("添加成功", 1);
   };
 
-  storeShop(){
-    Toast.offline('下单功能还未开启，请观察版本更新', 1);
-
+  storeShop() {
+    Toast.offline("下单功能还未开启，请观察版本更新", 1);
   }
 
   render() {
     let { getGoodsDetailData, goods } = this.props.classify;
-    console.log(getGoodsDetailData);
+
     let { getCartNumData } = this.props.card;
 
     //商品规格
@@ -271,7 +265,14 @@ class StoreDetail extends Component {
             <button className="add_cardbtn" onClick={() => this.goodsMask()}>
               加入购物车
             </button>
-            <button className="add_shopbtn" onClick={()=>{this.storeShop()}}>立即购买</button>
+            <button
+              className="add_shopbtn"
+              onClick={() => {
+                this.storeShop();
+              }}
+            >
+              立即购买
+            </button>
           </div>
         </div>
         <Drawer
@@ -307,7 +308,14 @@ class StoreDetail extends Component {
               <button className="add_cardbtn" onClick={() => this.joinCart()}>
                 加入购物车
               </button>
-              <button className="add_shopbtn" onClick={()=>{this.storeShop()}}>立即下单</button>
+              <button
+                className="add_shopbtn"
+                onClick={() => {
+                  this.storeShop();
+                }}
+              >
+                立即下单
+              </button>
             </div>
             <div
               className="close"

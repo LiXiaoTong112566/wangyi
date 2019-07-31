@@ -6,17 +6,22 @@ import {
   postAddCartServer,
   getCartDataServer,
   getCartNumServer,
-  postCartCheckServer
+  postCartCheckServer,
+  postCartUpdateServer,
+  postCartDeleteServer
 } from "../../../servies";
 
 export default class cardShop {
-  @observable state = {};//添加购物车返回的数据的接口
-  @observable getCartData = [];//购物车的数据
-  @observable getCartNumData = 0;//获取到购物车商品数量
-  @observable postCartCheckData = "";//商品选中方法获取的数据
+  @observable state = {}; //添加购物车返回的数据的接口
+  @observable getCartData = []; //购物车的数据
+  @observable getCartNumData = 0; //获取到购物车商品数量
+  @observable postCartCheckData = ""; //商品选中方法获取的数据
   @observable FinishIsChecked = ""; //完成页面默认的全选
   @observable EditIsChecked = ""; //编辑页面默认的全选
-  @observable EditCheckedCount= 0;//编辑页面选中的数量
+  @observable EditCheckedCount = 0; //编辑页面选中的数量
+  @observable postCartUpdateData = ""; //编辑页面的数量的加减功能
+
+  @observable postCartDeleteData = ""; //编辑页面的删除所选的内容
 
   //给页面全选的按钮赋值
 
@@ -28,14 +33,14 @@ export default class cardShop {
       this.getCartData.cartList.every((item, index) => {
         return item.checked;
       });
-//获取到编辑页面的全选的状态
-      let Editflag =
+    //获取到编辑页面的全选的状态
+    let Editflag =
       this.getCartData &&
       this.getCartData.cartList.every((item, index) => {
         return item.flag;
       });
     this.EditIsChecked = Editflag;
-    this.FinishIsChecked=Finishflag;
+    this.FinishIsChecked = Finishflag;
   }
 
   //修饰方法
@@ -53,14 +58,14 @@ export default class cardShop {
   @action async getCartDataModule() {
     let data = await getCartDataServer();
     console.log(data);
-    let newData=data.data.cartList.map((item,index)=>{
-      item.flag=false;
+    let newData = data.data.cartList.map((item, index) => {
+      item.flag = false;
       return item;
-    })
+    });
     console.log(newData);
-    let obj={cartList:newData,cartTotal:data.data.cartTotal}
+    let obj = { cartList: newData, cartTotal: data.data.cartTotal };
 
-    this.getCartData =obj;
+    this.getCartData = obj;
   }
 
   //获取到购物车商品数量
@@ -78,7 +83,7 @@ export default class cardShop {
     console.log(data);
     this.postCartCheckData = data.data;
     this.getCartDataModule(); //重新获取的数购物车的数据
-    this.changeInitFinishCheckedFn();
+    this.changeInitFinishCheckedFn(); //给页面全选的按钮赋值
   }
 
   //切换完成页面的全选和反选
@@ -97,7 +102,6 @@ export default class cardShop {
         isChecked: 1,
         productIds: productIdsData
       });
-
     } else {
       this.postCartCheckModule({
         isChecked: 0,
@@ -110,43 +114,73 @@ export default class cardShop {
   @action changeEditChecked() {
     console.log(123);
     this.EditIsChecked = !this.EditIsChecked;
-   let data= this.getCartData.cartList.map((item,index)=>{
-      item.flag=this.EditIsChecked;
+    let data = this.getCartData.cartList.map((item, index) => {
+      item.flag = this.EditIsChecked;
       return item;
-    })
-    if(this.EditIsChecked){
-      this.EditCheckedCount=this.getCartData.cartList.length;
-    }else{
-      this.EditCheckedCount=0;
+    });
+    if (this.EditIsChecked) {
+      this.EditCheckedCount = this.getCartData.cartList.length;
+    } else {
+      this.EditCheckedCount = 0;
     }
 
-    this.getCartData.cartList=data;
-
+    this.getCartData.cartList = data;
   }
 
-   //切换编辑页面每一项的全选和反选功能
-   @action changeEditItemChecked(data) {
-     console.log(data);
+  //切换编辑页面每一项的全选和反选功能
+  @action changeEditItemChecked(data) {
+    console.log(data);
 
-     let newData=this.getCartData.cartList.map((item,index)=>{
-        if(item.product_id=== data.product_id){
-          item.flag=!item.flag;
-        }
-        return item;
-     })
-     //编辑页面的全选按钮的状态
-     this.EditIsChecked= newData.every((item,index)=>{
-       return item.flag;
-     })
-     //编辑页面数据的选中的状态
-     this.getCartData.cartList=newData;
+    let newData = this.getCartData.cartList.map((item, index) => {
+      if (item.product_id === data.product_id) {
+        item.flag = !item.flag;
+      }
+      return item;
+    });
+    //编辑页面的全选按钮的状态
+    this.EditIsChecked = newData.every((item, index) => {
+      return item.flag;
+    });
+    //编辑页面数据的选中的状态
+    this.getCartData.cartList = newData;
 
-     //编辑页面的数量
-    let newDataCount= newData.filter((item,index)=>{
-       return item.flag;
-     })
+    //编辑页面的数量
+    let newDataCount = newData.filter((item, index) => {
+      return item.flag;
+    });
 
-     this.EditCheckedCount=newDataCount.length;
+    this.EditCheckedCount = newDataCount.length;
   }
-  
+
+  //修改编辑页面的加减数量
+  @action async postCartUpdateModule(data) {
+    let getData = await postCartUpdateServer(data);
+    console.log(getData);
+    this.postCartUpdateData = getData;
+    this.getCartDataModule(); //重新获取的数购物车的数据
+  }
+  //编辑页面的删除所选的功能
+
+  @action async postCartDeleteModule(data) {
+    //productIds
+    //过滤出来页面选中的数据
+    let newData = this.getCartData.cartList.filter((item, index) => {
+      return item.flag;
+    });
+
+    console.log(newData);
+
+    let allProductIds = newData.map((item, index) => {
+      return item.product_id;
+    });
+
+    console.log(allProductIds);
+
+    let getData = await postCartDeleteServer({
+      productIds: allProductIds.join()
+    });
+    console.log(getData);
+
+    this.getCartDataModule();
+  }
 }

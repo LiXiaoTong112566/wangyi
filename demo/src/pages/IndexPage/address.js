@@ -94,7 +94,6 @@ class Address extends Component {
   //跳转到编辑的页面
   jumpEdit(data) {
     console.log(data);
-
     let arr = [];
     arr.push(data.province_id);
     arr.push(data.city_id);

@@ -47,7 +47,7 @@ class Address extends Component {
     let { address, defaultAddress, tel, name, addressID, editId } = this.state;
 
     //输入框值得验证
-    if(!name||!tel||!addressID){
+    if(!name||!tel||!addressID.length){
       Toast.info('内容不能为空', 1);
     }
     else if(!(/^1[3456789]\d{9}$/.test(tel))){
@@ -96,7 +96,6 @@ class Address extends Component {
   //跳转到编辑的页面
   jumpEdit(data) {
     console.log(data);
-
     let arr = [];
     arr.push(data.province_id);
     arr.push(data.city_id);
@@ -155,8 +154,6 @@ class Address extends Component {
                     <dd
                       className="removeAdd"
                       onClick={(e)=>{this.delAddress(e,file.id)}}
-
-                     
                     >
                       <i className="iconfont icon-lajitong" />
                     </dd>

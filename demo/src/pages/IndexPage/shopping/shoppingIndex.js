@@ -70,7 +70,7 @@ class ShoppingIndex extends Component {
   render() {
     let data = this.props.card.getCartData;
 
-    let { postCartCheckData } = this.props.card;
+    //let { postCartCheckData } = this.props.card;
 
    // let { isFinish } = this.state;
     return (
@@ -148,19 +148,10 @@ class ShoppingIndex extends Component {
                       <div className="title">{item.goods_name}</div>
                       <div className="numPrice">
                         <div className="price">￥{item.market_price}</div>
-
                         <div className="numBox">
-                          <span
-                            onClick={() => this.changeEditStoreCount(item, "-")}
-                          >
-                            -
-                          </span>
+                          <span onClick={() => this.changeEditStoreCount(item, "-")}>-</span>
                           <span className="num">{item.number}</span>
-                          <span
-                            onClick={() => this.changeEditStoreCount(item, "+")}
-                          >
-                            +
-                          </span>
+                          <span onClick={() => this.changeEditStoreCount(item, "+")}>+</span>
                         </div>
                       </div>
                     </div>

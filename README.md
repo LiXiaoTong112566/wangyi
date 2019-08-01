@@ -1,3 +1,5 @@
+​wangyi 是仿网易严选 UI 设计的 H5 webApp。项目是基于 React+mobx+better-scroll+Axios+React-router。
+​wangyi 采用阿里 antd-design-mobile 的 UI 组件。
 - 主页面(仿网易严选)
     - 首页
         - 商品详情

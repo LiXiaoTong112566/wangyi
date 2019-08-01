@@ -35,16 +35,7 @@ class StoreDetail extends Component {
       }
     });
   }
-  componentDidUpdate() {
-    // let container = this.swiperContainer.current;
-    // new Swiper(container, {
-    //   autoplay: true,
-    //   loop: true,
-    //   pagination: {
-    //     el: ".swiper-pagination"
-    //   }
-    // });
-  }
+ 
   goodsMask() {
     this.setState({
       visible: true
@@ -77,11 +68,7 @@ class StoreDetail extends Component {
   //添加到收藏
   addStore = e => {
     let id = this.props.match.params.id;
-
-    let { getGoodsDetailData } = this.props.classify;
-
     //获取到商品的收藏的状态
-
     this.props.classify.addEnshrine({ typeId: 0, valueId: id });
   };
 

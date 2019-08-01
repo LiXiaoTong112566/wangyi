@@ -2,12 +2,11 @@ import React, { Component } from 'react'
  import "./address.scss"
  import "../../scss/fonts/iconfont.css"
 import { inject, observer } from "mobx-react";
-
 import { Picker, List } from "antd-mobile";
-
 import arrayTreeFilter from "array-tree-filter";
-
 import { district } from "antd-mobile-demo-data";
+
+import dislist from "../../component/city.json"
 
 @inject("address")
 @observer
@@ -21,14 +20,15 @@ import { district } from "antd-mobile-demo-data";
              tel:"",
              address:"",
              defaultAddress:false,
-             value:[],
+             adds:null,
              isShow:false,
              num:null,
          }
      }
     componentDidMount(){
-         this.props.address.findAddress()
-         this.setState({site:this.state.pickerValue})
+         this.props.address.findAddress();
+        //  this.props.address.getAddressModule({t: 1564622502322})
+        //  this.setState({site:this.state.pickerValue})
     }
     //新建地址
     changeAddress=()=>{
@@ -37,18 +37,19 @@ import { district } from "antd-mobile-demo-data";
     //保存
     preserve=()=>{
         //新增地址
-        // let adds=this.treeChildren.map(v => v.label).join(',');
-        
-        let {name,tel,address,defaultAddress,pickerValue,value} = this.state;
-        console.log(name,tel,address,defaultAddress,pickerValue)
+         let adds=this.treeChildren.map(v => v.label).join(',');
+        this.setState({adds})
+        let {name,tel,address,defaultAddress,pickerValue} = this.state;
+        console.log(".....",pickerValue,adds)
         this.props.address.addAddress({
             address: address,
-            city_id: value[1],
-            district_id: value[2],
+            city_id: pickerValue[1],
+            district_id: pickerValue[2],
             is_default: defaultAddress,
             mobile: tel,
             name: name,
-            province_id: value[0]
+            province_id: pickerValue[0],
+            full_region:adds
         })  
         this.setState({flag:true})
         
@@ -62,10 +63,19 @@ import { district } from "antd-mobile-demo-data";
         let defaultAddress= !this.state.defaultAddress;
         this.setState({defaultAddress})
     }
-  
+    getSel() {
+        const value = this.state.pickerValue;
+        if (!value) {
+          return '';
+        }
+        this.treeChildren = arrayTreeFilter(district, (c, level) => c.value === value[level]);
+        return this.treeChildren.map(v => v.label).join(',');
+      }
     render() {
+        // console.log(district)
+
         let site = this.props.address.state;
-        
+        // console.log(site)
         let {flag,name,tel,address,defaultAddress,isShow,num} = this.state;
         return (
             <div className="address">
@@ -101,13 +111,23 @@ import { district } from "antd-mobile-demo-data";
                        <p><input type="text" placeholder="电话号码" value={tel} onChange={(e)=>this.setState({tel:e.target.value})}></input></p>
                        {/* 地址弹框 */}
                         <List>
-                            <Picker extra="请选择(可选)"
+                            {/* <Picker extra="请选择(可选)"
                                 data={district}
-                                title="Areas"
-                                
-                                onOk={e => console.log('ok', e)}
+                                onOk={e => this.setState({value:e})}
                                 >
                                 <List.Item></List.Item>
+                            </Picker> */}
+                            <Picker
+                                visible={this.state.visible}
+                                data={district}
+                                value={this.state.pickerValue}
+                                onChange={v => this.setState({ pickerValue: v })}
+                                onOk={() => this.setState({ visible: false })}
+                                onDismiss={() => this.setState({ visible: false })}
+                                >
+                                <List.Item extra={this.getSel()} onClick={() => this.setState({ visible: true })}>
+                                    地址
+                                </List.Item>
                             </Picker>
                         </List>
                      
@@ -152,7 +172,6 @@ import { district } from "antd-mobile-demo-data";
         )
     }
     delAddress(id){
-    
         this.setState({isShow:true,num:id})
     }
     remove(id){

@@ -5,24 +5,34 @@ import { observable, action } from "mobx";
 import { 
     getAddressList,
     postAddAddress ,
-    delAddress
+    delAddress,
+    getAddressServer
 } from "../../../servies/index";
 
  class Address {
   @observable state = [];
   //获取用户地址数据
-  @action async findAddress(params) {
-    let data = await getAddressList(params);
+  @action async findAddress() {
+    let data = await getAddressList();
+    console.log(data);
     this.state = data.data
   }
+
+  // @action async getAddressModule(params) {
+  //   let data = await getAddressServer(params);
+  //   console.log(data);
+   
+  // }
+
+
   //新增地址
   @action async addAddress(params) {
     console.log(params)
     let data = await postAddAddress(params);
     console.log(data)
     if(data.errno ===0){
-      let data = await getAddressList(params);
-      this.state = data.data
+      this.findAddress();
+
     }
   }
   //删除地址
@@ -30,7 +40,7 @@ import {
     let data = await delAddress(params)
     if(data.errno ===0){
       let data = await getAddressList(params);
-      this.state = data.data
+      // this.state = data.data
     }
   }
 }

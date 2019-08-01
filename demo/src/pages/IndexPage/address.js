@@ -5,6 +5,7 @@ import addressAllData from "./addressData/address";
 import { inject, observer } from "mobx-react";
 import { Picker, List } from "antd-mobile";
 import { createForm } from "rc-form";
+import { Toast} from 'antd-mobile';
 @inject("address")
 @observer
 class Address extends Component {
@@ -42,32 +43,43 @@ class Address extends Component {
   };
   //保存
   preserve = type => {
-    let { address, defaultAddress, tel, name, addressID, editId } = this.state;
-    if (type === "add") {
-      console.log(name, tel, address, defaultAddress);
-      this.props.address.addAddress({
-        address: address,
-        city_id: Number(addressID[1]),
-        district_id: Number(addressID[2]),
-        is_default: defaultAddress,
-        mobile: tel,
-        name: name,
-        province_id: Number(addressID[0])
-      });
-    } else if (type === "edit") {
-      this.props.address.addAddress({
-        address: address,
-        city_id: Number(addressID[1]),
-        district_id: Number(addressID[2]),
-        is_default: defaultAddress,
-        mobile: tel,
-        name: name,
-        province_id: Number(addressID[0]),
-        id: editId
-      });
-    }
 
-    this.setState({ flag: 1 });
+    let { address, defaultAddress, tel, name, addressID, editId } = this.state;
+
+    //输入框值得验证
+    if(!name||!tel||!addressID.length){
+      Toast.info('内容不能为空', 1);
+    }
+    else if(!(/^1[3456789]\d{9}$/.test(tel))){
+      Toast.info('请输入正确的手机号码', 1);
+
+    }else{
+      if (type === "add") {
+        console.log(name, tel, address, defaultAddress);
+        this.props.address.addAddress({
+          address: address,
+          city_id: Number(addressID[1]),
+          district_id: Number(addressID[2]),
+          is_default: defaultAddress,
+          mobile: tel,
+          name: name,
+          province_id: Number(addressID[0])
+        });
+      } else if (type === "edit") {
+        this.props.address.addAddress({
+          address: address,
+          city_id: Number(addressID[1]),
+          district_id: Number(addressID[2]),
+          is_default: defaultAddress,
+          mobile: tel,
+          name: name,
+          province_id: Number(addressID[0]),
+          id: editId
+        });
+      }
+      this.setState({ flag: 1 });
+    }
+   
   };
   //取消
   cancel = () => {
@@ -178,13 +190,13 @@ class Address extends Component {
               {/* 地址弹框 */}
               <List>
                 <Picker
-                  extra="请选择(可选)"
+                  extra="请选择城市"
                   data={addressAllData}
                   title="Areas"
                   {...getFieldProps("district", {})}
                   onOk={e => this.setState({ addressID: e })}
                 >
-                  <List.Item>请选择城市</List.Item>
+                  <List.Item></List.Item>
                 </Picker>
               </List>
 

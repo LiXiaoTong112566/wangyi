@@ -170,6 +170,20 @@
  .subject{
      width:100%;
      border-top:.15rem solid #eee;
+     .am-list-extra{
+        flex-basis: 100%;
+     }
+     .am-list-body{
+         width: 100%;
+         .am-list-extra{
+             text-align: center;
+         }
+
+     }
+     .am-list{
+         border-bottom:1px solid #ccc;
+     }
+     
  }
   .subject>p{
       // width:100%;
@@ -177,7 +191,8 @@
       margin:0;
       text-indent: .3rem;
       line-height: 1rem;
-      border-bottom: .01rem solid #eee;
+      border-bottom:1px solid #ccc;
+      padding:0.1rem 0;
       input{
           width:100%;
           height:100%;
@@ -211,4 +226,11 @@
       text-align: center;
      
   }
+ 
+}
+
+.am-toast-text{
+    div{
+        color:#fff!important;
+    }
 }

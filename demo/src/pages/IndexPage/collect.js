@@ -27,7 +27,6 @@ class collect extends Component {
             list.map(file => (
               <List key={file.id}>
                 <SwipeAction
-                  //   autoClose
                   right={[
                     {
                       text: "删除",

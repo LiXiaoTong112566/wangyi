@@ -43,9 +43,7 @@ class Address extends Component {
   };
   //保存
   preserve = type => {
-
     let { address, defaultAddress, tel, name, addressID, editId } = this.state;
-
     //输入框值得验证
     if(!name||!tel||!addressID.length){
       Toast.info('内容不能为空', 1);
@@ -77,9 +75,7 @@ class Address extends Component {
           id: editId
         });
       }
-  
       this.setState({ flag: 1 });
-
     }
    
   };
@@ -95,12 +91,12 @@ class Address extends Component {
 
   //跳转到编辑的页面
   jumpEdit(data) {
-    console.log(data);
+    //console.log(data);
     let arr = [];
     arr.push(data.province_id);
     arr.push(data.city_id);
     arr.push(data.district_id);
-    console.log(arr);
+   // console.log(arr);
     this.setState({
       flag: 3,
       editAddress: arr,

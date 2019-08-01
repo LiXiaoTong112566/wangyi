@@ -9,28 +9,33 @@ import {
 } from "../../../servies/index";
 
  class Address {
-  @observable state = [];
+  @observable userAddressData = [];//获取用户数据
+  @observable addAddressData = [];//添加地址
+  @observable delAddressData = [];//删除地址
+
+
   //获取用户地址数据
-  @action async findAddress(params) {
-    let data = await getAddressList(params);
-    this.state = data.data
+  @action async findAddress() {
+    let data = await getAddressList();
+    console.log(data);
+    this.userAddressData = data.data
   }
   //新增地址
   @action async addAddress(params) {
     console.log(params)
     let data = await postAddAddress(params);
+    this.addAddressData=data;
     console.log(data)
     if(data.errno ===0){
-      let data = await getAddressList(params);
-      this.state = data.data
+      this.findAddress();
     }
   }
   //删除地址
   @action async del_Address(params){
-    let data = await delAddress(params)
+    let data = await delAddress(params);
+    this.delAddressData=data;
     if(data.errno ===0){
-      let data = await getAddressList(params);
-      this.state = data.data
+      this.findAddress();
     }
   }
 }

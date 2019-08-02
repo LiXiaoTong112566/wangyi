@@ -18,7 +18,6 @@ export class FooterCom extends Component {
   }
   render() {
     let {list,ind}= this.state;
-    console.log(ind)
     return (
       <>
        {list.map((file,index)=>

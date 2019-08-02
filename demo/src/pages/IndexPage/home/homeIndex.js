@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./homeIndex.scss";
+import ProgressiveImage from "react-progressive-image";
 
 import Swiper from "swiper";
 import "swiper/dist/css/swiper.min.css";
@@ -81,7 +82,14 @@ class homeIndex extends Component {
                 }}
               >
                 <dt>
-                  <img src={file.icon_url} alt="" />
+                  <ProgressiveImage
+                    src={file.icon_url}
+                    placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg"
+                  >
+                    {src => <img src={src} alt="an image" />}
+                  </ProgressiveImage>
+
+                  {/* <img src={file.icon_url} alt="" /> */}
                 </dt>
                 <dd>{file.name}</dd>
               </dl>
@@ -132,7 +140,13 @@ class homeIndex extends Component {
                   }}
                 >
                   <dt>
-                    <img src={file.list_pic_url} alt="" />
+                  <ProgressiveImage
+                    src={file.list_pic_url}
+                    placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg"
+                  >
+                    {src => <img src={src} alt="an image" />}
+                  </ProgressiveImage>
+                    {/* <img src={file.list_pic_url} alt="" /> */}
                   </dt>
                   <dd>
                     <div>{file.name}</div>

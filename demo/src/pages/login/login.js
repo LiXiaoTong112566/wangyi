@@ -9,11 +9,7 @@ class Login extends Component {
   componentDidMount() {}
 
   //登录成功跳转到首页
-  componentDidUpdate() {
-    if (this.props.login.dataFlag === 0) {
-      this.props.history.push("/main/homeIndex");
-    }
-  }
+  
 
   //登录
   handleSubmit = e => {
@@ -21,14 +17,18 @@ class Login extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.props.login.getLogin(values);
-
         localStorage.setItem("mobile", values.mobile);
+       
+
       }
     });
   };
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    if (this.props.login.dataFlag === 0) {
+      this.props.history.push("/main/homeIndex");
+    }
 
     return (
       <div className="loginBox">

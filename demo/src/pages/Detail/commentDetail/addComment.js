@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { List, TextareaItem, Button } from "antd-mobile";
+import { List, TextareaItem, Button,Toast } from "antd-mobile";
 import { createForm } from "rc-form";
 import { inject, observer } from "mobx-react";
 import "./addComment.scss";
@@ -32,7 +32,7 @@ class AddComment extends Component {
           });
           this.props.history.goBack();
         } else {
-          alert("内容不能为空");
+          Toast.offline("请输入内容", 1);
         }
       }
     });

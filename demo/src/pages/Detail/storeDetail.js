@@ -26,6 +26,11 @@ class StoreDetail extends Component {
     this.props.classify.GoodsCommodities({ id: id });
     this.props.special.getCommentListModule({ valueId: id, typeId: 0 });
     this.props.card.getCartNumModule(); //获取用户商品的数量
+  
+   
+  }
+
+  componentDidUpdate(){
     let container = this.swiperContainer.current;
     new Swiper(container, {
       autoplay: true,

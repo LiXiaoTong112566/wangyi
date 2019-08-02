@@ -150,6 +150,8 @@ class Address extends Component {
                     <dd
                       className="removeAdd"
                       onClick={(e)=>{this.delAddress(e,file.id)}}
+
+                     
                     >
                       <i className="iconfont icon-lajitong" />
                     </dd>

@@ -33,10 +33,12 @@ class StoreDetail extends Component {
   componentDidUpdate(){
     let container = this.swiperContainer.current;
     new Swiper(container, {
+      
       autoplay: true,
       loop: true,
       pagination: {
-        el: ".swiper-pagination"
+        el: ".swiper-pagination",
+        clickable :true,
       }
     });
   }

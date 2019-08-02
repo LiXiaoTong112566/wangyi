@@ -20,6 +20,11 @@
     background: #fff;
     display: flex;
     justify-content: space-around;
+    a{
+      flex:1;
+      text-align: center;
+    }
+
 
     >div {
       height: 1rem;

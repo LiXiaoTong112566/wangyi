@@ -12,8 +12,11 @@ class ClassifyDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      classId: -1,
-      id: ""
+      classId: this.props.match.params.id,
+      id: "",
+      page: 1,
+      upText: "下拉刷新",
+      downText: "上拉加载"
     };
     this.classifyDetailScroll = React.createRef();
   }
@@ -21,47 +24,85 @@ class ClassifyDetail extends Component {
   componentDidMount() {
     let id = this.props.match.params.id; //分类标题的id;
 
-    let classifyId = localStorage.getItem("classifyId"); //商品的id
-
-    this.setState({
-      classId: id,
-      id: classifyId
-    });
-
-    this.props.classify.getCatalogMsgModule({ id: id }); //获取导航的数据
-
-    //获取到导航数据对应的标题
-    this.props.classify.getCategoryNavModule({
-      id: id
-    });
-
-    //根据导航分类获取对应的商品
-    //根据分类Id或者制造商Id获取商品
-    this.props.classify.getGoodsModule({
-      categoryId: id,
-      page: 1,
-      size: 100
-    });
-
-    this.classifyDetailScrollData = new BScroll(
-      this.classifyDetailScroll.current,
+    let { classify } = this.props;
+    this.setState(
       {
-        probeType: 2,
-        click: true
+        classId: id
+      },
+      () => {
+        //根据导航分类获取对应的商品
+        //根据分类Id或者制造商Id获取商品
+        this.props.classify.getGoodsModule({
+          categoryId: this.state.classId,
+          page: this.state.page,
+          size: 10
+        });
+
+        this.props.classify.getCatalogMsgModule({ id: id }); //获取导航的数据
+        //获取到导航数据对应的标题
+        this.props.classify.getCategoryNavModule({
+          id: id
+        });
+
+        this.classifyDetailScrollData = new BScroll(
+          this.classifyDetailScroll.current,
+          {
+            probeType: 2,
+            click: true,
+            pullDownRefresh: {
+              threshold: 30
+            },
+            pullUpLoad: {
+              threshold: 30
+            }
+          }
+        );
+
+        //拼接上拉后续请求参数
+        this.classifyDetailScrollData.on("pullingUp", async () => {
+          console.log("pullingup");
+          this.setState({
+            downText: "释放加载",
+            page: this.state.page + 1
+          });
+          await classify.getGoodsModule({
+            categoryId: this.state.classId,
+            page: this.state.page,
+            size: 10
+          });
+
+          //上拉加载完成之后重新
+          this.classifyDetailScrollData.finishPullUp();
+        });
+
+        //下拉加载后请求参数
+
+        this.classifyDetailScrollData.on("pullingDown", async () => {
+          await classify.getGoodsModule({
+            categoryId: this.state.classId,
+            page: 1,
+            size: 10
+          });
+          //下拉加载完成后执行
+          this.classifyDetailScrollData.finishPullDown();
+        });
       }
     );
   }
 
+  //切换样式
   changeInd(index, id) {
+    let { classify } = this.props;
     this.setState({
-      classId: id
+      classId: id,
+      page: 1
     });
     //根据导航分类获取对应的商品
     //根据分类Id或者制造商Id获取商品
     this.props.classify.getGoodsModule({
       categoryId: id,
       page: 1,
-      size: 100
+      size: 10
     });
 
     //获取到导航数据对应的标题
@@ -81,7 +122,7 @@ class ClassifyDetail extends Component {
     //let { classifyRightBoxData } = this.props.classify;
     let titleData = this.props.classify.getCategoryNavData.currentCategory;
     let NavData = this.props.classify.getCategoryNavData.brotherCategory;
-    let { getGoodsData } = this.props.classify;
+    let { getGoodsListData } = this.props.classify;
     return (
       <div className="classifyDetail_box">
         <div className="header">
@@ -115,18 +156,17 @@ class ClassifyDetail extends Component {
               );
             })}
         </ul>
+        <div className="title">
+          <h3>{titleData && titleData.name}</h3>
+          <div className="titleMain">{titleData && titleData.front_name}</div>
+        </div>
 
         <div className="classifyDetail_main" ref={this.classifyDetailScroll}>
           <div>
-            <div className="title">
-              <h3>{titleData && titleData.name}</h3>
-              <div className="titleMain">
-                {titleData && titleData.front_name}
-              </div>
-            </div>
+            {/* <div className="upBox">{this.state.upText}</div> */}
             <div className="classifyDetail_mainBox">
-              {getGoodsData.data &&
-                getGoodsData.data.map((item, index) => {
+              {getGoodsListData &&
+                getGoodsListData.map((item, index) => {
                   return (
                     <dl
                       key={item.id}
@@ -141,8 +181,6 @@ class ClassifyDetail extends Component {
                         >
                           {src => <img src={src} alt="an image" />}
                         </ProgressiveImage>
-
-                        {/* <img src={item.list_pic_url} alt="" /> */}
                       </dt>
                       <dd>
                         <p>{item.name}</p>
@@ -152,6 +190,7 @@ class ClassifyDetail extends Component {
                   );
                 })}
             </div>
+            {/* <div className="downBox">{this.state.downText}</div> */}
           </div>
         </div>
       </div>

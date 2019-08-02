@@ -22,11 +22,13 @@ class homeIndex extends Component {
       autoplay: true,
       loop: true,
       pagination: {
-        el: pagination
+        el: pagination,
+        disableOnInteraction: false,
       }
     });
     new Swiper(card, {
-      loop: true
+      loop: true,
+      waitForTransition: false,
     });
   }
   brandDetail(ids) {

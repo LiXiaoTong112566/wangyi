@@ -9,7 +9,6 @@ class Login extends Component {
   componentDidMount() {}
 
   //登录成功跳转到首页
-  
 
   //登录
   handleSubmit = e => {
@@ -38,8 +37,6 @@ class Login extends Component {
             alt=""
           />
         </div>
-
-        <div className="form_box">
           <Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Item>
               {getFieldDecorator("mobile", {
@@ -70,13 +67,12 @@ class Login extends Component {
               <Button
                 type="primary"
                 htmlType="submit"
-                className="login-form-button"
               >
                 登录
               </Button>
             </Form.Item>
           </Form>
-        </div>
+        
       </div>
     );
   }

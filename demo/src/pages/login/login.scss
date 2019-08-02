@@ -1,25 +1,27 @@
 .loginBox {
   width: 100%;
   height: 100%;
-  border: none;
+  background:rgba(200,170,100,.5);
 
+  
+}
+.login-form{
+  width:100%;
+  box-sizing: border-box;
+  padding: 0 .3rem;
   input {
-    display: inline-block;
-    height: 0.6rem;
-    border: none;
-    outline: none;
+   outline: none;
+    height: 1rem;
+    border: 0;
     border-bottom: 1px solid #ccc;
     padding: 5px 0;
   }
-
   .ant-btn {
-    width: 90%;
+    width: 100%;
     height: 1rem;
     line-height: 1rem;
-    margin: 5%;
   }
 }
-
 .loginBox_logo {
   width: 100%;
   text-align: center;

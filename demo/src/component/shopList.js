@@ -3,20 +3,19 @@ import ImgBlend from "./imgBlend";
 
 export default class shopList extends Component {
 
-  constructor(props){
-    super(props);
-   
-  }
+ 
   jumpTopicDetail(data) {
     this.props.history.push({ pathname: `/classifyDetail/${data}` });
   }
 
   render() {
-    let { list, type, id } = this.props;
+    let { data, type, id } = this.props;
+    console.log(data);
 
     return (
       <div className="blend">
-        {list && list.map(file => <ImgBlend key={file.id} list={file} {...this.props}/>)}
+        
+        {data && data.map(item => <ImgBlend key={item.id} list={item} {...this.props}/>)}
         <div
           className="more_things"
           onClick={() => {

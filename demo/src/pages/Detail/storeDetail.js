@@ -337,5 +337,6 @@ class StoreDetail extends Component {
     );
   }
 }
+ export default (props)=><StoreDetail {...props} key={props.location.pathname}/>;
 
-export default StoreDetail;
+

@@ -191,12 +191,14 @@ class homeIndex extends Component {
           </div>
         </div>
         <div className="shop_list dlslist">
+          
           {categoryList &&
             categoryList.map(file => (
+            
               <div key={file.id}>
                 <p>{file.name}</p>
                 <ShopList
-                  list={file.goodsList}
+                  data={file.goodsList}
                   type={file.name}
                   id={file.id}
                   {...this.props}

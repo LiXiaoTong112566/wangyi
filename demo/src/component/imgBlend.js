@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 
 import ProgressiveImage from "react-progressive-image";
-
+import {withRouter} from "react-router-dom";
 class ImgBlend extends Component {
+
+
+  constructor(){
+    super()
+  }
   render() {
     let { list } = this.props;
-
+  
     return (
       <dl style={{ marginBottom: 0 }} onClick={()=>this.props.history.push({pathname:`/storeDetail/${list.id}`})}>
        
@@ -16,9 +21,10 @@ class ImgBlend extends Component {
             >
               {src => <img src={src} alt="" />}
             </ProgressiveImage>
-            {/* <img src={list.list_pic_url} alt=""></img> */}
+           
           </dt>
           <dd>
+         
             <div>{list.name}</div>
             <span>￥{list.retail_price}</span>
           </dd>
@@ -28,4 +34,4 @@ class ImgBlend extends Component {
   }
 }
 
-export default (props)=><ImgBlend {...props} key={props.location.pathname}/>;
+export default ImgBlend;

@@ -17,15 +17,15 @@ import {
   //获取用户地址数据
   @action async findAddress() {
     let data = await getAddressList();
-    console.log(data);
+   // console.log(data);
     this.userAddressData = data.data
   }
   //新增地址
   @action async addAddress(params) {
-    console.log(params)
+   // console.log(params)
     let data = await postAddAddress(params);
     this.addAddressData=data;
-    console.log(data)
+   // console.log(data)
     if(data.errno ===0){
       this.findAddress();
     }

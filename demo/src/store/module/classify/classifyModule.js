@@ -75,7 +75,7 @@ export default class IndexPageModule {
   //是否添加到收藏栏
   @action async addEnshrine(params) {
     let list = await postDoLikes(params);
-    console.log(list);
+   // console.log(list);
     this.addCollection = list.data;
     this.getGoodsDetailModule({ id: params.valueId });
     //重新调用获取收藏栏的数据

@@ -10,7 +10,7 @@ export default class IndexPageModule {
   @action getLogin(data) {
     postLogin(data).then(res => {
       this.dataFlag = res.data;
-      console.log(res);
+      //console.log(res);
       if (res.errno === 0) {
         Toast.success("登录成功", 1);
 

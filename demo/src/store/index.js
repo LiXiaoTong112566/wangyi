@@ -7,6 +7,7 @@ import SearchModule from "./module/searchModule";
 import AddCard from "./module/shoppingCart/addCart";
 import Collect from "./module/shoppingCart/collection"
 import Address from "./module/address/address"
+import Loading from './module/loading';
 //实例化模块
 //登录的方法
 const login = new LoginModule();
@@ -22,6 +23,8 @@ const collect = new Collect();
 const card = new AddCard();
 //地址
 const address = new Address();
+//loading
+const loading = new Loading();
 
 export default {
   login,
@@ -32,5 +35,6 @@ export default {
   search,
   card,
   collect,
-  address
+  address,
+  loading
 };

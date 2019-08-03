@@ -8,12 +8,15 @@ import { inject, observer } from "mobx-react";
 import ImgBlend from "../../../component/imgBlend";
 import ShopList from "../../../component/shopList";
 
-@inject("indexPageModule")
+@inject("loading","indexPageModule")
 @observer
 class homeIndex extends Component {
+
   componentDidMount() {
+   
     let { indexPageModule } = this.props;
     indexPageModule.changeCount();
+ 
   }
 
   componentDidUpdate() {

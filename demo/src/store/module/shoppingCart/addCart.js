@@ -24,7 +24,6 @@ export default class cardShop {
   @observable postCartDeleteData = ""; //编辑页面的删除所选的内容
 
   //给页面全选的按钮赋值
-
   @action async changeInitFinishCheckedFn() {
     let data = await this.getCartDataModule();
     //获取到完成页面的全选的状态
@@ -57,14 +56,11 @@ export default class cardShop {
 
   @action async getCartDataModule() {
     let data = await getCartDataServer();
-
     let newData = data.data.cartList.map((item, index) => {
       item.flag = false;
       return item;
     });
-
     let obj = { cartList: newData, cartTotal: data.data.cartTotal };
-
     this.getCartData = obj;
   }
 

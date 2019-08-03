@@ -163,7 +163,7 @@ class ClassifyDetail extends Component {
 
         <div className="classifyDetail_main" ref={this.classifyDetailScroll}>
           <div>
-            {/* <div className="upBox">{this.state.upText}</div> */}
+            <div className="upBox">{this.state.upText}</div>
             <div className="classifyDetail_mainBox">
               {getGoodsListData &&
                 getGoodsListData.map((item, index) => {
@@ -190,7 +190,7 @@ class ClassifyDetail extends Component {
                   );
                 })}
             </div>
-            {/* <div className="downBox">{this.state.downText}</div> */}
+            <div className="downBox">{this.state.downText}</div>
           </div>
         </div>
       </div>

@@ -54,7 +54,6 @@ class Search extends Component {
   searchData = e => {
     if (e.nativeEvent.target.tagName === "LI") {
       let data = e.nativeEvent.target.innerHTML;
-
       this.setState({
         show: false
       });
@@ -119,7 +118,6 @@ class Search extends Component {
       this.setState({
         iconFlag: 1
       });
-
       this.props.search.getGoodsListModule({
         keyword: this.state.value,
         sort: "price",

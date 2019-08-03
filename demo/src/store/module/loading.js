@@ -10,7 +10,7 @@ export default class LoadingModule {
   }
   constructor(){
     autorun(()=>{
-        console.log("isLoading...", this.isLoading);
+        // console.log("isLoading...", this.isLoading);
     })
   }
   

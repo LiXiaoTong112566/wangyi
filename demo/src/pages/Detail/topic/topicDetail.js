@@ -105,6 +105,7 @@ class TopicDetail extends Component {
           <div className="list">
             {getTopicDetailRelatedData &&
               getTopicDetailRelatedData.map((item, index) => {
+                console.log(item)
                 return (
                   <dl key={item.id}>
                     <dt>

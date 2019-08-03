@@ -244,7 +244,7 @@ class StoreDetail extends Component {
             <p>大家都在看</p>
             <div className="blend">
               {goods &&
-                goods.map(file => <ImgBlend list={file} key={file.id} />)}
+                goods.map(file => <ImgBlend list={file} key={file.id} {...this.props}/>)}
             </div>
           </div>
         </div>

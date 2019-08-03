@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import ImgBlend from "./imgBlend";
 
 export default class shopList extends Component {
+
+  constructor(props){
+    super(props);
+   
+  }
   jumpTopicDetail(data) {
     this.props.history.push({ pathname: `/classifyDetail/${data}` });
   }
@@ -11,7 +16,7 @@ export default class shopList extends Component {
 
     return (
       <div className="blend">
-        {list && list.map(file => <ImgBlend key={file.id} list={file} />)}
+        {list && list.map(file => <ImgBlend key={file.id} list={file} {...this.props}/>)}
         <div
           className="more_things"
           onClick={() => {

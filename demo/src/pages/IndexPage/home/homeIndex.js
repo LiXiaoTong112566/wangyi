@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./homeIndex.scss";
-import ProgressiveImage from "react-progressive-image";
 
+import ProgressiveImage from "react-progressive-image";
 import Swiper from "swiper";
 import "swiper/dist/css/swiper.min.css";
 import { inject, observer } from "mobx-react";
@@ -67,6 +67,7 @@ class homeIndex extends Component {
               {banner &&
                 banner.map(file => (
                   <div key={file.id} className="swiper-slide">
+                  
                     <img src={file.image_url} alt="" />
                   </div>
                 ))}
@@ -84,14 +85,12 @@ class homeIndex extends Component {
                 }}
               >
                 <dt>
-                  <ProgressiveImage
-                    src={file.icon_url}
-                    placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg"
-                  >
-                    {src => <img src={src} alt="an image" />}
-                  </ProgressiveImage>
-
-                  {/* <img src={file.icon_url} alt="" /> */}
+                <ProgressiveImage
+                          src={file.icon_url}
+                          placeholder="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564683988647&di=089d64d919c0d8b1c2d7d34679951d4d&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0168905ad83519a801213867ae45cf.gif"
+                        >
+                          {src => <img src={src} alt="" />}
+                        </ProgressiveImage>
                 </dt>
                 <dd>{file.name}</dd>
               </dl>
@@ -143,11 +142,13 @@ class homeIndex extends Component {
                 >
                   <dt>
                   <ProgressiveImage
-                    src={file.list_pic_url}
-                    placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg"
-                  >
-                    {src => <img src={src} alt="an image" />}
-                  </ProgressiveImage>
+                          src={file.list_pic_url}
+                          placeholder="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564683988647&di=089d64d919c0d8b1c2d7d34679951d4d&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0168905ad83519a801213867ae45cf.gif"
+                        >
+                          {src => <img src={src} alt="" />}
+                        </ProgressiveImage>
+                  
+                  
                     {/* <img src={file.list_pic_url} alt="" /> */}
                   </dt>
                   <dd>

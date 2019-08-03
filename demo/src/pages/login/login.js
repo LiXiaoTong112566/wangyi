@@ -17,8 +17,6 @@ class Login extends Component {
       if (!err) {
         this.props.login.getLogin(values);
         localStorage.setItem("mobile", values.mobile);
-       
-
       }
     });
   };

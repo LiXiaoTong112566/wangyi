@@ -8,6 +8,7 @@ import { inject, observer } from "mobx-react";
 import ImgBlend from "../../../component/imgBlend";
 import ShopList from "../../../component/shopList";
 
+
 @inject("indexPageModule")
 @observer
 class homeIndex extends Component {
@@ -84,9 +85,9 @@ class homeIndex extends Component {
                 <dt>
                   <ProgressiveImage
                     src={file.icon_url}
-                    placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg"
-                  >
-                    {src => <img src={src} alt="an image" />}
+                    placeholder="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564683988647&di=089d64d919c0d8b1c2d7d34679951d4d&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0168905ad83519a801213867ae45cf.gif"
+                    >
+                    {src => <img src={src} alt="" />}
                   </ProgressiveImage>
 
                   {/* <img src={file.icon_url} alt="" /> */}
@@ -142,9 +143,9 @@ class homeIndex extends Component {
                   <dt>
                   <ProgressiveImage
                     src={file.list_pic_url}
-                    placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg"
-                  >
-                    {src => <img src={src} alt="an image" />}
+                    placeholder="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564683988647&di=089d64d919c0d8b1c2d7d34679951d4d&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0168905ad83519a801213867ae45cf.gif"
+                    >
+                    {src => <img src={src} alt="" />}
                   </ProgressiveImage>
                     {/* <img src={file.list_pic_url} alt="" /> */}
                   </dt>
@@ -173,7 +174,12 @@ class homeIndex extends Component {
                     }}
                   >
                     <dt>
-                      <img src={file.scene_pic_url} alt="" />
+                      <ProgressiveImage
+                    src={file.scene_pic_url}
+                    placeholder="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564683988647&di=089d64d919c0d8b1c2d7d34679951d4d&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0168905ad83519a801213867ae45cf.gif"
+                    >
+                    {src => <img src={src} alt="" />}
+                  </ProgressiveImage>
                     </dt>
                     <dd>
                       <div>

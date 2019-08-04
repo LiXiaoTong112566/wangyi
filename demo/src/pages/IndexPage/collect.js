@@ -36,8 +36,8 @@ class collect extends Component {
                   ]}
                 >
                   <List.Item>
-                    <dl style={{ marginBottom: 0 }}>
-                      <a href={`/storeDetail/${file.value_id}`}>
+                    <dl className="dlBox" onClick={()=>{this.props.history.push({pathname:`/storeDetail/${file.value_id}`})}}>
+                     
                         <dt>
                           <img src={file.list_pic_url} alt="" />
                         </dt>
@@ -48,7 +48,7 @@ class collect extends Component {
                           </div>
                           <span>￥{file.retail_price}</span>
                         </dd>
-                      </a>
+                     
                     </dl>
                   </List.Item>
                 </SwipeAction>

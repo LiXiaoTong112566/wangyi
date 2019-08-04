@@ -13,7 +13,10 @@ FastClick.attach(document.body);
 
 ReactDOM.render(
   <Provider {...store}>
+    <React.Fragment>
     <App />
+  
+    </React.Fragment>
   </Provider>,
   document.getElementById("root")
 );

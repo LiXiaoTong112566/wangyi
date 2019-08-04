@@ -7,11 +7,14 @@ export default class shopList extends Component {
   }
 
   render() {
-    let { list, type, id } = this.props;
+    let { data, type, id } = this.props;
 
     return (
       <div className="blend">
-        {list && list.map(file => <ImgBlend key={file.id} list={file} />)}
+        {data &&
+          data.map(item => (
+            <ImgBlend key={item.id} list={item} {...this.props} />
+          ))}
         <div
           className="more_things"
           onClick={() => {

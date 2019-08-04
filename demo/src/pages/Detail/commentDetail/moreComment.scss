@@ -1,5 +1,8 @@
 .moreCommentBox {
   width: 100%;
+  height: 100%;
+  overflow: scroll;
+  
   .moreCommentBox_header {
     width: 100%;
     height: 1rem;

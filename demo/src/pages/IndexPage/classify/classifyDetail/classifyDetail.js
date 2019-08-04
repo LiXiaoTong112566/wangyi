@@ -53,7 +53,7 @@ class ClassifyDetail extends Component {
               threshold: 30
             },
             pullUpLoad: {
-              threshold: 30
+              threshold: 10
             }
           }
         );
@@ -190,7 +190,7 @@ class ClassifyDetail extends Component {
                   );
                 })}
             </div>
-            <div className="downBox">{this.state.downText}</div>
+            {/* <div className="downBox">没有更多数据了</div> */}
           </div>
         </div>
       </div>

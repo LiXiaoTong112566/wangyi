@@ -32,7 +32,7 @@ class BrandDetail extends Component {
           <div className="title">{store.simple_desc}</div>
           <div className="detail_shop">
             {list.length > 0
-              ? list.map(file => <ImgBlend key={file.id} list={file} />)
+              ? list.map(file => <ImgBlend key={file.id} list={file} {...this.props}/>)
               : ""}
           </div>
         </div>

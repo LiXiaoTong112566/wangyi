@@ -111,7 +111,7 @@ class Address extends Component {
   render() {
     let site = this.props.address.userAddressData;
     const { getFieldProps } = this.props.form;
-    console.log(site)
+   
     let {
       flag,
       name,

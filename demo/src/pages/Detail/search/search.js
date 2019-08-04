@@ -334,7 +334,7 @@ class Search extends Component {
                   <div className="searchListMain_main">
                     {getGoodsListData &&
                       getGoodsListData.data.map((item, index) => {
-                        return <ImgBlend key={"main" + index} list={item} />;
+                        return <ImgBlend key={"main" + index} list={item} {...this.props}/>;
                       })}
                   </div>
                 </div>

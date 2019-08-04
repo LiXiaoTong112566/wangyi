@@ -17,7 +17,7 @@ class StoreDetail extends Component {
       visible: false,
       count: 0
     };
-    this.swiperContainer = React.createRef();
+   
   }
 
   componentDidMount() {
@@ -26,22 +26,29 @@ class StoreDetail extends Component {
     this.props.classify.GoodsCommodities({ id: id });
     this.props.special.getCommentListModule({ valueId: id, typeId: 0 });
     this.props.card.getCartNumModule(); //获取用户商品的数量
-  
+    
    
   }
 
   componentDidUpdate(){
-    let container = this.swiperContainer.current;
+
+    let container = this.refs.swiperContainer;
+    let pagination=this.refs.pagination;
     new Swiper(container, {
-      
       autoplay: true,
       loop: true,
       pagination: {
-        el: ".swiper-pagination",
-        clickable :true,
+        el: pagination,
+        disableOnInteraction:false,
+
       }
     });
+  
+
   }
+
+ 
+ 
  
   goodsMask() {
     this.setState({
@@ -125,8 +132,8 @@ class StoreDetail extends Component {
         <div className="article">
           {/* 轮播 */}
           <div className="swiperBox">
-            <div className="swiper-container" ref={this.swiperContainer}>
-              <div className="swiper-wrapper">
+            <div className="swiper-container" ref="swiperContainer" id="container">
+              <div className="swiper-wrapper" id="container">
                 {getGoodsDetailData.gallery &&
                   getGoodsDetailData.gallery.map(item => {
                     return (
@@ -136,7 +143,7 @@ class StoreDetail extends Component {
                     );
                   })}
               </div>
-              <div className="swiper-pagination" />
+              <div className="swiper-pagination" ref="pagination" />
             </div>
           </div>
           {/* 星星 */}

@@ -15,9 +15,11 @@ class StoreDetail extends Component {
     super();
     this.state = {
       visible: false,
-      count: 0
+      count: 0,
+      bannerSwiper: null
     };
-   
+
+    this.container=React.createRef();
   }
 
   componentDidMount() {
@@ -26,30 +28,18 @@ class StoreDetail extends Component {
     this.props.classify.GoodsCommodities({ id: id });
     this.props.special.getCommentListModule({ valueId: id, typeId: 0 });
     this.props.card.getCartNumModule(); //获取用户商品的数量
-    
-   
-  }
-
-  componentDidUpdate(){
-
-    let container = this.refs.swiperContainer;
-    let pagination=this.refs.pagination;
-    new Swiper(container, {
-      autoplay: true,
-      loop: true,
-      pagination: {
-        el: pagination,
-        disableOnInteraction:false,
-
-      }
+    let container = this.container.current;
+    this.setState({
+      bannerSwiper: new Swiper(container, {
+        autoplay: true,
+        observer:true,
+        pagination: {
+          el: ".swiper-pagination"
+        }
+      })
     });
-  
-
   }
 
- 
- 
- 
   goodsMask() {
     this.setState({
       visible: true
@@ -120,7 +110,7 @@ class StoreDetail extends Component {
       getGoodsDetailData.info && getGoodsDetailData.info.primary_pic_url;
     let num = getGoodsDetailData.productList;
     //评论
-    
+
     let discuss = this.props.special.getCommentListData;
 
     return (
@@ -132,7 +122,11 @@ class StoreDetail extends Component {
         <div className="article">
           {/* 轮播 */}
           <div className="swiperBox">
-            <div className="swiper-container" ref="swiperContainer" id="container">
+            <div
+              className="swiper-container"
+              ref={this.container} 
+              
+            >
               <div className="swiper-wrapper" id="container">
                 {getGoodsDetailData.gallery &&
                   getGoodsDetailData.gallery.map(item => {
@@ -143,7 +137,7 @@ class StoreDetail extends Component {
                     );
                   })}
               </div>
-              <div className="swiper-pagination" ref="pagination" />
+              <div className="swiper-pagination" />
             </div>
           </div>
           {/* 星星 */}
@@ -177,9 +171,7 @@ class StoreDetail extends Component {
           </div>
           {/* 评论 */}
           <div className="commentGoods">
-         
             <div className="commentTop">
-              
               <span>评论 ({discuss[0] && discuss.length})</span>
               {discuss[0] && discuss[0] ? (
                 <span
@@ -195,7 +187,7 @@ class StoreDetail extends Component {
                 ""
               )}
             </div>
-           
+
             {discuss[0] && discuss[0] ? (
               <div className="commentCont">
                 <p>
@@ -204,7 +196,10 @@ class StoreDetail extends Component {
                 </p>
                 <div>{discuss && discuss[0].content}</div>
                 <div>
-                  <img src={discuss[0] && discuss[0].pic_list[0].pic_url} alt="" />
+                  <img
+                    src={discuss[0] && discuss[0].pic_list[0].pic_url}
+                    alt=""
+                  />
                 </div>
               </div>
             ) : (
@@ -251,7 +246,9 @@ class StoreDetail extends Component {
             <p>大家都在看</p>
             <div className="blend">
               {goods &&
-                goods.map(file => <ImgBlend list={file} key={file.id} {...this.props}/>)}
+                goods.map(file => (
+                  <ImgBlend list={file} key={file.id} {...this.props} />
+                ))}
             </div>
           </div>
         </div>
@@ -344,6 +341,6 @@ class StoreDetail extends Component {
     );
   }
 }
- export default (props)=><StoreDetail {...props} key={props.location.pathname}/>;
-
-
+export default props => (
+  <StoreDetail {...props} key={props.location.pathname} />
+);

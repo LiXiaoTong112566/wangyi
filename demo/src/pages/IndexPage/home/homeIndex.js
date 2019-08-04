@@ -8,15 +8,12 @@ import { inject, observer } from "mobx-react";
 import ImgBlend from "../../../component/imgBlend";
 import ShopList from "../../../component/shopList";
 
-@inject("loading","indexPageModule")
+@inject("loading", "indexPageModule")
 @observer
 class homeIndex extends Component {
-
   componentDidMount() {
-   
     let { indexPageModule } = this.props;
     indexPageModule.changeCount();
- 
   }
 
   componentDidUpdate() {
@@ -26,12 +23,15 @@ class homeIndex extends Component {
       loop: true,
       pagination: {
         el: pagination,
-        disableOnInteraction: false,
+        disableOnInteraction: false
       }
     });
     new Swiper(card, {
       loop: true,
       waitForTransition: false,
+      spaceBetween: 15,
+      slidesPerView: "auto", //开启slide宽度自定义功能
+      centeredSlides: true //首个居中
     });
   }
   brandDetail(ids) {
@@ -70,7 +70,6 @@ class homeIndex extends Component {
               {banner &&
                 banner.map(file => (
                   <div key={file.id} className="swiper-slide">
-                  
                     <img src={file.image_url} alt="" />
                   </div>
                 ))}
@@ -88,12 +87,12 @@ class homeIndex extends Component {
                 }}
               >
                 <dt>
-                <ProgressiveImage
-                          src={file.icon_url}
-                          placeholder="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564683988647&di=089d64d919c0d8b1c2d7d34679951d4d&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0168905ad83519a801213867ae45cf.gif"
-                        >
-                          {src => <img src={src} alt="" />}
-                        </ProgressiveImage>
+                  <ProgressiveImage
+                    src={file.icon_url}
+                    placeholder="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564683988647&di=089d64d919c0d8b1c2d7d34679951d4d&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0168905ad83519a801213867ae45cf.gif"
+                  >
+                    {src => <img src={src} alt="" />}
+                  </ProgressiveImage>
                 </dt>
                 <dd>{file.name}</dd>
               </dl>
@@ -144,14 +143,13 @@ class homeIndex extends Component {
                   }}
                 >
                   <dt>
-                  <ProgressiveImage
-                          src={file.list_pic_url}
-                          placeholder="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564683988647&di=089d64d919c0d8b1c2d7d34679951d4d&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0168905ad83519a801213867ae45cf.gif"
-                        >
-                          {src => <img src={src} alt="" />}
-                        </ProgressiveImage>
-                  
-                  
+                    <ProgressiveImage
+                      src={file.list_pic_url}
+                      placeholder="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564683988647&di=089d64d919c0d8b1c2d7d34679951d4d&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0168905ad83519a801213867ae45cf.gif"
+                    >
+                      {src => <img src={src} alt="" />}
+                    </ProgressiveImage>
+
                     {/* <img src={file.list_pic_url} alt="" /> */}
                   </dt>
                   <dd>
@@ -194,10 +192,8 @@ class homeIndex extends Component {
           </div>
         </div>
         <div className="shop_list dlslist">
-          
           {categoryList &&
             categoryList.map(file => (
-            
               <div key={file.id}>
                 <p>{file.name}</p>
                 <ShopList

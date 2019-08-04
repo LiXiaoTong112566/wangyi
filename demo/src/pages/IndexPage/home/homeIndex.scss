@@ -10,11 +10,11 @@
 .easyList {
   width: 100%;
   box-sizing: border-box;
-  padding: .5rem 0;
+  padding: 0.5rem 0;
   display: flex;
   justify-content: space-around;
   background: #fff;
-  border-bottom: .01rem solid #eee;
+  border-bottom: 0.01rem solid #eee;
   dl {
     width: 20%;
     text-align: center;
@@ -38,6 +38,19 @@
     color: #333;
     background: #fff;
     margin-bottom: 0;
+  }
+  .card-slide {
+    width: 100%;
+    .swiper-wrapper {
+      width: 80%;
+      .swiper-slide {
+        width: 100%;
+        img {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
   }
 }
 .dls {
@@ -80,7 +93,7 @@
       height: 2.8rem;
     }
     span {
-      font-size: .32rem;
+      font-size: 0.32rem;
       color: #8b0000;
     }
   }
@@ -97,20 +110,20 @@
   box-sizing: border-box;
   padding: 0 0.3rem;
   dl {
-    width: 100%!important;
+    width: 100% !important;
     border: 0;
     border-top: 0.005rem solid #ccc;
     display: flex;
     justify-content: space-between;
-    dt{
+    dt {
       width: 2.8rem;
       height: 2.8rem;
       img {
-      width: 2.8rem;
-      height: 2.8rem;
-     }
+        width: 2.8rem;
+        height: 2.8rem;
+      }
     }
-    
+
     dd {
       flex: 1;
       box-sizing: border-box;

@@ -9237,7 +9237,7 @@ react-lazy-load@^3.0.13:
     lodash.throttle "^4.0.0"
     prop-types "^15.5.8"
 
-react-lazyimg-component@^0.0.2:
+react-lazyimg-component@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/react-lazyimg-component/-/react-lazyimg-component-0.0.2.tgz#f85663b1ace2b6bf03a67f58a253a9c0257efaa5"
   integrity sha512-L4E+ABuly1/AJN3MRF1BRLapL72fj9OtJlBUcpVZafvSYGCAWG8xo/7NR11tKKW1Qdih8YeaqBp4foAC0LSaVQ==
@@ -11442,9 +11442,9 @@ websocket-driver@>=0.5.1:
     websocket-extensions ">=0.1.1"
 
 websocket-extensions@>=0.1.1:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.3.tgz#5d2ff22977003ec687a4b87073dfbbac146ccf29"
-  integrity sha512-nqHUnMXmBzT0w570r2JpJxfiSD1IzoI+HGVdd3aZ0yNi3ngvQ4jv1dtHt5VGxfI2yj5yqImPhOK4vmIh2xMbGg==
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.4.tgz#7f8473bc839dfd87608adb95d7eb075211578a42"
+  integrity sha512-OqedPIGOfsDlo31UNwYbCFMSaO9m9G/0faIHj5/dZFDMFqPTcx6UwqyOy3COEaEOg/9VsGIpdqn62W5KhoKSpg==
 
 whatwg-encoding@^1.0.1, whatwg-encoding@^1.0.3, whatwg-encoding@^1.0.5:
   version "1.0.5"

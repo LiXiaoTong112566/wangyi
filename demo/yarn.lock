@@ -9237,7 +9237,7 @@ react-lazy-load@^3.0.13:
     lodash.throttle "^4.0.0"
     prop-types "^15.5.8"
 
-react-lazyimg-component@^0.0.2:
+react-lazyimg-component@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/react-lazyimg-component/-/react-lazyimg-component-0.0.2.tgz#f85663b1ace2b6bf03a67f58a253a9c0257efaa5"
   integrity sha512-L4E+ABuly1/AJN3MRF1BRLapL72fj9OtJlBUcpVZafvSYGCAWG8xo/7NR11tKKW1Qdih8YeaqBp4foAC0LSaVQ==
@@ -10969,9 +10969,9 @@ typedarray@^0.0.6:
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
 ua-parser-js@^0.7.18:
-  version "0.7.20"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.20.tgz#7527178b82f6a62a0f243d1f94fd30e3e3c21098"
-  integrity sha512-8OaIKfzL5cpx8eCMAhhvTlft8GYF8b2eQr6JkCyVdrgjcytyOmPCXrqXFcUnhonRpLlh5yxEZVohm6mzaowUOw==
+  version "0.7.28"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.28.tgz#8ba04e653f35ce210239c64661685bf9121dec31"
+  integrity sha512-6Gurc1n//gjp9eQNXjD9O3M/sMwVtN5S8Lv9bvOYBfKfDNiIIhqiyi01vMBO45u4zkDE420w/e0se7Vs+sIg+g==
 
 uglify-js@3.4.x:
   version "3.4.10"

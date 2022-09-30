@@ -9237,7 +9237,7 @@ react-lazy-load@^3.0.13:
     lodash.throttle "^4.0.0"
     prop-types "^15.5.8"
 
-react-lazyimg-component@^0.0.2:
+react-lazyimg-component@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/react-lazyimg-component/-/react-lazyimg-component-0.0.2.tgz#f85663b1ace2b6bf03a67f58a253a9c0257efaa5"
   integrity sha512-L4E+ABuly1/AJN3MRF1BRLapL72fj9OtJlBUcpVZafvSYGCAWG8xo/7NR11tKKW1Qdih8YeaqBp4foAC0LSaVQ==
